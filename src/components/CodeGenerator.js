@@ -1,12 +1,12 @@
-import React from "react";
-import { Box, Button, TextField } from "@mui/material";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import React from 'react';
+import { Box, Button, TextField } from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const CodeGenerator = ({ config }) => {
   // Generate embed code based on configuration
   const generateEmbedCode = () => {
     return `<script 
-  src="https://bmc-associates.com/embed/section.js" 
+  src="https://bmc-neon.vercel.app/embed/section.js" 
   data-background="${config.backgroundColor}"
   data-text-color="${config.textColor}"
   data-heading-font="${config.headingFont}"
@@ -32,21 +32,20 @@ const CodeGenerator = ({ config }) => {
         variant="outlined"
         InputProps={{
           readOnly: true,
-          style: { fontFamily: "monospace", fontSize: "0.875rem" },
+          style: { fontFamily: 'monospace', fontSize: '0.875rem' }
         }}
         sx={{ mb: 2 }}
       />
-      <Button
-        variant="contained"
+      <Button 
+        variant="contained" 
         startIcon={<ContentCopyIcon />}
         onClick={copyToClipboard}
       >
         Copy Embed Code
       </Button>
-      <Box sx={{ mt: 2, fontSize: "0.875rem", color: "text.secondary" }}>
-        Simply copy this code and paste it into your website where you want the
-        BMC section to appear. Works with WordPress, Webflow, and most other
-        website builders.
+      <Box sx={{ mt: 2, fontSize: '0.875rem', color: 'text.secondary' }}>
+        Simply copy this code and paste it into your website where you want the BMC section to appear.
+        Works with WordPress, Webflow, and most other website builders.
       </Box>
     </Box>
   );
