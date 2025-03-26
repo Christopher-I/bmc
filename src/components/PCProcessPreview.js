@@ -181,7 +181,6 @@ const PCProcessPreview = ({ config }) => {
     );
   };
   
-
   return (
     <Box sx={containerStyle}>
       <Typography sx={headingStyle}>
