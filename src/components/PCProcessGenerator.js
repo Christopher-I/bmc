@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   Box, 
   TextField, 
@@ -10,32 +10,14 @@ import {
   Typography,
   Grid,
   Button,
-  Tabs,
-  Tab,
   Paper
 } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
-const CharterSectionGenerator = () => {
-  // Default configuration for the Charter section
-  const [config, setConfig] = useState({
-    backgroundColor: '#1e4164',
-    textColor: '#ffffff',
-    headingFont: 'sans-serif',
-    bodyFont: 'sans-serif',
-    accentColor: '#a3c984',
-    buttonColor: '#ffffff',
-    buttonText: 'Learn More',
-    buttonRadius: 0,
-    transitionSpeed: 0.3
-  });
-
+const PCProcessGenerator = ({ config, onConfigChange }) => {
   // Handle input changes
   const handleChange = (name, value) => {
-    setConfig({
-      ...config,
-      [name]: value
-    });
+    onConfigChange(name, value);
   };
 
   // Handle color picker change
@@ -61,15 +43,17 @@ const CharterSectionGenerator = () => {
   // Generate embed code based on configuration
   const generateEmbedCode = () => {
     return `<script 
-  src="https://bmc-neon.vercel.app/embed/charter-section.js" 
+  src="https://bmc-neon.vercel.app/embed/pc-process-section.js" 
   data-background="${config.backgroundColor}"
   data-text-color="${config.textColor}"
+  data-accent-color="${config.accentColor}"
   data-heading-font="${config.headingFont}"
   data-body-font="${config.bodyFont}"
-  data-accent-color="${config.accentColor}"
   data-button-color="${config.buttonColor}"
+  data-button-text="${config.buttonText}"
   data-button-radius="${config.buttonRadius}"
-  data-transition-speed="${config.transitionSpeed}s">
+  data-accordion-radius="${config.accordionRadius || 4}"
+  data-transition-speed="${config.transitionSpeed}">
 </script>`;
   };
 
@@ -81,7 +65,7 @@ const CharterSectionGenerator = () => {
   return (
     <Box>
       <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
-        <Typography variant="h6" gutterBottom>Customize Charter Section</Typography>
+        <Typography variant="h6" gutterBottom>Customize PC Process Section</Typography>
         <Grid container spacing={3}>
           {/* Colors Section */}
           <Grid item xs={12} sm={6}>
@@ -141,7 +125,7 @@ const CharterSectionGenerator = () => {
           <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
-                Accent Color (Letters)
+                Accent Color (Bottom Border)
               </Typography>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                 <Box
@@ -203,8 +187,8 @@ const CharterSectionGenerator = () => {
                 onChange={handleSelectChange}
                 label="Heading Font"
               >
-                <MenuItem value="sans-serif">Sans-serif</MenuItem>
                 <MenuItem value="serif">Serif</MenuItem>
+                <MenuItem value="sans-serif">Sans-serif</MenuItem>
                 <MenuItem value="monospace">Monospace</MenuItem>
                 <MenuItem value="Arial, sans-serif">Arial</MenuItem>
                 <MenuItem value="'Times New Roman', Times, serif">Times New Roman</MenuItem>
@@ -233,27 +217,22 @@ const CharterSectionGenerator = () => {
             </FormControl>
           </Grid>
           
-          {/* Animation Section */}
+          {/* Button Text */}
           <Grid item xs={12} sm={6}>
-            <Box sx={{ mt: 1 }}>
-              <Typography id="transition-speed-slider" gutterBottom>
-                Transition Speed: {config.transitionSpeed}s
-              </Typography>
-              <Slider
-                value={config.transitionSpeed}
-                onChange={handleSliderChange('transitionSpeed')}
-                aria-labelledby="transition-speed-slider"
-                valueLabelDisplay="auto"
-                step={0.1}
-                marks
-                min={0.1}
-                max={1.0}
-              />
-            </Box>
+            <TextField
+              label="Button Text"
+              name="buttonText"
+              value={config.buttonText}
+              onChange={handleTextChange}
+              fullWidth
+              margin="normal"
+              size="small"
+            />
           </Grid>
           
+          {/* Button Radius */}
           <Grid item xs={12} sm={6}>
-            <Box sx={{ mt: 1 }}>
+            <Box sx={{ mt: 3 }}>
               <Typography id="button-radius-slider" gutterBottom>
                 Button Radius: {config.buttonRadius}px
               </Typography>
@@ -266,6 +245,44 @@ const CharterSectionGenerator = () => {
                 marks
                 min={0}
                 max={20}
+              />
+            </Box>
+          </Grid>
+          
+          {/* Accordion Radius */}
+          <Grid item xs={12} sm={6}>
+            <Box sx={{ mt: 1 }}>
+              <Typography id="accordion-radius-slider" gutterBottom>
+                Accordion Radius: {config.accordionRadius || 4}px
+              </Typography>
+              <Slider
+                value={config.accordionRadius || 4}
+                onChange={handleSliderChange('accordionRadius')}
+                aria-labelledby="accordion-radius-slider"
+                valueLabelDisplay="auto"
+                step={1}
+                marks
+                min={0}
+                max={20}
+              />
+            </Box>
+          </Grid>
+          
+          {/* Transition Speed */}
+          <Grid item xs={12} sm={6}>
+            <Box sx={{ mt: 1 }}>
+              <Typography id="transition-speed-slider" gutterBottom>
+                Accordion Transition Speed: {config.transitionSpeed}s
+              </Typography>
+              <Slider
+                value={config.transitionSpeed}
+                onChange={handleSliderChange('transitionSpeed')}
+                aria-labelledby="transition-speed-slider"
+                valueLabelDisplay="auto"
+                step={0.1}
+                marks
+                min={0.1}
+                max={1.0}
               />
             </Box>
           </Grid>
@@ -294,7 +311,7 @@ const CharterSectionGenerator = () => {
           Copy Embed Code
         </Button>
         <Box sx={{ mt: 2, fontSize: '0.875rem', color: 'text.secondary' }}>
-          Simply copy this code and paste it into your website where you want the Charter section to appear.
+          Simply copy this code and paste it into your website where you want the PC Process section to appear.
           Works with WordPress, Webflow, and most other website builders.
         </Box>
       </Paper>
@@ -302,4 +319,4 @@ const CharterSectionGenerator = () => {
   );
 };
 
-export default CharterSectionGenerator;
+export default PCProcessGenerator;

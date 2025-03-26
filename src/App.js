@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Box, 
   Container, 
@@ -14,8 +14,8 @@ import {
 import PreviewPanel from './components/PreviewPanel';
 import CustomizationPanel from './components/CustomizationPanel';
 import CodeGenerator from './components/CodeGenerator';
-import CharterPreview from './components/CharterPreview';
-import CharterSectionGenerator from './components/CharterSectionGenerator';
+import PCProcessPreview from './components/PCProcessPreview';
+import PCProcessGenerator from './components/PCProcessGenerator';
 
 // Create a theme instance
 const theme = createTheme({
@@ -30,12 +30,17 @@ const theme = createTheme({
 });
 
 function App() {
-  // Active tab state
-  const [activeTab, setActiveTab] = useState(0);
+  // Initialize active tab from localStorage or default to 0
+  const [activeTab, setActiveTab] = useState(() => {
+    const savedTab = localStorage.getItem('activeTab');
+    return savedTab !== null ? parseInt(savedTab, 10) : 0;
+  });
 
   // Handle tab change
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
+    // Save to localStorage
+    localStorage.setItem('activeTab', newValue.toString());
   };
 
   // Default configuration for the BMC section
@@ -49,16 +54,17 @@ function App() {
     buttonRadius: 4
   });
 
-  // Default configuration for the Charter section
-  const [charterConfig, setCharterConfig] = useState({
+  // Default configuration for the PC Process section
+  const [pcProcessConfig, setPcProcessConfig] = useState({
     backgroundColor: '#1e4164',
     textColor: '#ffffff',
-    headingFont: 'sans-serif',
+    accentColor: '#d5ad36',
+    headingFont: 'serif',
     bodyFont: 'sans-serif',
-    accentColor: '#a3c984',
-    buttonColor: '#ffffff',
-    buttonText: 'Learn More',
-    buttonRadius: 0,
+    buttonColor: '#d5ad36',
+    buttonText: 'Contact BMC',
+    buttonRadius: 4,
+    accordionRadius: 4,
     transitionSpeed: 0.3
   });
 
@@ -70,10 +76,10 @@ function App() {
     });
   };
 
-  // Handle Charter configuration updates
-  const handleCharterConfigChange = (name, value) => {
-    setCharterConfig({
-      ...charterConfig,
+  // Handle PC Process configuration updates
+  const handlePcProcessConfigChange = (name, value) => {
+    setPcProcessConfig({
+      ...pcProcessConfig,
       [name]: value
     });
   };
@@ -81,76 +87,87 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth="lg" sx={{ py: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          BMC Section Embedding Tool
-        </Typography>
-        <Typography variant="body1" paragraph>
-          Customize sections below and get the code to embed them on your website.
-        </Typography>
+      <Box sx={{ py: 4 }}>
+        <Container maxWidth="lg">
+          <Typography variant="h4" component="h1" gutterBottom>
+            BMC Section Embedding Tool
+          </Typography>
+          <Typography variant="body1" paragraph>
+            Customize sections below and get the code to embed them on your website.
+          </Typography>
 
-        <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }}>
-          <Tabs value={activeTab} onChange={handleTabChange} aria-label="section tabs">
-            <Tab label="About BMC Section" />
-            <Tab label="Partnership Charter Section" />
-          </Tabs>
-        </Box>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }}>
+            <Tabs value={activeTab} onChange={handleTabChange} aria-label="section tabs">
+              <Tab label="About BMC Section" />
+              <Tab label="PC Process Section" />
+            </Tabs>
+          </Box>
+        </Container>
 
         {/* BMC Section Tab */}
         {activeTab === 0 && (
-          <Grid container spacing={3}>
-            {/* Preview Panel - Left Side */}
-            <Grid item xs={12} md={6}>
-              <Paper elevation={3} sx={{ height: '100%' }}>
-                <Box p={3}>
-                  <Typography variant="h6" gutterBottom>Preview</Typography>
-                  <PreviewPanel config={bmcConfig} />
-                </Box>
-              </Paper>
-            </Grid>
+          <>
+            {/* Full Width Preview */}
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">Preview</Typography>
+                <PreviewPanel config={bmcConfig} />
+              </Box>
+            </Paper>
+            
+            {/* Customization and Code Below */}
+            <Container maxWidth="lg">
+              <Grid container spacing={3}>
+                <Grid item xs={12} md={6}>
+                  <Paper elevation={3}>
+                    <Box p={3}>
+                      <Typography variant="h6" gutterBottom>Customize</Typography>
+                      <CustomizationPanel 
+                        config={bmcConfig} 
+                        onConfigChange={handleBmcConfigChange} 
+                      />
+                    </Box>
+                  </Paper>
+                </Grid>
+                
+                <Grid item xs={12} md={6}>
+                  <Paper elevation={3}>
+                    <Box p={3}>
+                      <Typography variant="h6" gutterBottom>Embed Code</Typography>
+                      <CodeGenerator config={bmcConfig} />
+                    </Box>
+                  </Paper>
+                </Grid>
+              </Grid>
+            </Container>
+          </>
+        )}
 
-            {/* Controls - Right Side */}
-            <Grid item xs={12} md={6}>
+        {/* PC Process Section Tab */}
+        {activeTab === 1 && (
+          <>
+            {/* Full Width Preview */}
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">Preview</Typography>
+                <PCProcessPreview config={pcProcessConfig} />
+              </Box>
+            </Paper>
+            
+            {/* Customization Below */}
+            <Container maxWidth="lg">
               <Paper elevation={3}>
                 <Box p={3}>
-                  <Typography variant="h6" gutterBottom>Customize</Typography>
-                  <CustomizationPanel 
-                    config={bmcConfig} 
-                    onConfigChange={handleBmcConfigChange} 
+                  <PCProcessGenerator 
+                    config={pcProcessConfig}
+                    onConfigChange={handlePcProcessConfigChange}
                   />
                 </Box>
               </Paper>
-              
-              <Paper elevation={3} sx={{ mt: 3 }}>
-                <Box p={3}>
-                  <Typography variant="h6" gutterBottom>Embed Code</Typography>
-                  <CodeGenerator config={bmcConfig} />
-                </Box>
-              </Paper>
-            </Grid>
-          </Grid>
+            </Container>
+          </>
         )}
-
-        {/* Charter Section Tab */}
-        {activeTab === 1 && (
-          <Grid container spacing={3}>
-            {/* Preview Panel - Left Side */}
-            <Grid item xs={12} md={6}>
-              <Paper elevation={3} sx={{ height: '100%' }}>
-                <Box p={3}>
-                  <Typography variant="h6" gutterBottom>Preview</Typography>
-                  <CharterPreview config={charterConfig} />
-                </Box>
-              </Paper>
-            </Grid>
-
-            {/* Controls - Right Side */}
-            <Grid item xs={12} md={6}>
-              <CharterSectionGenerator />
-            </Grid>
-          </Grid>
-        )}
-      </Container>
+      </Box>
     </ThemeProvider>
   );
 }
