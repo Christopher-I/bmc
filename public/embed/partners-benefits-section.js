@@ -229,5 +229,5 @@
     shadow.appendChild(content);
     
     // Replace script tag with our container
-    currentScript.parentNode.replaceChild(container, currentScript);
+    currentScript.parentNode.replaceChild(container, document.currentScript);
   })();
