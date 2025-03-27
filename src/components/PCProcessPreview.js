@@ -17,11 +17,6 @@ const PCProcessPreview = ({ config }) => {
       content.style.height = '0px';
     });
     
-    // Add data attributes to identify each accordion
-    accordions.forEach((accordion, index) => {
-      accordion.setAttribute('data-index', index);
-    });
-    
     // Single global click handler for all accordions
     const handleAccordionClick = (e) => {
       // Find the clicked accordion (or its parent)
@@ -40,7 +35,7 @@ const PCProcessPreview = ({ config }) => {
       // If no accordion was found, exit
       if (!accordion) return;
       
-      // Stop event propagation to prevent bubbling
+      // Stop event propagation
       e.stopPropagation();
       
       const content = accordion.querySelector('.accordion-content');
@@ -139,7 +134,7 @@ const PCProcessPreview = ({ config }) => {
         Everything partners struggle with can be found in these 13 topics
       </Typography>
       
-      {/* Accordion Grid */}
+      {/* Accordion Grid - THIS IS THE KEY CHANGE: Each accordion is in a fixed height container */}
       <Box sx={{
         display: 'grid',
         gridTemplateColumns: {
@@ -147,7 +142,8 @@ const PCProcessPreview = ({ config }) => {
           md: 'repeat(3, 1fr)'
         },
         gap: '1rem',
-        marginBottom: '2rem'
+        marginBottom: '2rem',
+        alignItems: 'start', // Important! This prevents row stretching
       }}>
         {/* First Row */}
         <AccordionItem 
@@ -287,6 +283,8 @@ const AccordionItem = ({ title, content, config, animationDuration }) => {
       color: '#333',
       borderRadius: `${config.accordionRadius}px`,
       overflow: 'hidden',
+      height: 'auto', // Self-determined height
+      alignSelf: 'start', // Don't stretch with siblings
       '&::after': {
         content: '""',
         position: 'absolute',
