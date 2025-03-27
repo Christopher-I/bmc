@@ -215,8 +215,11 @@ export const generatePartnersBenefitsHTML = (config) => {
  * @returns {string} - Complete embed code as a string
  */
 export const generatePartnersBenefitsEmbedCode = (config) => {
-  // Use config.imageSrc if provided, otherwise default to the Vercel image URL
-  const imageUrl = config.imageSrc || "https://bmc-neon.vercel.app/trust_confidence.png";
+  // Force the image URL to the Vercel URL if it matches the placeholder
+  const imageUrl =
+    config.imageSrc === "https://placehold.co/600x400/e6e6e6/1e4164?text=Partnership+diagram"
+      ? "https://bmc-neon.vercel.app/trust_confidence.png"
+      : config.imageSrc;
 
   return `<script>
 (function() {
@@ -259,6 +262,7 @@ export const generatePartnersBenefitsEmbedCode = (config) => {
 })();
 </script>`;
 };
+
 
 
 /**
