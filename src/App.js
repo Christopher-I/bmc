@@ -16,6 +16,8 @@ import CustomizationPanel from './components/CustomizationPanel';
 import CodeGenerator from './components/CodeGenerator';
 import PCProcessPreview from './components/PCProcessPreview';
 import PCProcessGenerator from './components/PCProcessGenerator';
+import PartnersBenefitsPreview from './components/PartnersBenefitsPreview';
+import PartnersBenefitsGenerator from './components/PartnersBenefitsGenerator';
 
 // Create a theme instance
 const theme = createTheme({
@@ -68,6 +70,21 @@ function App() {
     transitionSpeed: 0.3
   });
 
+  // Default configuration for the Partners Benefits section
+  const [partnersBenefitsConfig, setPartnersBenefitsConfig] = useState({
+    backgroundColor: '#f5f7fa',
+    textColor: '#333333',
+    headingColor: '#1e4164',
+    accentColor: '#3366cc',
+    headingFont: 'serif',
+    bodyFont: 'sans-serif',
+    buttonColor: '#3366cc',
+    buttonText: 'Learn More',
+    buttonRadius: 4,
+    imageRadius: 8,
+    imageSrc: 'https://placehold.co/600x400/e6e6e6/1e4164?text=Partnership+diagram'
+  });
+
   // Handle BMC configuration updates
   const handleBmcConfigChange = (name, value) => {
     setBmcConfig({
@@ -82,6 +99,11 @@ function App() {
       ...pcProcessConfig,
       [name]: value
     });
+  };
+
+  // Handle Partners Benefits configuration updates
+  const handlePartnersBenefitsConfigChange = (newConfig) => {
+    setPartnersBenefitsConfig(newConfig);
   };
 
   return (
@@ -100,6 +122,7 @@ function App() {
             <Tabs value={activeTab} onChange={handleTabChange} aria-label="section tabs">
               <Tab label="About BMC Section" />
               <Tab label="PC Process Section" />
+              <Tab label="Partners Benefits Section" />
             </Tabs>
           </Box>
         </Container>
@@ -161,6 +184,31 @@ function App() {
                   <PCProcessGenerator 
                     config={pcProcessConfig}
                     onConfigChange={handlePcProcessConfigChange}
+                  />
+                </Box>
+              </Paper>
+            </Container>
+          </>
+        )}
+
+        {/* Partners Benefits Section Tab */}
+        {activeTab === 2 && (
+          <>
+            {/* Full Width Preview */}
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">Preview</Typography>
+                <PartnersBenefitsPreview config={partnersBenefitsConfig} />
+              </Box>
+            </Paper>
+            
+            {/* Customization Below */}
+            <Container maxWidth="lg">
+              <Paper elevation={3}>
+                <Box p={3}>
+                  <PartnersBenefitsGenerator 
+                    config={partnersBenefitsConfig}
+                    onConfigChange={handlePartnersBenefitsConfigChange}
                   />
                 </Box>
               </Paper>
