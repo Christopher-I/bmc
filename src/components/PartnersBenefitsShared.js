@@ -208,6 +208,9 @@ export const generatePartnersBenefitsHTML = (config) => {
  * @returns {string} - Complete embed code as a string
  */
 export const generatePartnersBenefitsEmbedCode = (config) => {
+  // For external embedding, always use the full Vercel URL
+  const imageUrl = "https://bmc-neon.vercel.app/trust_confidence.png";
+  
   return `<script>
 (function() {
   // Configuration from data attributes
@@ -222,7 +225,7 @@ export const generatePartnersBenefitsEmbedCode = (config) => {
     buttonText: "${config.buttonText || 'Learn More'}",
     buttonRadius: "${config.buttonRadius || 4}",
     imageRadius: "${config.imageRadius || 8}",
-    imageSrc: "${config.imageSrc}"
+    imageSrc: "${imageUrl}"
   };
   
   // Create container element
@@ -257,6 +260,9 @@ export const generatePartnersBenefitsEmbedCode = (config) => {
  * @returns {string} - Script tag referencing external file with data attributes
  */
 export const generateExternalScriptReference = (config) => {
+  // For external embedding, always use the full Vercel URL
+  const imageUrl = "https://bmc-neon.vercel.app/trust_confidence.png";
+  
   return `<script 
   src="https://bmc-neon.vercel.app/embed/partners-benefits-section.js" 
   data-background="${config.backgroundColor || '#f5f7fa'}"
@@ -269,7 +275,7 @@ export const generateExternalScriptReference = (config) => {
   data-button-text="${config.buttonText || 'Learn More'}"
   data-button-radius="${config.buttonRadius || 4}"
   data-image-radius="${config.imageRadius || 8}"
-  data-image-src="${config.imageSrc}">
+  data-image-src="${imageUrl}">
 </script>`;
 };
 
