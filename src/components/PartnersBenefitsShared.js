@@ -222,7 +222,7 @@ export const generatePartnersBenefitsEmbedCode = (config) => {
     buttonText: "${config.buttonText || 'Learn More'}",
     buttonRadius: "${config.buttonRadius || 4}",
     imageRadius: "${config.imageRadius || 8}",
-    imageSrc: "${config.imageSrc || 'https://bmc-neon.vercel.app/trust_confidence.png'}"
+    imageSrc: "${config.imageSrc}"
   };
   
   // Create container element
@@ -269,7 +269,7 @@ export const generateExternalScriptReference = (config) => {
   data-button-text="${config.buttonText || 'Learn More'}"
   data-button-radius="${config.buttonRadius || 4}"
   data-image-radius="${config.imageRadius || 8}"
-  data-image-src="${config.imageSrc || 'https://bmc-neon.vercel.app/trust_confidence.png'}">
+  data-image-src="${config.imageSrc}">
 </script>`;
 };
 
@@ -285,7 +285,7 @@ export const defaultPartnersBenefitsConfig = {
   buttonText: 'Learn More',
   buttonRadius: 4,
   imageRadius: 8,
-  imageSrc: 'trust_confidence.png' // No leading slash for React component
+  imageSrc: '/trust_confidence.png'
 };
 
 // Benefits data that can be used by both the preview and generator

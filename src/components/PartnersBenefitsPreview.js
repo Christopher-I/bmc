@@ -6,6 +6,12 @@ const PartnersBenefitsPreview = ({ config = defaultPartnersBenefitsConfig }) => 
   // Merge provided config with defaults
   const mergedConfig = { ...defaultPartnersBenefitsConfig, ...config };
   
+  // Handle image error by falling back to remote URL
+  const handleImageError = (e) => {
+    console.log('Local image failed to load, falling back to remote URL');
+    e.target.src = 'https://bmc-neon.vercel.app/trust_confidence.png';
+  };
+  
   return (
     <Box sx={{ 
       backgroundColor: mergedConfig.backgroundColor,
@@ -37,8 +43,9 @@ const PartnersBenefitsPreview = ({ config = defaultPartnersBenefitsConfig }) => 
         }}>
           <Box 
             component="img"
-            src={mergedConfig.imageSrc} // Use the config path
+            src="trust_confidence.png" // Keep the original path that works
             alt="Partnership Trust Diagram"
+            onError={handleImageError} // Add error handler for fallback
             sx={{
               width: '100%',
               height: 'auto',
