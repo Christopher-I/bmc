@@ -40,7 +40,7 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
     handleChange(name, newValue);
   };
 
-  // Generate embed code with complete inline script
+  // Generate embed code based on configuration
   const generateEmbedCode = () => {
     return `<script>
 (function() {
@@ -59,7 +59,7 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
   };
   
   // Animation duration variable to ensure synchronized animations
-  const animationDuration = ${config.transitionSpeed}s;
+  const animationDuration = config.transitionSpeed + "s";
   
   // Create container element
   const container = document.createElement('div');
