@@ -101,6 +101,7 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
       margin-bottom: 2rem;
+      align-items: start; /* Important! This prevents row stretching */
     }
     
     .fairness-row {
@@ -130,6 +131,8 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
       color: #333;
       border-radius: \${config.accordionRadius}px;
       overflow: hidden;
+      height: auto; /* Self-determined height */
+      align-self: start; /* Don't stretch with siblings */
     }
     
     .accordion::after {
@@ -179,7 +182,7 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
     }
     
     .accordion.active .accordion-icon {
-      transform: rotate(135deg);
+      transform: rotate(225deg); /* Rotates clockwise to point up when open */
     }
     
     .accordion-content {
@@ -404,11 +407,21 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
       // Store the actual height of content
       const getContentHeight = () => contentInner.getBoundingClientRect().height;
       
-      header.addEventListener('click', () => {
+      header.addEventListener('click', (e) => {
+        // Prevent event bubbling
+        e.stopPropagation();
+        
         // If this accordion is already active, close it
         if (activeAccordion === accordion) {
-          // Set height to 0 to animate closing
-          content.style.height = '0px';
+          // Set current height explicitly to begin transition
+          content.style.height = \`\${getContentHeight()}px\`;
+          // Force a reflow to ensure a smooth transition
+          content.offsetHeight;
+          
+          // Now set height to 0 to animate closing
+          requestAnimationFrame(() => {
+            content.style.height = '0px';
+          });
           
           // Remove active class
           accordion.classList.remove('active');
@@ -417,9 +430,17 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
           // Close currently active accordion if there is one
           if (activeAccordion) {
             const activeContent = activeAccordion.querySelector('.accordion-content');
+            const activeContentInner = activeAccordion.querySelector('.accordion-content-inner');
+            const activeHeight = activeContentInner.getBoundingClientRect().height;
+            
+            // Set exact height before animation
+            activeContent.style.height = \`\${activeHeight}px\`;
+            activeContent.offsetHeight; // Force reflow
             
             // Animate to 0
-            activeContent.style.height = '0px';
+            requestAnimationFrame(() => {
+              activeContent.style.height = '0px';
+            });
             
             // Remove active class
             activeAccordion.classList.remove('active');
@@ -430,7 +451,7 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
           accordion.classList.add('active');
           
           // Set the height to the actual content height to animate opening
-          content.style.height = getContentHeight() + 'px';
+          content.style.height = \`\${getContentHeight()}px\`;
           
           // Store as active accordion
           activeAccordion = accordion;
