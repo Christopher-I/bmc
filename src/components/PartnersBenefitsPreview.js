@@ -37,7 +37,7 @@ const PartnersBenefitsPreview = ({ config = defaultPartnersBenefitsConfig }) => 
         }}>
           <Box 
             component="img"
-            src="trust_confidence.png" // Path to image file in public folder
+            src="/trust_confidence.png" // Path to image file in public folder
             alt="Partnership Trust Diagram"
             sx={{
               width: '100%',
