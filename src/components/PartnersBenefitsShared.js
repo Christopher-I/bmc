@@ -1,6 +1,18 @@
 // PartnersBenefitsShared.js - Shared utilities and code templates for Partners Benefits section
 
 /**
+ * Helper to normalize imageSrc fallback logic
+ * @param {string} imageSrc - The image source string
+ * @returns {string} - Safe image URL
+ */
+export const getSafeImageUrl = (imageSrc) => {
+  if (!imageSrc || imageSrc === "https://placehold.co/600x400/e6e6e6/1e4164?text=Partnership+diagram") {
+    return "https://bmc-neon.vercel.app/trust_confidence.png";
+  }
+  return imageSrc;
+};
+
+/**
  * Generates the CSS styles for the Partners Benefits component
  * @param {Object} config - Configuration object with styling parameters
  * @returns {string} - CSS styles as a string
@@ -95,9 +107,7 @@ export const generatePartnersBenefitsStyles = (config) => {
     .pb-button {
       display: inline-block;
       padding: 0.9rem 2.5rem;
-      background-color: ${
-        config.buttonColor || config.accentColor || "#4a69dd"
-      };
+      background-color: ${config.buttonColor || config.accentColor || "#4a69dd"};
       color: white;
       text-decoration: none;
       border-radius: ${config.buttonRadius || 4}px;
@@ -112,10 +122,7 @@ export const generatePartnersBenefitsStyles = (config) => {
     }
     
     .pb-button:hover {
-      background-color: ${
-        config.buttonHoverColor ||
-        `${config.buttonColor || config.accentColor || "#4a69dd"}dd`
-      };
+      background-color: ${config.buttonHoverColor || `${config.buttonColor || config.accentColor || "#4a69dd"}dd`};
     }
     
     @media (max-width: 900px) {
@@ -146,134 +153,60 @@ export const generatePartnersBenefitsStyles = (config) => {
   `;
 };
 
-/**
- * Generates the HTML content for the Partners Benefits component
- * @param {Object} config - Configuration object with content parameters
- * @returns {string} - HTML content as a string
- */
 export const generatePartnersBenefitsHTML = (config) => {
   return `
     <div class="pb-content-wrapper">
       <div class="pb-image-container">
-        <img class="pb-image" src="${
-          config.imageSrc
-        }" alt="Partnership Trust Diagram">
+        <img class="pb-image" src="${config.imageSrc}" alt="Partnership Trust Diagram">
       </div>
       <div class="pb-content">
         <h2 class="pb-heading">Partners get exactly what they're looking for</h2>
         <ul class="pb-benefit-list">
-          <li class="pb-benefit-item">
-            <div class="pb-check-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </div>
-            <p class="pb-benefit-text">Confidence they've thoroughly addressed the issues that create partner conflict</p>
-          </li>
-          <li class="pb-benefit-item">
-            <div class="pb-check-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </div>
-            <p class="pb-benefit-text">Specific ways to put their personal values and communication styles to practical, everyday use</p>
-          </li>
-          <li class="pb-benefit-item">
-            <div class="pb-check-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </div>
-            <p class="pb-benefit-text">A document capturing their understandings, commitments, and agreements, which they can refer to whenever necessary</p>
-          </li>
-          <li class="pb-benefit-item">
-            <div class="pb-check-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </div>
-            <p class="pb-benefit-text">Alignment on the future: where they're headed and their endgame</p>
-          </li>
-          <li class="pb-benefit-item">
-            <div class="pb-check-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </div>
-            <p class="pb-benefit-text">A document they can revisit periodically for partnership "check-ups"</p>
-          </li>
+          ${partnersBenefitsList.map(benefit => `
+            <li class="pb-benefit-item">
+              <div class="pb-check-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <p class="pb-benefit-text">${benefit.text}</p>
+            </li>`).join('')}
         </ul>
-     
       </div>
     </div>
   `;
 };
 
-/**
- * Generates the complete embed code for the Partners Benefits component
- * @param {Object} config - Configuration object with all parameters
- * @returns {string} - Complete embed code as a string
- */
 export const generatePartnersBenefitsEmbedCode = (config) => {
-  // Force the image URL to the Vercel URL if it matches the placeholder
-  const imageUrl =
-    config.imageSrc === "https://placehold.co/600x400/e6e6e6/1e4164?text=Partnership+diagram"
-      ? "https://bmc-neon.vercel.app/trust_confidence.png"
-      : config.imageSrc;
+  const imageUrl = getSafeImageUrl(config.imageSrc);
+  const mergedConfig = { ...config, imageSrc: imageUrl };
 
   return `<script>
 (function() {
-  // Configuration from data attributes
-  const config = {
-    backgroundColor: "${config.backgroundColor || "#f5f7fa"}",
-    textColor: "${config.textColor || "#333333"}",
-    headingColor: "${config.headingColor || "#1e4164"}",
-    accentColor: "${config.accentColor || "#4a69dd"}",
-    headingFont: "${config.headingFont || "serif"}",
-    bodyFont: "${config.bodyFont || "sans-serif"}",
-    buttonColor: "${config.buttonColor || "#4a69dd"}",
-    buttonRadius: "${config.buttonRadius || 4}",
-    imageRadius: "${config.imageRadius || 8}",
-    imageSrc: "${imageUrl}"
-  };
-  
-  // Create container element
+  const config = ${JSON.stringify(mergedConfig)};
+
   const container = document.createElement('div');
   container.classList.add('pb-container');
-  
-  // Create shadow DOM for style isolation
+
   const shadow = container.attachShadow({ mode: 'open' });
-  
-  // Add styles
+
   const style = document.createElement('style');
-  style.textContent = \`${generatePartnersBenefitsStyles(config)}\`;
-  
-  // Create HTML content
+  style.textContent = \`${generatePartnersBenefitsStyles(mergedConfig)}\`;
+
   const content = document.createElement('div');
   content.classList.add('pb-container');
-  content.innerHTML = \`${generatePartnersBenefitsHTML(config)}\`;
-  
-  // Append style and content to shadow DOM
+  content.innerHTML = \`${generatePartnersBenefitsHTML(mergedConfig)}\`;
+
   shadow.appendChild(style);
   shadow.appendChild(content);
-  
-  // Replace script tag with our container
+
   document.currentScript.parentNode.replaceChild(container, document.currentScript);
 })();
 </script>`;
 };
 
-
-
-/**
- * Generates a reference to the external script with data attributes
- * @param {Object} config - Configuration object with all parameters
- * @returns {string} - Script tag referencing external file with data attributes
- */
 export const generateExternalScriptReference = (config) => {
-  // For external embedding, always use the full Vercel URL
-  const imageUrl = config.imageSrc || "https://bmc-neon.vercel.app/trust_confidence.png";
-
+  const imageUrl = getSafeImageUrl(config.imageSrc);
 
   return `<script 
   src="https://bmc-neon.vercel.app/embed/partners-benefits-section.js" 
@@ -290,7 +223,6 @@ export const generateExternalScriptReference = (config) => {
 </script>`;
 };
 
-// Default configuration for the Partners Benefits component
 export const defaultPartnersBenefitsConfig = {
   backgroundColor: "#f5f7fa",
   textColor: "#333333",
@@ -304,7 +236,6 @@ export const defaultPartnersBenefitsConfig = {
   imageSrc: "/trust_confidence.png",
 };
 
-// Benefits data that can be used by both the preview and generator
 export const partnersBenefitsList = [
   {
     text: "Confidence they've thoroughly addressed the issues that create partner conflict",
@@ -323,10 +254,6 @@ export const partnersBenefitsList = [
   },
 ];
 
-/**
- * React utility to generate the SVG checkmark icon
- * @returns {JSX.Element} - SVG checkmark component
- */
 export const CheckIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
