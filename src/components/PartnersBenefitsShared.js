@@ -8,9 +8,9 @@
 export const generatePartnersBenefitsStyles = (config) => {
   return `
     .pb-container {
-      background-color: ${config.backgroundColor || '#f5f7fa'};
-      color: ${config.textColor || '#333333'};
-      font-family: ${config.bodyFont || 'sans-serif'};
+      background-color: ${config.backgroundColor || "#f5f7fa"};
+      color: ${config.textColor || "#333333"};
+      font-family: ${config.bodyFont || "sans-serif"};
       padding: 8rem 2rem;
       max-width: 100%;
       box-sizing: border-box;
@@ -51,11 +51,11 @@ export const generatePartnersBenefitsStyles = (config) => {
     }
     
     .pb-heading {
-      font-family: ${config.headingFont || 'serif'};
+      font-family: ${config.headingFont || "serif"};
       font-size: 2.5rem;
       line-height: 1.2;
       margin: 0;
-      color: ${config.headingColor || config.textColor || '#333333'};
+      color: ${config.headingColor || config.textColor || "#333333"};
     }
     
     .pb-benefit-list {
@@ -78,7 +78,7 @@ export const generatePartnersBenefitsStyles = (config) => {
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background-color: ${config.accentColor || '#4a69dd'};
+      background-color: ${config.accentColor || "#4a69dd"};
       display: flex;
       align-items: center;
       justify-content: center;
@@ -95,11 +95,13 @@ export const generatePartnersBenefitsStyles = (config) => {
     .pb-button {
       display: inline-block;
       padding: 0.9rem 2.5rem;
-      background-color: ${config.buttonColor || config.accentColor || '#4a69dd'};
+      background-color: ${
+        config.buttonColor || config.accentColor || "#4a69dd"
+      };
       color: white;
       text-decoration: none;
       border-radius: ${config.buttonRadius || 4}px;
-      font-family: ${config.bodyFont || 'sans-serif'};
+      font-family: ${config.bodyFont || "sans-serif"};
       font-size: 1rem;
       border: none;
       cursor: pointer;
@@ -110,7 +112,10 @@ export const generatePartnersBenefitsStyles = (config) => {
     }
     
     .pb-button:hover {
-      background-color: ${config.buttonHoverColor || `${config.buttonColor || config.accentColor || '#4a69dd'}dd`};
+      background-color: ${
+        config.buttonHoverColor ||
+        `${config.buttonColor || config.accentColor || "#4a69dd"}dd`
+      };
     }
     
     @media (max-width: 900px) {
@@ -150,7 +155,9 @@ export const generatePartnersBenefitsHTML = (config) => {
   return `
     <div class="pb-content-wrapper">
       <div class="pb-image-container">
-        <img class="pb-image" src="${config.imageSrc}" alt="Partnership Trust Diagram">
+        <img class="pb-image" src="${
+          config.imageSrc
+        }" alt="Partnership Trust Diagram">
       </div>
       <div class="pb-content">
         <h2 class="pb-heading">Partners get exactly what they're looking for</h2>
@@ -196,31 +203,9 @@ export const generatePartnersBenefitsHTML = (config) => {
             <p class="pb-benefit-text">A document they can revisit periodically for partnership "check-ups"</p>
           </li>
         </ul>
-        <button class="pb-button">${config.buttonText || 'Learn More'}</button>
+        <button class="pb-button">${config.buttonText || "Learn More"}</button>
       </div>
     </div>
-  `;
-};
-
-/**
- * Helper function to handle image fallback
- * @param {string} primaryPath - Primary image path to try first
- * @param {string} fallbackPath - Fallback image path to use if primary fails
- * @returns {string} - JavaScript code as a string to handle fallback
- */
-export const getImageWithFallback = (primaryPath, fallbackPath) => {
-  return `
-    (function() {
-      // Try to load the primary image first
-      var img = new Image();
-      img.onerror = function() {
-        // If primary image fails to load, use the fallback
-        document.querySelectorAll('.pb-image').forEach(function(image) {
-          image.src = "${fallbackPath}";
-        });
-      };
-      img.src = "${primaryPath}";
-    })();
   `;
 };
 
@@ -230,28 +215,29 @@ export const getImageWithFallback = (primaryPath, fallbackPath) => {
  * @returns {string} - Complete embed code as a string
  */
 export const generatePartnersBenefitsEmbedCode = (config) => {
-  const localImagePath = config.imageSrc || '/trust_confidence.png';
-  const remoteImagePath = 'https://bmc-neon.vercel.app/trust_confidence.png';
-  
+  // For external embedding, always use the full Vercel URL
+  const imageUrl = "https://bmc-neon.vercel.app/trust_confidence.png";
+
   return `<script>
 (function() {
   // Configuration from data attributes
   const config = {
-    backgroundColor: "${config.backgroundColor || '#f5f7fa'}",
-    textColor: "${config.textColor || '#333333'}",
-    headingColor: "${config.headingColor || '#1e4164'}",
-    accentColor: "${config.accentColor || '#4a69dd'}",
-    headingFont: "${config.headingFont || 'serif'}",
-    bodyFont: "${config.bodyFont || 'sans-serif'}",
-    buttonColor: "${config.buttonColor || '#4a69dd'}",
-    buttonText: "${config.buttonText || 'Learn More'}",
+    backgroundColor: "${config.backgroundColor || "#f5f7fa"}",
+    textColor: "${config.textColor || "#333333"}",
+    headingColor: "${config.headingColor || "#1e4164"}",
+    accentColor: "${config.accentColor || "#4a69dd"}",
+    headingFont: "${config.headingFont || "serif"}",
+    bodyFont: "${config.bodyFont || "sans-serif"}",
+    buttonColor: "${config.buttonColor || "#4a69dd"}",
+    buttonText: "${config.buttonText || "Learn More"}",
     buttonRadius: "${config.buttonRadius || 4}",
     imageRadius: "${config.imageRadius || 8}",
-    imageSrc: "${localImagePath}"
+    imageSrc: "${imageUrl}"
   };
   
   // Create container element
   const container = document.createElement('div');
+  container.classList.add('pb-container');
   
   // Create shadow DOM for style isolation
   const shadow = container.attachShadow({ mode: 'open' });
@@ -269,34 +255,8 @@ export const generatePartnersBenefitsEmbedCode = (config) => {
   shadow.appendChild(style);
   shadow.appendChild(content);
   
-  // Add image fallback logic
-  const imageScript = document.createElement('script');
-  imageScript.textContent = \`
-    (function() {
-      // Try to load the configured image
-      var img = new Image();
-      img.onerror = function() {
-        // If the configured image fails to load, use the remote fallback
-        var images = container.shadowRoot.querySelectorAll('.pb-image');
-        images.forEach(function(image) {
-          image.src = "${remoteImagePath}";
-        });
-      };
-      img.src = "${localImagePath}";
-    })();
-  \`;
-  shadow.appendChild(imageScript);
-  
   // Replace script tag with our container
   document.currentScript.parentNode.replaceChild(container, document.currentScript);
-  
-  // Set up image fallback directly (more reliable approach)
-  const imageElements = shadow.querySelectorAll('.pb-image');
-  imageElements.forEach(img => {
-    img.addEventListener('error', function() {
-      this.src = "${remoteImagePath}";
-    });
-  });
 })();
 </script>`;
 };
@@ -307,54 +267,57 @@ export const generatePartnersBenefitsEmbedCode = (config) => {
  * @returns {string} - Script tag referencing external file with data attributes
  */
 export const generateExternalScriptReference = (config) => {
+  // For external embedding, always use the full Vercel URL
+  const imageUrl = "https://bmc-neon.vercel.app/trust_confidence.png";
+
   return `<script 
   src="https://bmc-neon.vercel.app/embed/partners-benefits-section.js" 
-  data-background="${config.backgroundColor || '#f5f7fa'}"
-  data-text-color="${config.textColor || '#333333'}"
-  data-heading-color="${config.headingColor || '#1e4164'}"
-  data-accent-color="${config.accentColor || '#4a69dd'}"
-  data-heading-font="${config.headingFont || 'serif'}"
-  data-body-font="${config.bodyFont || 'sans-serif'}"
-  data-button-color="${config.buttonColor || '#4a69dd'}"
-  data-button-text="${config.buttonText || 'Learn More'}"
+  data-background="${config.backgroundColor || "#f5f7fa"}"
+  data-text-color="${config.textColor || "#333333"}"
+  data-heading-color="${config.headingColor || "#1e4164"}"
+  data-accent-color="${config.accentColor || "#4a69dd"}"
+  data-heading-font="${config.headingFont || "serif"}"
+  data-body-font="${config.bodyFont || "sans-serif"}"
+  data-button-color="${config.buttonColor || "#4a69dd"}"
+  data-button-text="${config.buttonText || "Learn More"}"
   data-button-radius="${config.buttonRadius || 4}"
   data-image-radius="${config.imageRadius || 8}"
-  data-image-src="${config.imageSrc || '/trust_confidence.png'}">
+  data-image-src="${imageUrl}">
 </script>`;
 };
 
 // Default configuration for the Partners Benefits component
 export const defaultPartnersBenefitsConfig = {
-  backgroundColor: '#f5f7fa',
-  textColor: '#333333',
-  headingColor: '#1e4164', 
-  accentColor: '#4a69dd',
-  headingFont: 'serif',
-  bodyFont: 'sans-serif',
-  buttonColor: '#4a69dd',
-  buttonText: 'Learn More',
+  backgroundColor: "#f5f7fa",
+  textColor: "#333333",
+  headingColor: "#1e4164",
+  accentColor: "#4a69dd",
+  headingFont: "serif",
+  bodyFont: "sans-serif",
+  buttonColor: "#4a69dd",
+  buttonText: "Learn More",
   buttonRadius: 4,
   imageRadius: 8,
-  imageSrc: '/trust_confidence.png' // Use proper path with leading slash
+  imageSrc: "/trust_confidence.png",
 };
 
 // Benefits data that can be used by both the preview and generator
 export const partnersBenefitsList = [
   {
-    text: "Confidence they've thoroughly addressed the issues that create partner conflict"
+    text: "Confidence they've thoroughly addressed the issues that create partner conflict",
   },
   {
-    text: "Specific ways to put their personal values and communication styles to practical, everyday use"
+    text: "Specific ways to put their personal values and communication styles to practical, everyday use",
   },
   {
-    text: "A document capturing their understandings, commitments, and agreements, which they can refer to whenever necessary"
+    text: "A document capturing their understandings, commitments, and agreements, which they can refer to whenever necessary",
   },
   {
-    text: "Alignment on the future: where they're headed and their endgame"
+    text: "Alignment on the future: where they're headed and their endgame",
   },
   {
-    text: "A document they can revisit periodically for partnership \"check-ups\""
-  }
+    text: 'A document they can revisit periodically for partnership "check-ups"',
+  },
 ];
 
 /**
@@ -362,7 +325,17 @@ export const partnersBenefitsList = [
  * @returns {JSX.Element} - SVG checkmark component
  */
 export const CheckIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="3"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
     <polyline points="20 6 9 17 4 12"></polyline>
   </svg>
 );
