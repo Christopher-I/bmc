@@ -79,7 +79,6 @@ function App() {
     headingFont: 'serif',
     bodyFont: 'sans-serif',
     buttonColor: '#3366cc',
-    buttonText: 'Learn More',
     buttonRadius: 4,
     imageRadius: 8,
     imageSrc: 'https://placehold.co/600x400/e6e6e6/1e4164?text=Partnership+diagram'

@@ -117,29 +117,7 @@ const PartnersBenefitsPreview = ({ config = defaultPartnersBenefitsConfig }) => 
               </Box>
             ))}
           </Box>
-          
-          <Button sx={{
-            display: 'inline-block',
-            padding: '0.9rem 2.5rem',
-            backgroundColor: mergedConfig.buttonColor,
-            color: 'white',
-            textDecoration: 'none',
-            borderRadius: `${mergedConfig.buttonRadius}px`,
-            fontFamily: mergedConfig.bodyFont,
-            fontSize: '1rem',
-            border: 'none',
-            cursor: 'pointer',
-            transition: 'background-color 0.2s ease',
-            marginTop: '1.5rem',
-            alignSelf: { xs: 'center', md: 'flex-start' },
-            textTransform: 'none',
-            fontWeight: 500,
-            '&:hover': {
-              backgroundColor: `${mergedConfig.buttonColor}dd`
-            }
-          }}>
-            {mergedConfig.buttonText}
-          </Button>
+
         </Box>
       </Box>
     </Box>

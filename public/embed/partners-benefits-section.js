@@ -18,7 +18,6 @@
     headingFont: currentScript.getAttribute("data-heading-font") || "serif",
     bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
     buttonColor: currentScript.getAttribute("data-button-color") || "#4a69dd",
-    buttonText: currentScript.getAttribute("data-button-text") || "Learn More",
     buttonRadius: currentScript.getAttribute("data-button-radius") || "4",
     imageRadius: currentScript.getAttribute("data-image-radius") || "8",
     // Default to the full Vercel URL - this ensures it works when embedded externally
@@ -222,7 +221,7 @@
             <p class="pb-benefit-text">A document they can revisit periodically for partnership "check-ups"</p>
           </li>
         </ul>
-        <button class="pb-button">${config.buttonText}</button>
+  
       </div>
     </div>
   `;

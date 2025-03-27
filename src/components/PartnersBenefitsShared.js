@@ -203,7 +203,7 @@ export const generatePartnersBenefitsHTML = (config) => {
             <p class="pb-benefit-text">A document they can revisit periodically for partnership "check-ups"</p>
           </li>
         </ul>
-        <button class="pb-button">${config.buttonText || "Learn More"}</button>
+     
       </div>
     </div>
   `;
@@ -215,8 +215,8 @@ export const generatePartnersBenefitsHTML = (config) => {
  * @returns {string} - Complete embed code as a string
  */
 export const generatePartnersBenefitsEmbedCode = (config) => {
-  // For external embedding, always use the full Vercel URL
-  const imageUrl = "https://bmc-neon.vercel.app/trust_confidence.png";
+  // Use config.imageSrc if provided, otherwise default to the Vercel image URL
+  const imageUrl = config.imageSrc || "https://bmc-neon.vercel.app/trust_confidence.png";
 
   return `<script>
 (function() {
@@ -229,7 +229,6 @@ export const generatePartnersBenefitsEmbedCode = (config) => {
     headingFont: "${config.headingFont || "serif"}",
     bodyFont: "${config.bodyFont || "sans-serif"}",
     buttonColor: "${config.buttonColor || "#4a69dd"}",
-    buttonText: "${config.buttonText || "Learn More"}",
     buttonRadius: "${config.buttonRadius || 4}",
     imageRadius: "${config.imageRadius || 8}",
     imageSrc: "${imageUrl}"
@@ -261,6 +260,7 @@ export const generatePartnersBenefitsEmbedCode = (config) => {
 </script>`;
 };
 
+
 /**
  * Generates a reference to the external script with data attributes
  * @param {Object} config - Configuration object with all parameters
@@ -268,7 +268,8 @@ export const generatePartnersBenefitsEmbedCode = (config) => {
  */
 export const generateExternalScriptReference = (config) => {
   // For external embedding, always use the full Vercel URL
-  const imageUrl = "https://bmc-neon.vercel.app/trust_confidence.png";
+  const imageUrl = config.imageSrc || "https://bmc-neon.vercel.app/trust_confidence.png";
+
 
   return `<script 
   src="https://bmc-neon.vercel.app/embed/partners-benefits-section.js" 
@@ -279,7 +280,6 @@ export const generateExternalScriptReference = (config) => {
   data-heading-font="${config.headingFont || "serif"}"
   data-body-font="${config.bodyFont || "sans-serif"}"
   data-button-color="${config.buttonColor || "#4a69dd"}"
-  data-button-text="${config.buttonText || "Learn More"}"
   data-button-radius="${config.buttonRadius || 4}"
   data-image-radius="${config.imageRadius || 8}"
   data-image-src="${imageUrl}">
@@ -295,7 +295,6 @@ export const defaultPartnersBenefitsConfig = {
   headingFont: "serif",
   bodyFont: "sans-serif",
   buttonColor: "#4a69dd",
-  buttonText: "Learn More",
   buttonRadius: 4,
   imageRadius: 8,
   imageSrc: "/trust_confidence.png",
