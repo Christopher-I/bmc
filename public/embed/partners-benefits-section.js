@@ -21,10 +21,9 @@
     buttonText: currentScript.getAttribute("data-button-text") || "Learn More",
     buttonRadius: currentScript.getAttribute("data-button-radius") || "4",
     imageRadius: currentScript.getAttribute("data-image-radius") || "8",
-    // Default to the full Vercel URL - this ensures it works when embedded externally
     imageSrc:
       currentScript.getAttribute("data-image-src") ||
-      "https://bmc-neon.vercel.app/trust_confidence.png",
+      "trust_confidence.png",
   };
 
   // Create container element
@@ -233,4 +232,19 @@
 
   // Replace script tag with our container
   currentScript.parentNode.replaceChild(container, currentScript);
+  
+  // Add fallback for image loading
+  setTimeout(() => {
+    const images = shadow.querySelectorAll('.pb-image');
+    images.forEach(img => {
+      img.addEventListener('error', function() {
+        this.src = 'https://bmc-neon.vercel.app/trust_confidence.png';
+      });
+      
+      // Trigger a reload if image is complete but has no dimensions (likely failed)
+      if (img.complete && (img.naturalWidth === 0 || img.naturalHeight === 0)) {
+        img.src = 'https://bmc-neon.vercel.app/trust_confidence.png';
+      }
+    });
+  }, 0);
 })();

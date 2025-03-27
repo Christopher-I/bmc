@@ -203,13 +203,35 @@ export const generatePartnersBenefitsHTML = (config) => {
 };
 
 /**
+ * Helper function to handle image fallback
+ * @param {string} primaryPath - Primary image path to try first
+ * @param {string} fallbackPath - Fallback image path to use if primary fails
+ * @returns {string} - JavaScript code as a string to handle fallback
+ */
+export const getImageWithFallback = (primaryPath, fallbackPath) => {
+  return `
+    (function() {
+      // Try to load the primary image first
+      var img = new Image();
+      img.onerror = function() {
+        // If primary image fails to load, use the fallback
+        document.querySelectorAll('.pb-image').forEach(function(image) {
+          image.src = "${fallbackPath}";
+        });
+      };
+      img.src = "${primaryPath}";
+    })();
+  `;
+};
+
+/**
  * Generates the complete embed code for the Partners Benefits component
  * @param {Object} config - Configuration object with all parameters
  * @returns {string} - Complete embed code as a string
  */
 export const generatePartnersBenefitsEmbedCode = (config) => {
-  // For external embedding, always use the full Vercel URL
-  const imageUrl = "https://bmc-neon.vercel.app/trust_confidence.png";
+  const localImagePath = config.imageSrc || '/trust_confidence.png';
+  const remoteImagePath = 'https://bmc-neon.vercel.app/trust_confidence.png';
   
   return `<script>
 (function() {
@@ -225,12 +247,11 @@ export const generatePartnersBenefitsEmbedCode = (config) => {
     buttonText: "${config.buttonText || 'Learn More'}",
     buttonRadius: "${config.buttonRadius || 4}",
     imageRadius: "${config.imageRadius || 8}",
-    imageSrc: "${imageUrl}"
+    imageSrc: "${localImagePath}"
   };
   
   // Create container element
   const container = document.createElement('div');
-  container.classList.add('pb-container');
   
   // Create shadow DOM for style isolation
   const shadow = container.attachShadow({ mode: 'open' });
@@ -248,8 +269,34 @@ export const generatePartnersBenefitsEmbedCode = (config) => {
   shadow.appendChild(style);
   shadow.appendChild(content);
   
+  // Add image fallback logic
+  const imageScript = document.createElement('script');
+  imageScript.textContent = \`
+    (function() {
+      // Try to load the configured image
+      var img = new Image();
+      img.onerror = function() {
+        // If the configured image fails to load, use the remote fallback
+        var images = container.shadowRoot.querySelectorAll('.pb-image');
+        images.forEach(function(image) {
+          image.src = "${remoteImagePath}";
+        });
+      };
+      img.src = "${localImagePath}";
+    })();
+  \`;
+  shadow.appendChild(imageScript);
+  
   // Replace script tag with our container
   document.currentScript.parentNode.replaceChild(container, document.currentScript);
+  
+  // Set up image fallback directly (more reliable approach)
+  const imageElements = shadow.querySelectorAll('.pb-image');
+  imageElements.forEach(img => {
+    img.addEventListener('error', function() {
+      this.src = "${remoteImagePath}";
+    });
+  });
 })();
 </script>`;
 };
@@ -260,9 +307,6 @@ export const generatePartnersBenefitsEmbedCode = (config) => {
  * @returns {string} - Script tag referencing external file with data attributes
  */
 export const generateExternalScriptReference = (config) => {
-  // For external embedding, always use the full Vercel URL
-  const imageUrl = "https://bmc-neon.vercel.app/trust_confidence.png";
-  
   return `<script 
   src="https://bmc-neon.vercel.app/embed/partners-benefits-section.js" 
   data-background="${config.backgroundColor || '#f5f7fa'}"
@@ -275,7 +319,7 @@ export const generateExternalScriptReference = (config) => {
   data-button-text="${config.buttonText || 'Learn More'}"
   data-button-radius="${config.buttonRadius || 4}"
   data-image-radius="${config.imageRadius || 8}"
-  data-image-src="${imageUrl}">
+  data-image-src="${config.imageSrc || '/trust_confidence.png'}">
 </script>`;
 };
 
@@ -291,7 +335,7 @@ export const defaultPartnersBenefitsConfig = {
   buttonText: 'Learn More',
   buttonRadius: 4,
   imageRadius: 8,
-  imageSrc: '/trust_confidence.png'
+  imageSrc: '/trust_confidence.png' // Use proper path with leading slash
 };
 
 // Benefits data that can be used by both the preview and generator
