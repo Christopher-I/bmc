@@ -1,6 +1,6 @@
-import React from 'react';
-import { Box, Button, TextField } from '@mui/material';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import React from "react";
+import { Box, Button, TextField } from "@mui/material";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 const CodeGenerator = ({ config }) => {
   // Generate embed code based on configuration
@@ -24,7 +24,7 @@ const CodeGenerator = ({ config }) => {
 
   return (
     <Box>
-      <TextField
+      {/* <TextField
         value={generateEmbedCode()}
         multiline
         rows={7}
@@ -32,20 +32,22 @@ const CodeGenerator = ({ config }) => {
         variant="outlined"
         InputProps={{
           readOnly: true,
-          style: { fontFamily: 'monospace', fontSize: '0.875rem' }
+          style: { fontFamily: "monospace", fontSize: "0.875rem" },
         }}
         sx={{ mb: 2 }}
-      />
-      <Button 
-        variant="contained" 
+      /> */}
+      <Button
+        variant="contained"
         startIcon={<ContentCopyIcon />}
         onClick={copyToClipboard}
       >
-        Copy Embed Code
+        Copy Section
       </Button>
-      <Box sx={{ mt: 2, fontSize: '0.875rem', color: 'text.secondary' }}>
-        Simply copy this code and paste it into your website where you want the BMC section to appear.
-        Works with WordPress, Webflow, and most other website builders.
+
+      <Box sx={{ mt: 2, fontSize: "0.875rem", color: "text.secondary" }}>
+        Simply copy this code and paste it into your website where you want the
+        BMC section to appear. Works with WordPress, Webflow, and most other
+        website builders.
       </Box>
     </Box>
   );

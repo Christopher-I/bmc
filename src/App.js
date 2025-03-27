@@ -141,7 +141,7 @@ function App() {
             <Container maxWidth="lg">
               <Grid container spacing={3}>
                 <Grid item xs={12} md={6}>
-                  <Paper elevation={3}>
+                  {/* <Paper elevation={3}>
                     <Box p={3}>
                       <Typography variant="h6" gutterBottom>Customize</Typography>
                       <CustomizationPanel 
@@ -149,7 +149,7 @@ function App() {
                         onConfigChange={handleBmcConfigChange} 
                       />
                     </Box>
-                  </Paper>
+                  </Paper> */}
                 </Grid>
                 
                 <Grid item xs={12} md={6}>

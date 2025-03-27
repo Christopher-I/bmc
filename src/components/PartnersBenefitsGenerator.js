@@ -52,7 +52,7 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
         <Typography variant="h6" gutterBottom>Customize Partners Benefits Section</Typography>
         <Grid container spacing={3}>
           {/* Colors Section */}
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Background Color
@@ -77,9 +77,9 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
                 />
               </Box>
             </Box>
-          </Grid>
+          </Grid> */}
           
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Text Color
@@ -104,9 +104,9 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
                 />
               </Box>
             </Box>
-          </Grid>
+          </Grid> */}
           
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Heading Color
@@ -131,9 +131,9 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
                 />
               </Box>
             </Box>
-          </Grid>
+          </Grid> */}
           
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Accent Color (Checkmarks)
@@ -158,9 +158,9 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
                 />
               </Box>
             </Box>
-          </Grid>
+          </Grid> */}
           
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Button Color
@@ -185,10 +185,10 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
                 />
               </Box>
             </Box>
-          </Grid>
+          </Grid> */}
           
           {/* Fonts Section */}
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <FormControl fullWidth margin="normal" size="small">
               <InputLabel id="heading-font-label">Heading Font</InputLabel>
               <Select
@@ -207,8 +207,8 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
               </Select>
             </FormControl>
           </Grid>
-          
-          <Grid item xs={12} sm={6}>
+           */}
+          {/* <Grid item xs={12} sm={6}>
             <FormControl fullWidth margin="normal" size="small">
               <InputLabel id="body-font-label">Body Font</InputLabel>
               <Select
@@ -226,10 +226,10 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
                 <MenuItem value="Verdana, sans-serif">Verdana</MenuItem>
               </Select>
             </FormControl>
-          </Grid>
+          </Grid> */}
           
           {/* Button Text */}
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <TextField
               label="Button Text"
               name="buttonText"
@@ -239,10 +239,10 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
               margin="normal"
               size="small"
             />
-          </Grid>
+          </Grid> */}
           
           {/* Button Radius */}
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mt: 3 }}>
               <Typography id="button-radius-slider" gutterBottom>
                 Button Radius: {config.buttonRadius}px
@@ -258,10 +258,10 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
                 max={20}
               />
             </Box>
-          </Grid>
+          </Grid> */}
           
           {/* Image Radius */}
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mt: 1 }}>
               <Typography id="image-radius-slider" gutterBottom>
                 Image Radius: {config.imageRadius}px
@@ -277,7 +277,7 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
                 max={20}
               />
             </Box>
-          </Grid>
+          </Grid> */}
           
           {/* Image Source */}
           <Grid item xs={12}>
@@ -298,7 +298,7 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
       
       <Paper elevation={3} sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom>Generated Embed Code</Typography>
-        <TextField
+        {/* <TextField
           value={generatePartnersBenefitsEmbedCode(config)}
           multiline
           rows={7}
@@ -309,7 +309,7 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
             style: { fontFamily: 'monospace', fontSize: '0.875rem' }
           }}
           sx={{ mb: 2 }}
-        />
+        /> */}
         <Button 
           variant="contained" 
           startIcon={<ContentCopyIcon />}
