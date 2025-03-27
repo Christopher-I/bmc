@@ -1,105 +1,20 @@
 import React, { useEffect, useRef } from 'react';
 import { Box, Button, Typography } from '@mui/material';
+import { accordionData, setupAccordionBehavior } from './PCProcessShared';
 
 const PCProcessPreview = ({ config }) => {
   const containerRef = useRef(null);
   
+  // Use the shared accordion behavior setup
   useEffect(() => {
     if (!containerRef.current) return;
     
-    const container = containerRef.current;
-    const accordions = container.querySelectorAll('.accordion');
-    let activeAccordion = null;
+    // Setup accordion behavior with the shared implementation
+    const cleanup = setupAccordionBehavior(containerRef.current, config);
     
-    // Apply initial state - all closed
-    accordions.forEach(accordion => {
-      const content = accordion.querySelector('.accordion-content');
-      content.style.height = '0px';
-    });
-    
-    // Single global click handler for all accordions
-    const handleAccordionClick = (e) => {
-      // Find the clicked accordion (or its parent)
-      let target = e.target;
-      let accordion = null;
-      
-      // Navigate up the DOM to find the accordion container
-      while (target && target !== container) {
-        if (target.classList.contains('accordion')) {
-          accordion = target;
-          break;
-        }
-        target = target.parentElement;
-      }
-      
-      // If no accordion was found, exit
-      if (!accordion) return;
-      
-      // Stop event propagation
-      e.stopPropagation();
-      
-      const content = accordion.querySelector('.accordion-content');
-      const contentInner = accordion.querySelector('.accordion-content-inner');
-      const contentHeight = contentInner.getBoundingClientRect().height;
-      
-      // If this is already the active accordion, close it
-      if (activeAccordion === accordion) {
-        // Set current height explicitly to begin transition
-        content.style.height = `${contentHeight}px`;
-        // eslint-disable-next-line no-unused-expressions
-        content.offsetHeight; // Force reflow
-        
-        // Animate closing
-        requestAnimationFrame(() => {
-          content.style.height = '0px';
-        });
-        
-        // Remove active class
-        accordion.classList.remove('active');
-        activeAccordion = null;
-        return;
-      }
-      
-      // If there's a different active accordion, close it first
-      if (activeAccordion) {
-        const activeContent = activeAccordion.querySelector('.accordion-content');
-        const activeContentInner = activeAccordion.querySelector('.accordion-content-inner');
-        const activeContentHeight = activeContentInner.getBoundingClientRect().height;
-        
-        // Set current height explicitly
-        activeContent.style.height = `${activeContentHeight}px`;
-        // eslint-disable-next-line no-unused-expressions
-        activeContent.offsetHeight; // Force reflow
-        
-        // Animate closing
-        requestAnimationFrame(() => {
-          activeContent.style.height = '0px';
-        });
-        
-        // Remove active class
-        activeAccordion.classList.remove('active');
-      }
-      
-      // Open the clicked accordion
-      accordion.classList.add('active');
-      
-      // Set height to animate opening
-      requestAnimationFrame(() => {
-        content.style.height = `${contentHeight}px`;
-      });
-      
-      // Set as new active accordion
-      activeAccordion = accordion;
-    };
-    
-    // Add the single event listener to the container (event delegation)
-    container.addEventListener('click', handleAccordionClick);
-    
-    // Cleanup event listeners on unmount
-    return () => {
-      container.removeEventListener('click', handleAccordionClick);
-    };
-  }, [config]); // Re-run when config changes
+    // Return cleanup function
+    return cleanup;
+  }, [config]);
   
   // Animation duration for transitions
   const animationDuration = `${config.transitionSpeed}s`;
@@ -134,7 +49,7 @@ const PCProcessPreview = ({ config }) => {
         Everything partners struggle with can be found in these 13 topics
       </Typography>
       
-      {/* Accordion Grid - THIS IS THE KEY CHANGE: Each accordion is in a fixed height container */}
+      {/* Accordion Grid */}
       <Box sx={{
         display: 'grid',
         gridTemplateColumns: {
@@ -143,95 +58,18 @@ const PCProcessPreview = ({ config }) => {
         },
         gap: '1rem',
         marginBottom: '2rem',
-        alignItems: 'start', // Important! This prevents row stretching
+        alignItems: 'start'
       }}>
-        {/* First Row */}
-        <AccordionItem 
-          title="Vision & Direction"
-          content="Partners establish a shared vision and direction for their business or project, ensuring alignment on long-term goals and strategic priorities."
-          config={config}
-          animationDuration={animationDuration}
-        />
-        
-        <AccordionItem 
-          title="Conflict Handling Styles"
-          content="What entrepreneurs refer to as 'inevitable conflict' is the number one reason many people avoid partnerships. By taking an assessment, exploring each partner's conflict handling style, and developing behavioral commitments to one another about how they'll communicate, they boost their confidence they can talk productively about their differences."
-          config={config}
-          animationDuration={animationDuration}
-        />
-        
-        <AccordionItem 
-          title="Contributions & Rewards"
-          content="Clearly defining what each partner contributes (time, money, expertise, connections) and how rewards will be distributed creates a foundation for fairness."
-          config={config}
-          animationDuration={animationDuration}
-        />
-        
-        {/* Second Row */}
-        <AccordionItem 
-          title="Personal Values"
-          content="Understanding each partner's core values helps identify alignment and potential conflicts in approaches to business and decision-making."
-          config={config}
-          animationDuration={animationDuration}
-        />
-        
-        <AccordionItem 
-          title="Personal Styles"
-          content="Understanding each partner's work style, communication preferences, and decision-making approach helps create effective collaboration strategies."
-          config={config}
-          animationDuration={animationDuration}
-        />
-        
-        <AccordionItem 
-          title="Roles & Authority"
-          content="Delineating specific roles, responsibilities, and decision-making authority helps partners operate efficiently without stepping on each other's toes."
-          config={config}
-          animationDuration={animationDuration}
-        />
-        
-        {/* Third Row */}
-        <AccordionItem 
-          title="Expectations"
-          content="Partners outline what they expect from each other and from the partnership, creating clarity and preventing future misunderstandings."
-          config={config}
-          animationDuration={animationDuration}
-        />
-        
-        <AccordionItem 
-          title="Ownership"
-          content="Clear agreements about ownership percentages, equity distribution, and future changes to ownership structure prevent major disagreements."
-          config={config}
-          animationDuration={animationDuration}
-        />
-        
-        <AccordionItem 
-          title="Money"
-          content="Addressing compensation, profit distribution, expense policies, and financial management ensures alignment on monetary matters."
-          config={config}
-          animationDuration={animationDuration}
-        />
-        
-        {/* Fourth Row */}
-        <AccordionItem 
-          title="Governance"
-          content="Establishing decision-making processes, meeting structures, and leadership roles provides a framework for effective partnership management."
-          config={config}
-          animationDuration={animationDuration}
-        />
-        
-        <AccordionItem 
-          title="Scenario Planning"
-          content="Partners plan for various scenarios, including success, challenges, and potential partnership changes, creating protocols for handling different situations."
-          config={config}
-          animationDuration={animationDuration}
-        />
-        
-        <AccordionItem 
-          title="Managing Disagreements"
-          content="Establishing protocols for handling disagreements, including escalation procedures and potential third-party involvement, creates a safety net for the partnership."
-          config={config}
-          animationDuration={animationDuration}
-        />
+        {/* First 12 accordions in the grid */}
+        {accordionData.slice(0, 12).map((item, index) => (
+          <AccordionItem 
+            key={index}
+            title={item.title}
+            content={item.content}
+            config={config}
+            animationDuration={animationDuration}
+          />
+        ))}
       </Box>
       
       {/* Fairness Row */}
@@ -242,8 +80,8 @@ const PCProcessPreview = ({ config }) => {
       }}>
         <Box sx={{ width: { xs: '100%', md: '33%' } }}>
           <AccordionItem 
-            title="Fairness"
-            content="Partners establish principles and processes for ensuring fair treatment, compensation, and recognition throughout the partnership."
+            title={accordionData[12].title}
+            content={accordionData[12].content}
             config={config}
             animationDuration={animationDuration}
           />
@@ -283,8 +121,8 @@ const AccordionItem = ({ title, content, config, animationDuration }) => {
       color: '#333',
       borderRadius: `${config.accordionRadius}px`,
       overflow: 'hidden',
-      height: 'auto', // Self-determined height
-      alignSelf: 'start', // Don't stretch with siblings
+      height: 'auto',
+      alignSelf: 'start',
       '&::after': {
         content: '""',
         position: 'absolute',
