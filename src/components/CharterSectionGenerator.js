@@ -2,17 +2,16 @@ import React from 'react';
 import {
   Box,
   TextField,
-  FormControl,
-  InputLabel,
   Select,
   MenuItem,
+  FormControl,
+  InputLabel,
   Typography,
   Grid,
   Button,
   Paper
 } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import CharterSectionPreview from './CharterSectionPreview';
 import {
   defaultCharterConfig,
   generateCharterEmbedScript
@@ -41,8 +40,36 @@ const CharterSectionGenerator = ({ config = defaultCharterConfig, onConfigChange
 
   return (
     <Box>
-      <Typography variant="h6" gutterBottom>Charter Section Preview</Typography>
- 
+      <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
+        <Typography variant="h6" gutterBottom>Customize Charter Section</Typography>
+        <Grid container spacing={3}>
+          {/* <Grid item xs={12} sm={6}>
+            <TextField
+              label="Image URL"
+              name="imageSrc"
+              value={config.imageSrc}
+              onChange={handleTextChange}
+              fullWidth
+              margin="normal"
+              size="small"
+              helperText="URL to the image (optional)"
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <TextField
+              label="Logo URL"
+              name="logoSrc"
+              value={config.logoSrc}
+              onChange={handleTextChange}
+              fullWidth
+              margin="normal"
+              size="small"
+              helperText="URL to the logo (optional)"
+            />
+          </Grid> */}
+        </Grid>
+      </Paper>
 
       <Paper elevation={3} sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom>Generated Embed Code</Typography>
