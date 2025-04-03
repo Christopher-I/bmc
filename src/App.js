@@ -18,6 +18,8 @@ import PCProcessPreview from './components/PCProcessPreview';
 import PCProcessGenerator from './components/PCProcessGenerator';
 import PartnersBenefitsPreview from './components/PartnersBenefitsPreview';
 import PartnersBenefitsGenerator from './components/PartnersBenefitsGenerator';
+import CharterSectionPreview from './components/CharterSectionPreview';
+import CharterSectionGenerator from './components/CharterSectionGenerator';
 
 // Create a theme instance
 const theme = createTheme({
@@ -84,6 +86,18 @@ function App() {
     imageSrc: 'https://placehold.co/600x400/e6e6e6/1e4164?text=Partnership+diagram'
   });
 
+  // Default configuration for the Charter section
+  const [charterConfig, setCharterConfig] = useState({
+    backgroundColor: "#1e3553",
+    textColor: "#ffffff",
+    headingColor: "#ffffff",
+    accentColor: "#d5ad36",
+    headingFont: "serif",
+    bodyFont: "sans-serif",
+    logoSrc: "/tpci_logo.png",
+    imageSrc: "/chartersection_computer.jpg"
+  });
+
   // Handle BMC configuration updates
   const handleBmcConfigChange = (name, value) => {
     setBmcConfig({
@@ -105,6 +119,11 @@ function App() {
     setPartnersBenefitsConfig(newConfig);
   };
 
+  // Handle Charter configuration updates
+  const handleCharterConfigChange = (newConfig) => {
+    setCharterConfig(newConfig);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -122,6 +141,7 @@ function App() {
               <Tab label="About BMC Section" />
               <Tab label="PC Process Section" />
               <Tab label="Partners Benefits Section" />
+              <Tab label="Charter Section" />
             </Tabs>
           </Box>
         </Container>
@@ -208,6 +228,31 @@ function App() {
                   <PartnersBenefitsGenerator 
                     config={partnersBenefitsConfig}
                     onConfigChange={handlePartnersBenefitsConfigChange}
+                  />
+                </Box>
+              </Paper>
+            </Container>
+          </>
+        )}
+        
+        {/* Charter Section Tab */}
+        {activeTab === 3 && (
+          <>
+            {/* Full Width Preview */}
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">Preview</Typography>
+                <CharterSectionPreview config={charterConfig} />
+              </Box>
+            </Paper>
+            
+            {/* Customization Below */}
+            <Container maxWidth="lg">
+              <Paper elevation={3}>
+                <Box p={3}>
+                  <CharterSectionGenerator 
+                    config={charterConfig}
+                    onConfigChange={handleCharterConfigChange}
                   />
                 </Box>
               </Paper>

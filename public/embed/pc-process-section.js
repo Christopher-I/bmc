@@ -122,7 +122,7 @@
         </div>
         <div class="accordion-content">
           <div class="accordion-content-inner">
-            <p>Partners establish a shared vision and direction for their business or project, ensuring alignment on long-term goals and strategic priorities.</p>
+            <p>In the excitement of launching their companies, partners are often so eager to begin (and pressed for time) they short circuit this fundamental discussion. Exploring their ideas of where they each want the company to go and how it's going to get there is critical to ensure they're not excited about two slightly different businesses.</p>
           </div>
         </div>
       </div>
@@ -134,7 +134,7 @@
         </div>
         <div class="accordion-content">
           <div class="accordion-content-inner">
-            <p>What entrepreneurs refer to as "inevitable conflict" is the number one reason many people avoid partnerships. By taking an assessment, exploring each partner's conflict handling style, and developing behavioral commitments to one another about how they'll communicate, they boost their confidence they can talk productively about their differences.</p>
+            <p>What entrepreneurs refer to as "inevitable conflict" is the number one reason many people avoid partnerships. By taking an assessment, exploring each partner's conflict-handling style, and developing behavioral commitments to one another about how they'll communicate, they boost their confidence they can talk productively about their differences.</p>
           </div>
         </div>
       </div>
@@ -146,7 +146,7 @@
         </div>
         <div class="accordion-content">
           <div class="accordion-content-inner">
-            <p>Clearly defining what each partner contributes (time, money, expertise, connections) and how rewards will be distributed creates a foundation for fairness.</p>
+            <p>Before diving into the details of financial rewards or ownership percentages, partners should contemplate the entire range of skills, assets, expertise, etc. that all the partners plan to contribute to the partnership as well as the money, perks, benefits, and other rewards that each partner hopes to receive.</p>
           </div>
         </div>
       </div>
@@ -159,7 +159,7 @@
         </div>
         <div class="accordion-content">
           <div class="accordion-content-inner">
-            <p>Understanding each partner's core values helps identify alignment and potential conflicts in approaches to business and decision-making.</p>
+            <p>Personal values drive and motivate partners. They are the underpinnings of their decisions. They're the guideposts they rely on to chart their course through the myriad dilemmas they face every day. Partners need to understand their own and each other's values to work effectively and harmoniously.</p>
           </div>
         </div>
       </div>
@@ -171,7 +171,7 @@
         </div>
         <div class="accordion-content">
           <div class="accordion-content-inner">
-            <p>Understanding each partner's work style, communication preferences, and decision-making approach helps create effective collaboration strategies.</p>
+            <p>Research has demonstrated that people imagine they know other people better than they really do and some people hold onto those misunderstandings. Digging into feedback from style assessments helps partners understand one another and helps them make behavioral commitments to one another so their day-to-day interactions are much more collaborative and satisfying.</p>
           </div>
         </div>
       </div>
@@ -183,7 +183,7 @@
         </div>
         <div class="accordion-content">
           <div class="accordion-content-inner">
-            <p>Delineating specific roles, responsibilities, and decision-making authority helps partners operate efficiently without stepping on each other's toes.</p>
+            <p>Dividing roles and authority is advantageous for both partners and the business itself. Using a detailed roles table and clear levels of authority, partners discuss responsibilities and carefully specify the levels of authority each partner will have for each of their responsibilities. The result is far fewer turf battles and misunderstandings.</p>
           </div>
         </div>
       </div>
@@ -196,7 +196,7 @@
         </div>
         <div class="accordion-content">
           <div class="accordion-content-inner">
-            <p>Partners outline what they expect from each other and from the partnership, creating clarity and preventing future misunderstandings.</p>
+            <p>Many people say they avoid partnerships because partners so frequently complain about "unmet expectations," which can feel like breaking a trust. The problem is partners routinely fail to share their expectations with one another. When partners explore their expectations from a number of different perspectives, they reduce the risk of this problem and build greater trust.</p>
           </div>
         </div>
       </div>
@@ -208,7 +208,7 @@
         </div>
         <div class="accordion-content">
           <div class="accordion-content-inner">
-            <p>Clear agreements about ownership percentages, equity distribution, and future changes to ownership structure prevent major disagreements.</p>
+            <p>Equity percentages are sometimes a major focus of partners. Despite being a critical topic and very complex, there's very little written on the topic. Even some seasoned entrepreneurs misunderstand the real significance of equity percentages and the relationships between percentages and other issues like compensation and control. This unit "unpacks" those interrelated topics.</p>
           </div>
         </div>
       </div>
@@ -220,7 +220,7 @@
         </div>
         <div class="accordion-content">
           <div class="accordion-content-inner">
-            <p>Addressing compensation, profit distribution, expense policies, and financial management ensures alignment on monetary matters.</p>
+            <p>For many co-owners determining pay, distributions, dividends, benefits, and perks is one of the toughest assignments they have, and one that can result in divisive negotiations. Provocative questions covering the entire span of money issues and partners thoughtful answers, assist Guides to skillfully facilitate discussions and negotiations, and document everyone's understandings.</p>
           </div>
         </div>
       </div>
@@ -233,7 +233,7 @@
         </div>
         <div class="accordion-content">
           <div class="accordion-content-inner">
-            <p>Establishing decision-making processes, meeting structures, and leadership roles provides a framework for effective partnership management.</p>
+            <p>Most closely held companies have a Board but rarely do partners understand the span of decision-making authority of the Board, owners, and managers. Really "getting" how these three entities can operate without stepping on the others' toes puts partners at a distinct advantage and ready for growth without all the normal growing pains.</p>
           </div>
         </div>
       </div>
@@ -245,7 +245,7 @@
         </div>
         <div class="accordion-content">
           <div class="accordion-content-inner">
-            <p>Partners plan for various scenarios, including success, challenges, and potential partnership changes, creating protocols for handling different situations.</p>
+            <p>A wildly successful businessman once said, "All events should be crossed in imagination before reality." This unit sets up partners to "think the unthinkable" and become more confident they'll be able to handle whatever anybody – including their partners – might throw their way. These exercises also teach partners more about one another so they don't have to wait for a crisis to learn how a partner might respond.</p>
           </div>
         </div>
       </div>
@@ -257,7 +257,7 @@
         </div>
         <div class="accordion-content">
           <div class="accordion-content-inner">
-            <p>Establishing protocols for handling disagreements, including escalation procedures and potential third-party involvement, creates a safety net for the partnership.</p>
+            <p>Even though the Charter process is designed to significantly reduce the likelihood of destructive conflicts, it's still important to have agreed-upon strategies just in case. This unit helps partners identify more strategies for handling difficult conversations as well as a sophisticated multistep process for handling even major conflict without ever resorting to litigation.</p>
           </div>
         </div>
       </div>
@@ -272,7 +272,7 @@
         </div>
         <div class="accordion-content">
           <div class="accordion-content-inner">
-            <p>Partners establish principles and processes for ensuring fair treatment, compensation, and recognition throughout the partnership.</p>
+            <p>The concept of fairness is at the heart of all successful partnerships, but it's often taken for granted: we don't think about it until it doesn't feel equitable. Often, that's too late. Fairness discussions are hardwired into the PC process so partners have productive ways to think and talk about them.</p>
           </div>
         </div>
       </div>
