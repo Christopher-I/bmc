@@ -94,17 +94,9 @@ function App() {
     accentColor: "#d5ad36",
     headingFont: "serif",
     bodyFont: "sans-serif",
-    logoSrc: "/tpci_logo.png",
+    logoSrc: "/tpci_logo.svg",
     imageSrc: "/chartersection_computer.jpg"
   });
-
-  // Handle BMC configuration updates
-  const handleBmcConfigChange = (name, value) => {
-    setBmcConfig({
-      ...bmcConfig,
-      [name]: value
-    });
-  };
 
   // Handle PC Process configuration updates
   const handlePcProcessConfigChange = (name, value) => {
