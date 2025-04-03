@@ -17,7 +17,7 @@
     accentColor: currentScript.getAttribute("data-accent-color") || "#d5ad36",
     headingFont: currentScript.getAttribute("data-heading-font") || "serif",
     bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
-    logoSrc: currentScript.getAttribute("data-logo-src") || "/bmc_logo.svg",
+    logoSrc: currentScript.getAttribute("data-logo-src") || "/tpci_logo.svg",
     imageSrc: currentScript.getAttribute("data-image-src") || "/chartersection_computer.jpg"
   };
 
