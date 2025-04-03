@@ -35,7 +35,13 @@ const CharterSectionGenerator = ({ config = defaultCharterConfig, onConfigChange
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(generateCharterEmbedScript(config));
+    // Always use absolute URLs in the embed code
+    const absoluteConfig = {
+      ...config,
+      logoSrc: config.logoSrc?.startsWith('http') ? config.logoSrc : 'https://bmc-neon.vercel.app/tpci_logo.svg',
+      imageSrc: config.imageSrc?.startsWith('http') ? config.imageSrc : 'https://bmc-neon.vercel.app/chartersection_computer.jpg'
+    };
+    navigator.clipboard.writeText(generateCharterEmbedScript(absoluteConfig));
   };
 
   return (
