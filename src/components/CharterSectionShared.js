@@ -1,14 +1,14 @@
 // CharterSectionShared.js - Shared utilities and code templates for Charter Section
 
 export const getSafeCharterImageUrl = (imageSrc) => {
-    if (!imageSrc || imageSrc.includes('placehold.co')) {
-      return "https://bmc-neon.vercel.app/chartersection_computer.jpg";
-    }
-    return imageSrc;
-  };
-  
-  export const generateCharterStyles = (config) => {
-    return `
+  if (!imageSrc || imageSrc.includes("placehold.co")) {
+    return "https://bmc-neon.vercel.app/chartersection_computer.jpg";
+  }
+  return imageSrc;
+};
+
+export const generateCharterStyles = (config) => {
+  return `
       .charter-container {
         background-color: ${config.backgroundColor};
         color: ${config.textColor};
@@ -59,16 +59,20 @@ export const getSafeCharterImageUrl = (imageSrc) => {
         margin-bottom: 1rem;
       }
       .charter-logo-container {
-        margin-top: 0.5rem;
+         margin-top: 0.5rem;
+  text-align: center;
+  width: 100%;
       }
       .charter-licensed {
         font-size: 0.875rem;
         margin-bottom: 0.25rem;
       }
-      .charter-logo {
-        width: 60px;
-        height: auto;
-      }
+.charter-logo {
+  width: 80px;
+  height: auto;
+  display: inline-block;
+}
+        
       .charter-paragraph {
         font-size: 1rem;
         line-height: 1.6;
@@ -78,10 +82,10 @@ export const getSafeCharterImageUrl = (imageSrc) => {
         margin-bottom: 0;
       }
     `;
-  };
-  
-  export const generateCharterHTML = (config) => {
-    return `
+};
+
+export const generateCharterHTML = (config) => {
+  return `
       <div class="charter-content-wrapper">
         <div class="charter-header">
           <div class="charter-label">ABOUT CHARTERS</div>
@@ -109,16 +113,16 @@ export const getSafeCharterImageUrl = (imageSrc) => {
         </div>
       </div>
     `;
+};
+
+export const generateCharterEmbedScript = (config) => {
+  const mergedConfig = {
+    ...defaultCharterConfig,
+    ...config,
+    imageSrc: getSafeCharterImageUrl(config.imageSrc),
   };
-  
-  export const generateCharterEmbedScript = (config) => {
-    const mergedConfig = {
-      ...defaultCharterConfig,
-      ...config,
-      imageSrc: getSafeCharterImageUrl(config.imageSrc),
-    };
-  
-    return `<script>
+
+  return `<script>
   (function() {
     const config = ${JSON.stringify(mergedConfig)};
     const container = document.createElement('div');
@@ -134,16 +138,15 @@ export const getSafeCharterImageUrl = (imageSrc) => {
     document.currentScript.parentNode.replaceChild(container, document.currentScript);
   })();
   </script>`;
-  };
-  
-  export const defaultCharterConfig = {
-    backgroundColor: "#1e3553",
-    textColor: "#ffffff",
-    headingColor: "#ffffff",
-    accentColor: "#d5ad36",
-    headingFont: "serif",
-    bodyFont: "sans-serif",
-    logoSrc: "https://bmc-neon.vercel.app/tpci_logo.svg",
-    imageSrc: "https://bmc-neon.vercel.app/chartersection_computer.jpg"
-  };
-  
+};
+
+export const defaultCharterConfig = {
+  backgroundColor: "#1e3553",
+  textColor: "#ffffff",
+  headingColor: "#ffffff",
+  accentColor: "#d5ad36",
+  headingFont: "serif",
+  bodyFont: "sans-serif",
+  logoSrc: "https://bmc-neon.vercel.app/tpci_logo.svg",
+  imageSrc: "https://bmc-neon.vercel.app/chartersection_computer.jpg",
+};
