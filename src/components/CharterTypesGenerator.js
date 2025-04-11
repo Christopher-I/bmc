@@ -38,11 +38,11 @@ const CharterTypesGenerator = ({ config, onConfigChange }) => {
 
   return (
     <Box>
-      <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
+      {/* <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
         <Typography variant="h6" gutterBottom>Customize Charter Types Section</Typography>
-        <Grid container spacing={3}>
+        <Grid container spacing={3}> */}
           {/* Colors Section */}
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Background Color
@@ -68,8 +68,8 @@ const CharterTypesGenerator = ({ config, onConfigChange }) => {
               </Box>
             </Box>
           </Grid>
-          
-          <Grid item xs={12} sm={6}>
+           */}
+          {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Text Color
@@ -94,9 +94,9 @@ const CharterTypesGenerator = ({ config, onConfigChange }) => {
                 />
               </Box>
             </Box>
-          </Grid>
+          </Grid> */}
           
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Heading Color
@@ -121,10 +121,10 @@ const CharterTypesGenerator = ({ config, onConfigChange }) => {
                 />
               </Box>
             </Box>
-          </Grid>
+          </Grid> */}
           
           {/* Fonts Section */}
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <FormControl fullWidth margin="normal" size="small">
               <InputLabel id="heading-font-label">Heading Font</InputLabel>
               <Select
@@ -142,9 +142,9 @@ const CharterTypesGenerator = ({ config, onConfigChange }) => {
                 <MenuItem value="Georgia, serif">Georgia</MenuItem>
               </Select>
             </FormControl>
-          </Grid>
+          </Grid> */}
           
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <FormControl fullWidth margin="normal" size="small">
               <InputLabel id="body-font-label">Body Font</InputLabel>
               <Select
@@ -162,9 +162,9 @@ const CharterTypesGenerator = ({ config, onConfigChange }) => {
                 <MenuItem value="Verdana, sans-serif">Verdana</MenuItem>
               </Select>
             </FormControl>
-          </Grid>
-        </Grid>
-      </Paper>
+          </Grid> */}
+        {/* </Grid>
+      </Paper> */}
       
       <Paper elevation={3} sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom>Generated Embed Code</Typography>
