@@ -1,19 +1,19 @@
-import React from 'react';
-import { 
-  Box, 
-  TextField, 
-  Select, 
-  MenuItem, 
-  FormControl, 
+import React from "react";
+import {
+  Box,
+  TextField,
+  Select,
+  MenuItem,
+  FormControl,
   InputLabel,
   Slider,
   Typography,
   Grid,
   Button,
-  Paper
-} from '@mui/material';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { generateEmbedCode } from './PCProcessShared';
+  Paper,
+} from "@mui/material";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { generateEmbedCode } from "./PCProcessShared";
 
 const PCProcessGenerator = ({ config, onConfigChange }) => {
   // Handle input changes
@@ -49,7 +49,9 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
   return (
     <Box>
       <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
-        <Typography variant="h6" gutterBottom>Customize PC Process Section</Typography>
+        <Typography variant="h6" gutterBottom>
+          Customize PC Process Section
+        </Typography>
         <Grid container spacing={3}>
           {/* Colors Section */}
           {/* <Grid item xs={12} sm={6}>
@@ -78,7 +80,7 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
               </Box>
             </Box>
           </Grid> */}
-{/*           
+          {/*           
           <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
@@ -132,7 +134,7 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
               </Box>
             </Box>
           </Grid> */}
-          
+
           {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
@@ -159,7 +161,7 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
               </Box>
             </Box>
           </Grid> */}
-          
+
           {/* Fonts Section */}
           {/* <Grid item xs={12} sm={6}>
             <FormControl fullWidth margin="normal" size="small">
@@ -180,7 +182,7 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
               </Select>
             </FormControl>
           </Grid> */}
-          
+
           {/* <Grid item xs={12} sm={6}>
             <FormControl fullWidth margin="normal" size="small">
               <InputLabel id="body-font-label">Body Font</InputLabel>
@@ -200,7 +202,7 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
               </Select>
             </FormControl>
           </Grid> */}
-          
+
           {/* Button Text */}
           {/* <Grid item xs={12} sm={6}>
             <TextField
@@ -213,7 +215,7 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
               size="small"
             />
           </Grid> */}
-          
+
           {/* Button Radius */}
           {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mt: 3 }}>
@@ -232,7 +234,7 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
               />
             </Box>
           </Grid> */}
-          
+
           {/* Accordion Radius */}
           {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mt: 1 }}>
@@ -251,7 +253,7 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
               />
             </Box>
           </Grid> */}
-          
+
           {/* Transition Speed */}
           <Grid item xs={12} sm={6}>
             <Box sx={{ mt: 1 }}>
@@ -260,7 +262,7 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
               </Typography>
               <Slider
                 value={config.transitionSpeed}
-                onChange={handleSliderChange('transitionSpeed')}
+                onChange={handleSliderChange("transitionSpeed")}
                 aria-labelledby="transition-speed-slider"
                 valueLabelDisplay="auto"
                 step={0.1}
@@ -272,9 +274,11 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
           </Grid>
         </Grid>
       </Paper>
-      
+
       <Paper elevation={3} sx={{ p: 3 }}>
-        <Typography variant="h6" gutterBottom>Generated Embed Code</Typography>
+        <Typography variant="h6" gutterBottom>
+          Generated Embed Code
+        </Typography>
         {/* <TextField
           value={generateEmbedCode(config)}
           multiline
@@ -287,16 +291,17 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
           }}
           sx={{ mb: 2 }}
         /> */}
-        <Button 
-          variant="contained" 
+        <Button
+          variant="contained"
           startIcon={<ContentCopyIcon />}
           onClick={copyToClipboard}
         >
           Copy Section
         </Button>
-        <Box sx={{ mt: 2, fontSize: '0.875rem', color: 'text.secondary' }}>
-          Simply copy this code and paste it into your website where you want the PC Process section to appear.
-          Works with WordPress, Webflow, and most other website builders.
+        <Box sx={{ mt: 2, fontSize: "0.875rem", color: "text.secondary" }}>
+          Simply copy this code and paste it into your website where you want
+          the PC Process section to appear. Works with WordPress, Webflow, and
+          most other website builders.
         </Box>
       </Paper>
     </Box>
