@@ -1,130 +1,140 @@
-import React, { useState } from 'react';
+import React from "react";
 import {
   Box,
-  Paper,
-  Typography,
-  Button,
   TextField,
-  Grid,
-  FormControl,
-  InputLabel,
   Select,
   MenuItem,
+  FormControl,
+  InputLabel,
   Slider,
-} from '@mui/material';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { generateDYPEmbedCode } from './DYPAdvantagesShared';
+  Typography,
+  Grid,
+  Button,
+  Paper,
+} from "@mui/material";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { generateEmbedCode } from "./DYPAdvantagesShared";
 
 const DYPAdvantagesGenerator = ({ config, onConfigChange }) => {
-  const [copied, setCopied] = useState(false);
-
+  // Handle input changes
   const handleChange = (name, value) => {
-    const updatedConfig = {
-      ...config,
-      [name]: value,
-    };
-    onConfigChange(updatedConfig);
+    onConfigChange({ ...config, [name]: value });
   };
 
+  // Handle color picker change
   const handleColorChange = (event) => {
     handleChange(event.target.name, event.target.value);
   };
 
+  // Handle select change
   const handleSelectChange = (event) => {
     handleChange(event.target.name, event.target.value);
   };
 
+  // Handle slider change
   const handleSliderChange = (name) => (event, newValue) => {
     handleChange(name, newValue);
   };
 
+  // Copy code to clipboard
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(generateDYPEmbedCode(config)).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
+    const embedCode = generateEmbedCode(config);
+    navigator.clipboard.writeText(embedCode);
   };
 
   return (
     <Box>
-      <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
+      {/* <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
         <Typography variant="h6" gutterBottom>
           Customize DYP Advantages Section
         </Typography>
-
         <Grid container spacing={3}>
-          {/* Colors */}
-          <Grid item xs={12} sm={6}>
-            <Typography variant="subtitle2">Background Color</Typography>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Box
-                sx={{
-                  width: '36px',
-                  height: '36px',
-                  border: '1px solid #ccc',
-                  backgroundColor: config.backgroundColor,
-                }}
-              />
-              <TextField
-                type="color"
-                name="backgroundColor"
-                value={config.backgroundColor}
-                onChange={handleColorChange}
-                fullWidth
-                margin="dense"
-                size="small"
-              />
+          {/* Background Color */}
+      {/* <Grid item xs={12} sm={6}>
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="subtitle2" gutterBottom>
+                Background Color
+              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Box
+                  sx={{
+                    width: '36px',
+                    height: '36px',
+                    border: '1px solid #ccc',
+                    backgroundColor: config.backgroundColor,
+                  }}
+                />
+                <TextField
+                  type="color"
+                  name="backgroundColor"
+                  value={config.backgroundColor}
+                  onChange={handleColorChange}
+                  fullWidth
+                  margin="dense"
+                  size="small"
+                />
+              </Box>
             </Box>
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} sm={6}>
-            <Typography variant="subtitle2">Text Color</Typography>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Box
-                sx={{
-                  width: '36px',
-                  height: '36px',
-                  border: '1px solid #ccc',
-                  backgroundColor: config.textColor,
-                }}
-              />
-              <TextField
-                type="color"
-                name="textColor"
-                value={config.textColor}
-                onChange={handleColorChange}
-                fullWidth
-                margin="dense"
-                size="small"
-              />
+      {/* Text Color */}
+      {/* <Grid item xs={12} sm={6}>
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="subtitle2" gutterBottom>
+                Text Color
+              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Box
+                  sx={{
+                    width: '36px',
+                    height: '36px',
+                    border: '1px solid #ccc',
+                    backgroundColor: config.textColor,
+                  }}
+                />
+                <TextField
+                  type="color"
+                  name="textColor"
+                  value={config.textColor}
+                  onChange={handleColorChange}
+                  fullWidth
+                  margin="dense"
+                  size="small"
+                />
+              </Box>
             </Box>
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} sm={6}>
-            <Typography variant="subtitle2">Accent Color (Left Border)</Typography>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Box
-                sx={{
-                  width: '36px',
-                  height: '36px',
-                  border: '1px solid #ccc',
-                  backgroundColor: config.accentColor,
-                }}
-              />
-              <TextField
-                type="color"
-                name="accentColor"
-                value={config.accentColor}
-                onChange={handleColorChange}
-                fullWidth
-                margin="dense"
-                size="small"
-              />
+      {/* Accent Color */}
+      {/* <Grid item xs={12} sm={6}>
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="subtitle2" gutterBottom>
+                Accent Color (Left Border)
+              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Box
+                  sx={{
+                    width: '36px',
+                    height: '36px',
+                    border: '1px solid #ccc',
+                    backgroundColor: config.accentColor,
+                  }}
+                />
+                <TextField
+                  type="color"
+                  name="accentColor"
+                  value={config.accentColor || '#fcb040'}
+                  onChange={handleColorChange}
+                  fullWidth
+                  margin="dense"
+                  size="small"
+                />
+              </Box>
             </Box>
-          </Grid>
+          </Grid> */}
 
-          {/* Fonts */}
-          <Grid item xs={12} sm={6}>
+      {/* Heading Font */}
+      {/* <Grid item xs={12} sm={6}>
             <FormControl fullWidth margin="normal" size="small">
               <InputLabel id="heading-font-label">Heading Font</InputLabel>
               <Select
@@ -142,9 +152,10 @@ const DYPAdvantagesGenerator = ({ config, onConfigChange }) => {
                 <MenuItem value="Georgia, serif">Georgia</MenuItem>
               </Select>
             </FormControl>
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} sm={6}>
+      {/* Body Font */}
+      {/* <Grid item xs={12} sm={6}>
             <FormControl fullWidth margin="normal" size="small">
               <InputLabel id="body-font-label">Body Font</InputLabel>
               <Select
@@ -162,67 +173,63 @@ const DYPAdvantagesGenerator = ({ config, onConfigChange }) => {
                 <MenuItem value="Verdana, sans-serif">Verdana</MenuItem>
               </Select>
             </FormControl>
-          </Grid>
+          </Grid> */}
 
-          {/* Radius and Speed */}
-          <Grid item xs={12} sm={6}>
-            <Typography gutterBottom>Accordion Radius: {config.accordionRadius}px</Typography>
-            <Slider
-              value={config.accordionRadius}
-              onChange={handleSliderChange('accordionRadius')}
-              valueLabelDisplay="auto"
-              step={1}
-              min={0}
-              max={20}
-            />
-          </Grid>
+      {/* Accordion Radius */}
+      {/* <Grid item xs={12} sm={6}>
+            <Box sx={{ mt: 1 }}>
+              <Typography id="accordion-radius-slider" gutterBottom>
+                Accordion Radius: {config.accordionRadius}px
+              </Typography>
+              <Slider
+                value={config.accordionRadius}
+                onChange={handleSliderChange('accordionRadius')}
+                aria-labelledby="accordion-radius-slider"
+                valueLabelDisplay="auto"
+                step={1}
+                marks
+                min={0}
+                max={20}
+              />
+            </Box>
+          </Grid> */}
 
-          <Grid item xs={12} sm={6}>
-            <Typography gutterBottom>
-              Accordion Transition Speed: {config.transitionSpeed}s
-            </Typography>
-            <Slider
-              value={config.transitionSpeed}
-              onChange={handleSliderChange('transitionSpeed')}
-              valueLabelDisplay="auto"
-              step={0.1}
-              min={0.1}
-              max={1.0}
-            />
+      {/* Transition Speed */}
+      {/* <Grid item xs={12} sm={6}>
+            <Box sx={{ mt: 1 }}>
+              <Typography id="transition-speed-slider" gutterBottom>
+                Accordion Transition Speed: {config.transitionSpeed}s
+              </Typography>
+              <Slider
+                value={config.transitionSpeed}
+                onChange={handleSliderChange('transitionSpeed')}
+                aria-labelledby="transition-speed-slider"
+                valueLabelDisplay="auto"
+                step={0.1}
+                marks
+                min={0.1}
+                max={1.0}
+              />
+            </Box>
           </Grid>
-        </Grid>
-      </Paper>
+        </Grid> */}
+      {/* </Paper> */}
 
-      {/* Embed Code Section */}
       <Paper elevation={3} sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom>
           Generated Embed Code
         </Typography>
-
         <Button
           variant="contained"
           startIcon={<ContentCopyIcon />}
           onClick={copyToClipboard}
-          sx={{ mb: 2 }}
         >
-          {copied ? 'Copied!' : 'Copy Section'}
+          Copy Section
         </Button>
-
-        <TextField
-          fullWidth
-          multiline
-          minRows={6}
-          value={generateDYPEmbedCode(config)}
-          variant="outlined"
-          InputProps={{
-            readOnly: true,
-            sx: { fontFamily: 'monospace', fontSize: '0.85rem' },
-          }}
-        />
-
-        <Box sx={{ mt: 2, fontSize: '0.875rem', color: 'text.secondary' }}>
-          Paste this code anywhere on your site to embed the DYP Advantages section. Compatible with
-          WordPress, Webflow, Framer, and most CMS platforms.
+        <Box sx={{ mt: 2, fontSize: "0.875rem", color: "text.secondary" }}>
+          Simply copy this code and paste it into your website where you want
+          the DYP Advantages section to appear. Works with WordPress, Webflow,
+          and most other website builders.
         </Box>
       </Paper>
     </Box>

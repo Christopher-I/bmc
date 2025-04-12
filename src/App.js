@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Container,
@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 
 import Sidebar from "./components/General Functions/Sidebar";
-
 import PreviewPanel from "./components/General Functions/PreviewPanel";
 import CustomizationPanel from "./components/General Functions/CustomizationPanel";
 import CodeGenerator from "./components/General Functions/CodeGenerator";
@@ -24,8 +23,8 @@ import CharterSectionGenerator from "./components/CharterSection/CharterSectionG
 import CharterTypesPreview from "./components/CharterTypes/CharterTypesPreview";
 import CharterTypesGenerator from "./components/CharterTypes/CharterTypesGenerator";
 import DYPAdvantagesPreview from "./components/DYPAdvantages/DYPAdvantagesPreview";
-import DYPAdvantagesGenerator from "./components/DYPAdvantages/DYPAdvantagesGenerator";
 import AppIntroduction from "./components/General Functions/AppIntroduction";
+import DYPAdvantagesGenerator from './components/DYPAdvantages/DYPAdvantagesGenerator';
 
 const theme = createTheme({
   palette: {
@@ -45,7 +44,14 @@ const sectionTitles = {
 };
 
 function App() {
-  const [activeSection, setActiveSection] = useState("introduction");
+  const [activeSection, setActiveSection] = useState(() => {
+    const savedSection = localStorage.getItem("activeSection");
+    return savedSection || "introduction";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("activeSection", activeSection);
+  }, [activeSection]);
 
   const [bmcConfig, setBmcConfig] = useState({
     backgroundColor: "#2c3e50",
@@ -106,9 +112,11 @@ function App() {
   const [dypAdvantagesConfig, setDypAdvantagesConfig] = useState({
     backgroundColor: "#103c68",
     textColor: "#ffffff",
+    accentColor: "#fcb040",
     headingFont: "serif",
     bodyFont: "sans-serif",
     accordionRadius: 4,
+    transitionSpeed: 0.3,
   });
 
   const renderSection = () => {
@@ -126,19 +134,17 @@ function App() {
                 <PreviewPanel config={bmcConfig} />
               </Box>
             </Paper>
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={6}></Grid>
-              <Grid item xs={12} md={6}>
-                <Paper elevation={3}>
-                  <Box p={3}>
-                    <Typography variant="h6" gutterBottom>
-                      Embed Code
-                    </Typography>
-                    <CodeGenerator config={bmcConfig} />
-                  </Box>
-                </Paper>
-              </Grid>
-            </Grid>
+            {/* Updated Embed Code section to match Preview width */}
+            <Paper elevation={3}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="left">
+                  Embed Code
+                </Typography>
+                <Box sx={{ maxWidth: "100%", overflowX: "auto" }}>
+                  <CodeGenerator config={bmcConfig} />
+                </Box>
+              </Box>
+            </Paper>
           </>
         );
       case "pcProcess":
@@ -238,7 +244,10 @@ function App() {
             </Paper>
             <Paper elevation={3}>
               <Box p={3}>
-                <DYPAdvantagesGenerator config={dypAdvantagesConfig} />
+                <DYPAdvantagesGenerator
+                  config={dypAdvantagesConfig}
+                  onConfigChange={setDypAdvantagesConfig}
+                />
               </Box>
             </Paper>
           </>
@@ -254,7 +263,6 @@ function App() {
       <Box sx={{ display: "flex" }}>
         <Sidebar active={activeSection} onSelect={setActiveSection} />
         <Box component="main" sx={{ flexGrow: 1 }}>
-          {/* Top bar title */}
           <Box
             sx={{
               px: { xs: 2, md: 4 },
@@ -276,7 +284,6 @@ function App() {
             </Container>
           </Box>
 
-          {/* Main content area */}
           <Box sx={{ p: 4 }}>
             <Container maxWidth="lg">
               {activeSection !== "introduction" && (
@@ -286,10 +293,24 @@ function App() {
                 </Typography>
               )}
               <Box
+                key={activeSection}
                 sx={{
                   p: { xs: 2, md: 4 },
                   backgroundColor: "#fafafa",
                   borderRadius: 2,
+                  opacity: 0,
+                  transform: "translateY(20px)",
+                  animation: "fadeIn 0.5s ease-in-out forwards",
+                  "@keyframes fadeIn": {
+                    from: {
+                      opacity: 0,
+                      transform: "translateY(20px)",
+                    },
+                    to: {
+                      opacity: 1,
+                      transform: "translateY(0)",
+                    },
+                  },
                 }}
               >
                 {renderSection()}

@@ -2,75 +2,65 @@ import React, { useEffect, useRef } from 'react';
 import { Box, Typography } from '@mui/material';
 import { dypAdvantagesData } from './DYPAdvantagesShared';
 
-// Shared accordion behavior from PC Process
-const setupAccordionBehavior = (containerRef, config) => {
+// Updated to match the embed code implementation
+export const setupAccordionBehavior = (containerRef, config) => {
   if (!containerRef) return () => {};
 
   const container = containerRef;
-  const accordions = container.querySelectorAll('.accordion');
-  let activeAccordion = null;
-
-  // Initial state: close all
-  accordions.forEach((accordion) => {
-    const content = accordion.querySelector('.accordion-content');
-    content.style.height = '0px';
-  });
-
-  const handleAccordionClick = (e) => {
-    let target = e.target;
-    let accordion = null;
-
-    while (target && target !== container) {
-      if (target.classList.contains('accordion')) {
-        accordion = target;
-        break;
-      }
-      target = target.parentElement;
-    }
-
-    if (!accordion) return;
-    e.stopPropagation();
-
-    const content = accordion.querySelector('.accordion-content');
-    const contentInner = accordion.querySelector('.accordion-content-inner');
-    const contentHeight = contentInner.getBoundingClientRect().height;
-
-    if (activeAccordion === accordion) {
-      content.style.height = `${contentHeight}px`;
-      void content.offsetHeight;
-      requestAnimationFrame(() => {
-        content.style.height = '0px';
-      });
-      accordion.classList.remove('active');
-      activeAccordion = null;
-      return;
-    }
-
-    if (activeAccordion) {
-      const activeContent = activeAccordion.querySelector('.accordion-content');
-      const activeContentInner = activeAccordion.querySelector('.accordion-content-inner');
-      const activeHeight = activeContentInner.getBoundingClientRect().height;
-
-      activeContent.style.height = `${activeHeight}px`;
-     void activeContent.offsetHeight;
-      requestAnimationFrame(() => {
-        activeContent.style.height = '0px';
-      });
-      activeAccordion.classList.remove('active');
-    }
-
-    accordion.classList.add('active');
-    requestAnimationFrame(() => {
-      content.style.height = `${contentHeight}px`;
+  
+  // Function to close all accordions
+  const closeAllAccordions = () => {
+    const all = container.querySelectorAll('.accordion');
+    all.forEach(a => {
+      a.classList.remove('active');
+      const contentEl = a.querySelector('.accordion-content');
+      if (contentEl) contentEl.style.height = '0px';
     });
-
-    activeAccordion = accordion;
   };
+  
+  // Initialize with all accordions closed
+  closeAllAccordions();
+  
+  // Get the grid element for event delegation
+  const accordionGrid = container.querySelector('.accordion-grid');
+  if (!accordionGrid) return () => {};
+  
+  // Track active accordion by index
+  let activeIndex = null;
+  
+  // Add event listener to the grid
+  const handleClick = (e) => {
+    const header = e.target.closest('.accordion-header');
+    if (!header) return;
 
-  container.addEventListener('click', handleAccordionClick);
-
+    const accordion = header.closest('.accordion');
+    if (!accordion) return;
+    
+    // Get the accordion index from data attribute
+    const index = parseInt(accordion.getAttribute('data-index'), 10);
+    const contentEl = accordion.querySelector('.accordion-content');
+    const contentInner = accordion.querySelector('.accordion-content-inner');
+    
+    if (activeIndex === index) {
+      // Close this accordion if it's already open
+      contentEl.style.height = '0px';
+      accordion.classList.remove('active');
+      activeIndex = null;
+    } else {
+      // Close all accordions and then open the clicked one
+      closeAllAccordions();
+      accordion.classList.add('active');
+      const height = contentInner.getBoundingClientRect().height;
+      contentEl.style.height = `${height}px`;
+      activeIndex = index;
+    }
+  };
+  
+  accordionGrid.addEventListener('click', handleClick);
+  
+  // Return cleanup function
   return () => {
-    container.removeEventListener('click', handleAccordionClick);
+    accordionGrid.removeEventListener('click', handleClick);
   };
 };
 
@@ -110,6 +100,7 @@ const DYPAdvantagesPreview = ({ config }) => {
       </Typography>
 
       <Box
+        className="accordion-grid"
         sx={{
           display: 'grid',
           gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
@@ -121,6 +112,7 @@ const DYPAdvantagesPreview = ({ config }) => {
         {dypAdvantagesData.map((item, idx) => (
           <AccordionItem
             key={idx}
+            index={idx}
             title={item.title}
             content={item.content}
             config={config}
@@ -132,10 +124,11 @@ const DYPAdvantagesPreview = ({ config }) => {
   );
 };
 
-const AccordionItem = ({ title, content, config, animationDuration }) => {
+const AccordionItem = ({ title, content, config, animationDuration, index }) => {
   return (
     <Box
       className="accordion"
+      data-index={index}
       sx={{
         position: 'relative',
         backgroundColor: 'white',
@@ -143,6 +136,10 @@ const AccordionItem = ({ title, content, config, animationDuration }) => {
         borderRadius: `${config.accordionRadius}px`,
         overflow: 'hidden',
         alignSelf: 'start',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+        '&.active': {
+          boxShadow: '0 2px 5px rgba(0,0,0,0.15)',
+        },
         '&::before': {
           content: '""',
           position: 'absolute',
@@ -166,6 +163,7 @@ const AccordionItem = ({ title, content, config, animationDuration }) => {
           alignItems: 'center',
           backgroundColor: 'white',
           transition: `background-color ${animationDuration} ease`,
+          userSelect: 'none',
           '&:hover': {
             backgroundColor: 'rgba(0,0,0,0.03)',
           },
@@ -179,6 +177,8 @@ const AccordionItem = ({ title, content, config, animationDuration }) => {
             color: '#1e4164',
             fontWeight: 600,
             textAlign: 'left',
+            flex: 1,
+            paddingRight: '1rem',
           }}
         >
           {title}
@@ -193,6 +193,7 @@ const AccordionItem = ({ title, content, config, animationDuration }) => {
             borderBottom: '2px solid #1e4164',
             transform: 'rotate(45deg)',
             transition: `transform ${animationDuration} ease`,
+            flexShrink: 0,
             '.accordion.active &': {
               transform: 'rotate(225deg)',
             },
