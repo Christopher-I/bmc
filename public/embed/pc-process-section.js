@@ -39,7 +39,7 @@
     .pc-container {
       background-color: ${config.backgroundColor};
       color: ${config.textColor};
-      font-family: ${config.bodyFont};
+      font-family: ${config.bodyFont}; =
       padding: 2rem;
       max-width: 100%;
       box-sizing: border-box;
