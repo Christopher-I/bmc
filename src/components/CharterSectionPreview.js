@@ -119,7 +119,7 @@ const CharterSectionPreview = ({ config = {} }) => {
               src={mergedConfig.imageSrc}
               alt="Partnership Charter on Laptop"
               style={{
-                width: "100%",
+                width: "80%",
                 maxWidth: "420px",
                 borderRadius: "12px",
                 objectFit: "cover",
