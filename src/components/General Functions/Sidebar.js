@@ -16,6 +16,7 @@ const sections = [
   { key: "charter", label: "Charter Section" },
   { key: "charterTypes", label: "Who Should Develop a Charter" },
   { key: "dypAdvantages", label: "DYP Advantages" },
+  { key: "sliversOfAmbiguity", label: "Slivers of Ambiguity" }, // Add new section
 ];
 
 const Sidebar = ({ active, onSelect }) => {

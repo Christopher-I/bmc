@@ -12,7 +12,7 @@ import {
 
 import Sidebar from "./components/General Functions/Sidebar";
 import PreviewPanel from "./components/General Functions/PreviewPanel";
-import CustomizationPanel from "./components/General Functions/CustomizationPanel";
+import SliversOfAmbiguityGenerator from './components/SliversOfAmbiguity/SliversGenerator';
 import CodeGenerator from "./components/General Functions/CodeGenerator";
 import PCProcessPreview from "./components/PCProcess/PCProcessPreview";
 import PCProcessGenerator from "./components/PCProcess/PCProcessGenerator";
@@ -25,6 +25,7 @@ import CharterTypesGenerator from "./components/CharterTypes/CharterTypesGenerat
 import DYPAdvantagesPreview from "./components/DYPAdvantages/DYPAdvantagesPreview";
 import AppIntroduction from "./components/General Functions/AppIntroduction";
 import DYPAdvantagesGenerator from './components/DYPAdvantages/DYPAdvantagesGenerator';
+import SliversOfAmbiguityPreview from './components/SliversOfAmbiguity/SliversPreview'; // Import the new preview component
 
 const theme = createTheme({
   palette: {
@@ -41,6 +42,7 @@ const sectionTitles = {
   charter: "Charter Section",
   charterTypes: "Who Should Develop a Charter",
   dypAdvantages: "DYP Advantages",
+  sliversOfAmbiguity: "Slivers of Ambiguity", // Add new section title
 };
 
 function App() {
@@ -119,6 +121,16 @@ function App() {
     transitionSpeed: 0.3,
   });
 
+  // Add state for the new Slivers of Ambiguity section
+  const [sliversOfAmbiguityConfig, setSliversOfAmbiguityConfig] = useState({
+    backgroundColor: "#e6ecef", // Match the light grayish-blue background from the image
+    textColor: "#333333",
+    headingColor: "#333333",
+    accentColor: "#d5ad36", // Match the gold border color from the image
+    headingFont: "serif",
+    bodyFont: "sans-serif",
+  });
+
   const renderSection = () => {
     switch (activeSection) {
       case "introduction":
@@ -134,7 +146,6 @@ function App() {
                 <PreviewPanel config={bmcConfig} />
               </Box>
             </Paper>
-            {/* Updated Embed Code section to match Preview width */}
             <Paper elevation={3}>
               <Box p={3}>
                 <Typography variant="h6" gutterBottom align="left">
@@ -252,6 +263,28 @@ function App() {
             </Paper>
           </>
         );
+        case "sliversOfAmbiguity":
+          return (
+            <>
+              <Paper elevation={3} sx={{ mb: 4 }}>
+                <Box p={3}>
+                  <Typography variant="h6" gutterBottom align="center">
+                    Preview
+                  </Typography>
+                  <SliversOfAmbiguityPreview config={sliversOfAmbiguityConfig} />
+                </Box>
+              </Paper>
+              <Paper elevation={3}>
+                <Box p={3}>
+                  <SliversOfAmbiguityGenerator
+                    config={sliversOfAmbiguityConfig}
+                    onConfigChange={setSliversOfAmbiguityConfig}
+                  />
+                </Box>
+              </Paper>
+            </>
+          );
+        
       default:
         return <AppIntroduction />;
     }
