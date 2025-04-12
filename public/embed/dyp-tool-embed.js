@@ -9,7 +9,7 @@
       bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
       imageSrc:
         currentScript.getAttribute("data-image-src") ||
-        "https://bmc-neon.vercel.app/dyp_tool.png",
+        "https://bmc-git-sliversofambiguity-christopher-igbojekwes-projects.vercel.app/dyp_tool.png",
       imageRadius: currentScript.getAttribute("data-image-radius") || 8,
     };
   
