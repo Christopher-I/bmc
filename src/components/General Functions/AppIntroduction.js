@@ -367,8 +367,8 @@ const AppIntroduction = () => {
                   </Typography>
                   <List dense sx={{ flexGrow: 1 }}>
                     <ListItem>
-                      <ListItemIcon>
-                        <img src="/api/placeholder/20/20" alt="WordPress" style={{ width: 20, height: 20 }} />
+                    <ListItemIcon>
+                        <CodeIcon fontSize="small" sx={{ color: '#66bb6a' }} />
                       </ListItemIcon>
                       <ListItemText 
                         primary="WordPress" 
@@ -376,8 +376,8 @@ const AppIntroduction = () => {
                       />
                     </ListItem>
                     <ListItem>
-                      <ListItemIcon>
-                        <img src="/api/placeholder/20/20" alt="Webflow" style={{ width: 20, height: 20 }} />
+                    <ListItemIcon>
+                        <CodeIcon fontSize="small" sx={{ color: '#66bb6a' }} />
                       </ListItemIcon>
                       <ListItemText 
                         primary="Webflow" 
