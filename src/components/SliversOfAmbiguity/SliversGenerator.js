@@ -26,12 +26,12 @@ const SliversOfAmbiguityGenerator = ({ config, onConfigChange }) => {
 
   return (
     <Box>
-      <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
+      {/* <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
         <Typography variant="h6" gutterBottom>
           Customize Slivers of Ambiguity Section
         </Typography>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
+        <Grid container spacing={3}> */}
+          {/* <Grid item xs={12} sm={6}>
             <Typography variant="subtitle2">Background Color</Typography>
             <TextField
               type="color"
@@ -55,9 +55,9 @@ const SliversOfAmbiguityGenerator = ({ config, onConfigChange }) => {
               margin="dense"
               size="small"
             />
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <Typography variant="subtitle2">Heading Color</Typography>
             <TextField
               type="color"
@@ -83,7 +83,7 @@ const SliversOfAmbiguityGenerator = ({ config, onConfigChange }) => {
             />
           </Grid>
         </Grid>
-      </Paper>
+      </Paper> */}
 
       <Paper elevation={3} sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom>
