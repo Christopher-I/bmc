@@ -296,27 +296,27 @@ function App() {
             </Paper>
           </>
         );
-      case "dypTool":
-        return (
-          <>
-            <Paper elevation={3} sx={{ mb: 4 }}>
-              <Box p={3}>
-                <Typography variant="h6" gutterBottom align="center">
-                  Preview
-                </Typography>
-                <DYPToolPreview config={dypToolConfig} />
-              </Box>
-            </Paper>
-            <Paper elevation={3}>
-              <Box p={3}>
-                <DYPToolGenerator
-                  config={dypToolConfig}
-                  onConfigChange={setDypToolConfig}
-                />
-              </Box>
-            </Paper>
-          </>
-        );
+        case "dypTool":
+          return (
+            <>
+              <Paper elevation={3} sx={{ mb: 4 }}>
+                <Box p={3}>
+                  <Typography variant="h6" gutterBottom align="center">
+                    Preview
+                  </Typography>
+                  <DYPToolPreview config={dypToolConfig} />
+                </Box>
+              </Paper>
+              <Paper elevation={3}>
+                <Box p={3}>
+                  <DYPToolGenerator
+                    config={dypToolConfig}
+                    onConfigChange={setDypToolConfig}
+                  />
+                </Box>
+              </Paper>
+            </>
+          );
 
       default:
         return <AppIntroduction />;
