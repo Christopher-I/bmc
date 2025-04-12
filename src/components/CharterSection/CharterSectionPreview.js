@@ -65,7 +65,7 @@ const CharterSectionPreview = ({ config = {} }) => {
           {/* Text Block (Narrow) */}
           <div
             style={{
-              maxWidth: "520px",
+              maxWidth: "45%",
               flex: "0 0 auto",
             }}
           >
@@ -113,6 +113,7 @@ const CharterSectionPreview = ({ config = {} }) => {
               alignItems: "center",
               justifyContent: "center",
               flex: "0 0 auto",
+              maxWidth: "45%",
             }}
           >
             <img
@@ -120,7 +121,7 @@ const CharterSectionPreview = ({ config = {} }) => {
               alt="Partnership Charter on Laptop"
               style={{
                 width: "70%",
-                maxWidth: "420px",
+                // maxWidth: "420px",
                 borderRadius: "12px",
                 objectFit: "cover",
                 height: "auto",
