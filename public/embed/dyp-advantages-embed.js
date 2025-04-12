@@ -276,50 +276,44 @@
     });
   };
   
-  // Keep track of active accordion by its index
-  let activeAccordionIndex = null;
-  
   // Get the accordion grid element (for event delegation)
   const accordionGrid = content.querySelector('.accordion-grid');
   
   // Single event listener using event delegation
-  accordionGrid.addEventListener('click', (event) => {
-    // Find the accordion header or its child elements
-    const header = event.target.closest('.accordion-header');
-    if (!header) return; // Exit if we didn't click on a header
-    
-    // Get the parent accordion element
+  // FIXED: Use only one variable to track active accordion
+  let activeAccordion = null;
+
+  accordionGrid.addEventListener('click', (e) => {
+    const header = e.target.closest('.accordion-header');
+    if (!header) return;
+  
     const accordion = header.closest('.accordion');
     if (!accordion) return;
-    
-    // Get the index from the data attribute
-    const index = parseInt(accordion.getAttribute('data-index'), 10);
-    
-    // Get content elements
+  
     const contentEl = accordion.querySelector('.accordion-content');
     const contentInner = accordion.querySelector('.accordion-content-inner');
-    
-    // Stop event propagation
-    event.stopPropagation();
-    
-    // If this is already the active accordion, close it
-    if (activeAccordionIndex === index) {
+    // FIXED: Removed duplicate check
+    if (!contentEl || !contentInner) return;
+  
+    const height = contentInner.getBoundingClientRect().height;
+  
+    if (activeAccordion === accordion) {
+      // SIMPLIFIED: Directly close without explicit height setting
       contentEl.style.height = '0px';
       accordion.classList.remove('active');
-      activeAccordionIndex = null;
-    } 
-    // Otherwise, close the current active one and open this one
-    else {
-      // First close all accordions
-      closeAllAccordions();
-      
-      // Then open the clicked one
+      activeAccordion = null;
+    } else {
+      // SIMPLIFIED: Close current accordion first
+      if (activeAccordion) {
+        const prevContent = activeAccordion.querySelector('.accordion-content');
+        activeAccordion.classList.remove('active');
+        prevContent.style.height = '0px';
+      }
+  
+      // Then open the new one
       accordion.classList.add('active');
-      const contentHeight = contentInner.getBoundingClientRect().height;
-      contentEl.style.height = `${contentHeight}px`;
-      
-      // Update active index
-      activeAccordionIndex = index;
+      contentEl.style.height = `${height}px`;
+      activeAccordion = accordion;
     }
   });
   
