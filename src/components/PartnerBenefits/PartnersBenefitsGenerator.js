@@ -48,9 +48,9 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
 
   return (
     <Box>
-      <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
-        <Typography variant="h6" gutterBottom>Customize Partners Benefits Section</Typography>
-        <Grid container spacing={3}>
+      {/* <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
+        <Typography variant="h6" gutterBottom>Customize Partners Benefits Section</Typography> */}
+        {/* <Grid container spacing={3}> */}
           {/* Colors Section */}
           {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
@@ -280,7 +280,7 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
           </Grid> */}
           
           {/* Image Source */}
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <TextField
               label="Image URL (Optional)"
               name="imageSrc"
@@ -292,9 +292,9 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
               size="small"
               helperText="Leave default for a placeholder image. For production, use an absolute URL to your own hosted image."
             />
-          </Grid>
-        </Grid>
-      </Paper>
+          </Grid> */}
+        {/* </Grid> */}
+      {/* </Paper> */}
       
       <Paper elevation={3} sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom>Generated Embed Code</Typography>

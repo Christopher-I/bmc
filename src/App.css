@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+.sidebar {
+  position: -webkit-sticky; /* For Safari on iOS < 13 */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
