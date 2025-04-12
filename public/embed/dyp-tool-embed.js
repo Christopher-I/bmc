@@ -1,22 +1,21 @@
 (function () {
-    const currentScript = document.currentScript;
-  
-    const config = {
-      backgroundColor: currentScript.getAttribute("data-background") || "#ecf0f1",
-      textColor: currentScript.getAttribute("data-text-color") || "#2c3e50",
-      headingFont: currentScript.getAttribute("data-heading-font") || "serif",
-      bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
-      imageSrc:
-        currentScript.getAttribute("data-image-src") ||
-        "https://bmc-git-sliversofambiguity-christopher-igbojekwes-projects.vercel.app/dyp_tool.png",
-      imageRadius: parseInt(currentScript.getAttribute("data-image-radius")) || 8,
-    };
-  
-    const container = document.createElement("div");
-    const shadow = container.attachShadow({ mode: "open" });
-  
-    const style = document.createElement("style");
-    style.textContent = `
+  const currentScript = document.currentScript;
+
+  const config = {
+    backgroundColor: currentScript.getAttribute("data-background") || "#ecf0f1",
+    textColor: currentScript.getAttribute("data-text-color") || "#2c3e50",
+    headingFont: currentScript.getAttribute("data-heading-font") || "serif",
+    bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
+    imageRadius: currentScript.getAttribute("data-image-radius") || "8",
+    imageSrc:
+      "https://bmc-git-sliversofambiguity-christopher-igbojekwes-projects.vercel.app/dyp_tool.png",
+  };
+
+  const container = document.createElement("div");
+  const shadow = container.attachShadow({ mode: "open" });
+
+  const style = document.createElement("style");
+  style.textContent = `
       .dyp-tool-container {
         background-color: ${config.backgroundColor};
         color: ${config.textColor};
@@ -32,7 +31,7 @@
         gap: 2rem;
       }
   
-      @media(min-width: 768px) {
+      @media (min-width: 768px) {
         .dyp-grid {
           flex-direction: row;
           align-items: center;
@@ -65,9 +64,9 @@
         margin: 0 auto;
       }
     `;
-  
-    const content = document.createElement("div");
-    content.innerHTML = `
+
+  const content = document.createElement("div");
+  content.innerHTML = `
       <div class="dyp-tool-container">
         <div class="dyp-grid">
           <div class="dyp-text-content">
@@ -92,10 +91,9 @@
         </div>
       </div>
     `;
-  
-    shadow.appendChild(style);
-    shadow.appendChild(content);
-  
-    currentScript.parentNode.replaceChild(container, currentScript);
-  })();
-  
+
+  shadow.appendChild(style);
+  shadow.appendChild(content);
+
+  currentScript.parentNode.replaceChild(container, currentScript);
+})();
