@@ -6,30 +6,30 @@
  */
 
 (function () {
-    // Get current script tag
-    const currentScript = document.currentScript;
-  
-    // Get configuration from data attributes
-    const config = {
-      backgroundColor: currentScript.getAttribute("data-background") || "#ecf0f1",
-      textColor: currentScript.getAttribute("data-text-color") || "#2c3e50",
-      headingFont: currentScript.getAttribute("data-heading-font") || "serif",
-      bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
-      imageRadius: currentScript.getAttribute("data-image-radius") || "8",
-      imageSrc:
-        currentScript.getAttribute("data-image-src") ||
-        "https://bmc-git-sliversofambiguity-christopher-igbojekwes-projects.vercel.app/dyp_tool.png",
-    };
-  
-    // Create container element
-    const container = document.createElement("div");
-  
-    // Create shadow DOM for style isolation
-    const shadow = container.attachShadow({ mode: "open" });
-  
-    // Add styles
-    const style = document.createElement("style");
-    style.textContent = `
+  // Get current script tag
+  const currentScript = document.currentScript;
+
+  // Get configuration from data attributes
+  const config = {
+    backgroundColor: currentScript.getAttribute("data-background") || "#ecf0f1",
+    textColor: currentScript.getAttribute("data-text-color") || "#2c3e50",
+    headingFont: currentScript.getAttribute("data-heading-font") || "serif",
+    bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
+    imageRadius: currentScript.getAttribute("data-image-radius") || "8",
+    imageSrc:
+      currentScript.getAttribute("data-image-src") ||
+      "https://bmc-neon.vercel.app/dyp_tool.png",
+  };
+
+  // Create container element
+  const container = document.createElement("div");
+
+  // Create shadow DOM for style isolation
+  const shadow = container.attachShadow({ mode: "open" });
+
+  // Add styles
+  const style = document.createElement("style");
+  style.textContent = `
       .dyp-tool-container {
         background-color: ${config.backgroundColor};
         color: ${config.textColor};
@@ -108,11 +108,11 @@
         }
       }
     `;
-  
-    // Create content elements
-    const content = document.createElement("div");
-    content.classList.add("dyp-tool-container");
-    content.innerHTML = `
+
+  // Create content elements
+  const content = document.createElement("div");
+  content.classList.add("dyp-tool-container");
+  content.innerHTML = `
       <div class="dyp-tool-wrapper">
         <div class="dyp-tool-content">
           <h2 class="dyp-tool-heading">The DYP tool</h2>
@@ -135,11 +135,11 @@
         </div>
       </div>
     `;
-  
-    // Append style and content to shadow DOM
-    shadow.appendChild(style);
-    shadow.appendChild(content);
-  
-    // Replace script tag with our container
-    currentScript.parentNode.replaceChild(container, currentScript);
-  })();
+
+  // Append style and content to shadow DOM
+  shadow.appendChild(style);
+  shadow.appendChild(content);
+
+  // Replace script tag with our container
+  currentScript.parentNode.replaceChild(container, currentScript);
+})();
