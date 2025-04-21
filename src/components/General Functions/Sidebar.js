@@ -16,6 +16,8 @@ const sections = [
   { key: "charter", label: "Charter Section" },
   { key: "charterTypes", label: "Who Should Develop a Charter" },
   { key: "dypAdvantages", label: "DYP Advantages" },
+  { key: "sliversOfAmbiguity", label: "Slivers of Ambiguity" },
+  { key: "dypTool", label: "The DYP Tool Section" },
 ];
 
 const Sidebar = ({ active, onSelect }) => {
@@ -51,7 +53,9 @@ const Sidebar = ({ active, onSelect }) => {
             sx={{
               borderLeft: active === section.key ? "4px solid #1976d2" : "none",
               backgroundColor:
-                active === section.key ? "rgba(25, 118, 210, 0.08)" : "transparent",
+                active === section.key
+                  ? "rgba(25, 118, 210, 0.08)"
+                  : "transparent",
               fontWeight: active === section.key ? "bold" : "normal",
               "&:hover": {
                 backgroundColor: "rgba(25, 118, 210, 0.04)",

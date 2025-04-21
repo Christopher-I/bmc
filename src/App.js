@@ -12,7 +12,7 @@ import {
 
 import Sidebar from "./components/General Functions/Sidebar";
 import PreviewPanel from "./components/General Functions/PreviewPanel";
-import CustomizationPanel from "./components/General Functions/CustomizationPanel";
+import SliversOfAmbiguityGenerator from "./components/SliversOfAmbiguity/SliversGenerator";
 import CodeGenerator from "./components/General Functions/CodeGenerator";
 import PCProcessPreview from "./components/PCProcess/PCProcessPreview";
 import PCProcessGenerator from "./components/PCProcess/PCProcessGenerator";
@@ -24,7 +24,10 @@ import CharterTypesPreview from "./components/CharterTypes/CharterTypesPreview";
 import CharterTypesGenerator from "./components/CharterTypes/CharterTypesGenerator";
 import DYPAdvantagesPreview from "./components/DYPAdvantages/DYPAdvantagesPreview";
 import AppIntroduction from "./components/General Functions/AppIntroduction";
-import DYPAdvantagesGenerator from './components/DYPAdvantages/DYPAdvantagesGenerator';
+import DYPAdvantagesGenerator from "./components/DYPAdvantages/DYPAdvantagesGenerator";
+import SliversOfAmbiguityPreview from "./components/SliversOfAmbiguity/SliversPreview"; // Import the new preview component
+import DYPToolPreview from "./components/DYPTool/DYPToolPreview";
+import DYPToolGenerator from "./components/DYPTool/DYPToolGenerator";
 
 const theme = createTheme({
   palette: {
@@ -41,6 +44,8 @@ const sectionTitles = {
   charter: "Charter Section",
   charterTypes: "Who Should Develop a Charter",
   dypAdvantages: "DYP Advantages",
+  sliversOfAmbiguity: "Slivers of Ambiguity", // Add new section title
+  dypTool: "The DYP Tool Section",
 };
 
 function App() {
@@ -119,6 +124,25 @@ function App() {
     transitionSpeed: 0.3,
   });
 
+  // Add state for the new Slivers of Ambiguity section
+  const [sliversOfAmbiguityConfig, setSliversOfAmbiguityConfig] = useState({
+    backgroundColor: "#e6ecef", // Match the light grayish-blue background from the image
+    textColor: "#333333",
+    headingColor: "#333333",
+    accentColor: "#d5ad36", // Match the gold border color from the image
+    headingFont: "serif",
+    bodyFont: "sans-serif",
+  });
+
+  const [dypToolConfig, setDypToolConfig] = useState({
+    backgroundColor: "#ecf0f1",
+    textColor: "#2c3e50",
+    headingFont: "serif",
+    bodyFont: "sans-serif",
+    imageSrc: "/dyp_tool.png", // update path as needed
+    imageRadius: 8,
+  });
+
   const renderSection = () => {
     switch (activeSection) {
       case "introduction":
@@ -134,7 +158,6 @@ function App() {
                 <PreviewPanel config={bmcConfig} />
               </Box>
             </Paper>
-            {/* Updated Embed Code section to match Preview width */}
             <Paper elevation={3}>
               <Box p={3}>
                 <Typography variant="h6" gutterBottom align="left">
@@ -252,6 +275,49 @@ function App() {
             </Paper>
           </>
         );
+      case "sliversOfAmbiguity":
+        return (
+          <>
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">
+                  Preview
+                </Typography>
+                <SliversOfAmbiguityPreview config={sliversOfAmbiguityConfig} />
+              </Box>
+            </Paper>
+            <Paper elevation={3}>
+              <Box p={3}>
+                <SliversOfAmbiguityGenerator
+                  config={sliversOfAmbiguityConfig}
+                  onConfigChange={setSliversOfAmbiguityConfig}
+                />
+              </Box>
+            </Paper>
+          </>
+        );
+        case "dypTool":
+          return (
+            <>
+              <Paper elevation={3} sx={{ mb: 4 }}>
+                <Box p={3}>
+                  <Typography variant="h6" gutterBottom align="center">
+                    Preview
+                  </Typography>
+                  <DYPToolPreview config={dypToolConfig} />
+                </Box>
+              </Paper>
+              <Paper elevation={3}>
+                <Box p={3}>
+                  <DYPToolGenerator
+                    config={dypToolConfig}
+                    onConfigChange={setDypToolConfig}
+                  />
+                </Box>
+              </Paper>
+            </>
+          );
+
       default:
         return <AppIntroduction />;
     }
