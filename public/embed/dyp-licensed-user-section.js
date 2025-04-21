@@ -117,7 +117,8 @@
           any level of facilitation and support partners may need when developing a
           Partnership Charter.
         </p>
-        <img src="${config.logoUrl || '/dyp_logo.png'}" alt="DYP Logo" class="dyp-logo-img">
+        <img src="${config.logoUrl || 'https://bmc-neon.vercel.app/dyp_logo.png'}" alt="DYP Logo" class="dyp-logo-img">
+
       </div>
       <a href="${config.buttonUrl}" class="dyp-licensed-button">${config.buttonText}</a>
     `;

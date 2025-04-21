@@ -164,29 +164,31 @@ const AppIntroduction = () => {
           Watch this quick tutorial to learn how to use the Post-haste Consulting Group(PHCG) Section Embedding Tool.
         </Typography>
         
-        {/* Video placeholder - this will be where you embed your video later */}
+        {/* Embedded Loom Video */}
         <Box 
           sx={{ 
-            backgroundColor: '#f5f5f5', 
-            height: 350, 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            border: '1px dashed #ccc',
-            borderRadius: 2,
+            width: '100%',
+            height: 0,
+            paddingBottom: '56.25%', // 16:9 aspect ratio
+            position: 'relative',
             mb: 2,
-            cursor: 'pointer',
-            transition: 'all 0.2s',
-            '&:hover': {
-              backgroundColor: '#e8eaf6',
-              boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
-            }
+            borderRadius: 2,
+            overflow: 'hidden',
           }}
         >
-          <Typography variant="body1" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
-            <PlayCircleOutlineIcon sx={{ mr: 1, fontSize: 56, color: '#e53935' }} /> 
-            Video will be embedded here
-          </Typography>
+          <iframe
+            src="https://www.loom.com/embed/a6609e949de04783aa743871427dad16?sid=dd464350-8b54-4874-af92-ebd03b865152"
+            frameBorder="0"
+            allowFullScreen
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+            }}
+            title="PHCG Section Embedding Tool Tutorial"
+          ></iframe>
         </Box>
         
         <Typography variant="caption" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
