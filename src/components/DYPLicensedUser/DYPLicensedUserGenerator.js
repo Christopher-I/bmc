@@ -17,7 +17,7 @@ const DYPLicensedUserEmbedGenerator = ({ config }) => {
   // Generate the embed code based on the current configuration
   const generateEmbedCode = () => {
     return `<script
-  src="https://yourwebsite.com/embed/dyp-licensed-user-section.js"
+  src="https://bmc-neon.vercel.app/embed/dyp-licensed-user-section.js"
   data-background="${backgroundColor}"
   data-text-color="${textColor}"
   data-accent-color="${accentColor}"
@@ -41,19 +41,22 @@ const DYPLicensedUserEmbedGenerator = ({ config }) => {
         Embed Code for DYP Licensed User Section
       </Typography>
       <Typography variant="body2" color="text.secondary" paragraph>
-        Copy and paste this code into your website to embed the DYP Licensed User section.
+        Copy and paste this code into your website to embed the DYP Licensed
+        User section.
       </Typography>
 
-      <Paper 
-        variant="outlined" 
-        sx={{ 
-          p: 2, 
-          backgroundColor: "#f5f5f5", 
-          maxWidth: "100%", 
-          overflowX: "auto" 
+      <Paper
+        variant="outlined"
+        sx={{
+          p: 2,
+          backgroundColor: "#f5f5f5",
+          maxWidth: "100%",
+          overflowX: "auto",
         }}
       >
-        <pre style={{ margin: 0, whiteSpace: "pre-wrap", wordBreak: "break-all" }}>
+        <pre
+          style={{ margin: 0, whiteSpace: "pre-wrap", wordBreak: "break-all" }}
+        >
           {generateEmbedCode()}
         </pre>
       </Paper>
@@ -68,9 +71,10 @@ const DYPLicensedUserEmbedGenerator = ({ config }) => {
       </Button>
 
       <Typography variant="body2" color="text.secondary" sx={{ mt: 3 }}>
-        <strong>Note:</strong> You will need to upload the 
-        <code>dyp-licensed-user-section.js</code> file to your web server 
-        and update the <code>src</code> attribute in the embed code to point to its location.
+        <strong>Note:</strong> You will need to upload the
+        <code>dyp-licensed-user-section.js</code> file to your web server and
+        update the <code>src</code> attribute in the embed code to point to its
+        location.
       </Typography>
     </Box>
   );
