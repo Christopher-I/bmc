@@ -20,31 +20,36 @@
  */
 
 (function () {
-    // Get current script tag
-    const currentScript = document.currentScript;
-  
-    // Get configuration from data attributes
-    const config = {
-      backgroundColor: currentScript.getAttribute("data-background") || "#1e3553",
-      textColor: currentScript.getAttribute("data-text-color") || "#ffffff",
-      accentColor: currentScript.getAttribute("data-accent-color") || "#d5ad36",
-      headingFont: currentScript.getAttribute("data-heading-font") || "serif",
-      bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
-      buttonText: currentScript.getAttribute("data-button-text") || "Contact PHCG",
-      buttonRadius: currentScript.getAttribute("data-button-radius") || "4",
-      organizationName: currentScript.getAttribute("data-organization-name") || "PHCG",
-      buttonUrl: currentScript.getAttribute("data-button-url") || "#",
-    };
-  
-    // Create container element
-    const container = document.createElement("div");
-  
-    // Create shadow DOM for style isolation
-    const shadow = container.attachShadow({ mode: "open" });
-  
-    // Add styles
-    const style = document.createElement("style");
-    style.textContent = `
+  // Get current script tag
+  const currentScript = document.currentScript;
+
+  // Get configuration from data attributes
+  const config = {
+    backgroundColor: currentScript.getAttribute("data-background") || "#1e3553",
+    textColor: currentScript.getAttribute("data-text-color") || "#ffffff",
+    accentColor: currentScript.getAttribute("data-accent-color") || "#d5ad36",
+    headingFont: currentScript.getAttribute("data-heading-font") || "serif",
+    bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
+    buttonText:
+      currentScript.getAttribute("data-button-text") || "Contact PHCG",
+    buttonRadius: currentScript.getAttribute("data-button-radius") || "4",
+    organizationName:
+      currentScript.getAttribute("data-organization-name") || "PHCG",
+    buttonUrl: currentScript.getAttribute("data-button-url") || "#",
+    logoUrl:
+      currentScript.getAttribute("data-logo-url") ||
+      "https://bmc-neon.vercel.app/dyp_logo.png", // ✅ Add this line
+  };
+
+  // Create container element
+  const container = document.createElement("div");
+
+  // Create shadow DOM for style isolation
+  const shadow = container.attachShadow({ mode: "open" });
+
+  // Add styles
+  const style = document.createElement("style");
+  style.textContent = `
       .dyp-licensed-container {
         background-color: ${config.backgroundColor};
         color: ${config.textColor};
@@ -102,11 +107,11 @@
         opacity: 0.9;
       }
     `;
-  
-    // Create HTML content
-    const content = document.createElement("div");
-    content.classList.add("dyp-licensed-container");
-    content.innerHTML = `
+
+  // Create HTML content
+  const content = document.createElement("div");
+  content.classList.add("dyp-licensed-container");
+  content.innerHTML = `
       <h2 class="dyp-licensed-heading">
         ${config.organizationName} is a licensed user of Design Your Partnership™
       </h2>
@@ -117,16 +122,17 @@
           any level of facilitation and support partners may need when developing a
           Partnership Charter.
         </p>
-        <img src="${config.logoUrl || 'https://bmc-neon.vercel.app/dyp_logo.png'}" alt="DYP Logo" class="dyp-logo-img">
+    <img src="${config.logoUrl}" alt="DYP Logo" class="dyp-logo-img">
+
 
       </div>
       <a href="${config.buttonUrl}" class="dyp-licensed-button">${config.buttonText}</a>
     `;
-  
-    // Append style and content to shadow DOM
-    shadow.appendChild(style);
-    shadow.appendChild(content);
-  
-    // Replace script tag with our container
-    currentScript.parentNode.replaceChild(container, currentScript);
-  })();
+
+  // Append style and content to shadow DOM
+  shadow.appendChild(style);
+  shadow.appendChild(content);
+
+  // Replace script tag with our container
+  currentScript.parentNode.replaceChild(container, currentScript);
+})();
