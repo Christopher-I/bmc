@@ -11,7 +11,7 @@ export const getSafeImageUrl = (imageSrc) => {
     imageSrc ===
       "https://placehold.co/600x400/e6e6e6/1e4164?text=Partnership+diagram"
   ) {
-    return "https://PHCG-neon.vercel.app/trust_confidence.png";
+    return "https://bmc-neon.vercel.app/trust_confidence.png";
   }
   return imageSrc;
 };
@@ -224,7 +224,7 @@ export const generateExternalScriptReference = (config) => {
   const imageUrl = getSafeImageUrl(config.imageSrc);
 
   return `<script 
-  src="https://PHCG-neon.vercel.app/embed/partners-benefits-section.js" 
+  src="https://bmc-neon.vercel.app/embed/partners-benefits-section.js" 
   data-background="${config.backgroundColor || "#f5f7fa"}"
   data-text-color="${config.textColor || "#333333"}"
   data-heading-color="${config.headingColor || "#1e4164"}"

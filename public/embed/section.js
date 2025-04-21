@@ -98,11 +98,14 @@
       <div class="PHCG-subtitle">ABOUT US</div>
       <h2 class="PHCG-heading">Post-haste Consulting Group</h2>
       <p class="PHCG-paragraph">
-        Post-haste Consulting Group pioneered a speciality in business partnerships beginning
-        in 1990. During the 1990s it focused on mediating family and non-family
-        business partner disputes. Those early clients taught PHCG's mediators
-        about the approximately dozen different ways partners can wind up
-        "sideways" with one another.
+    Post Haste Consulting Group has been working with family and non-family business partners for
+years. Among our services to partners is the Partnership Charter (PC). We use the online
+Design Your Partnership TM tool not only because it’s the best structured program for helping
+partners develop a comprehensive document that covers both the interpersonal and business
+sides of their relationship, but it’s also the world’s only such tool!
+Our professionals have been trained in the use of the PC methodology and are licensed by The
+Partnership Charter Institute to use the DYP tool so we can help you with your business
+partnership.
       </p>
       <p class="PHCG-paragraph">
         PHCG used that information to begin focusing on conflict prevention among

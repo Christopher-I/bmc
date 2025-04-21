@@ -25,9 +25,12 @@ import CharterTypesGenerator from "./components/CharterTypes/CharterTypesGenerat
 import DYPAdvantagesPreview from "./components/DYPAdvantages/DYPAdvantagesPreview";
 import AppIntroduction from "./components/General Functions/AppIntroduction";
 import DYPAdvantagesGenerator from "./components/DYPAdvantages/DYPAdvantagesGenerator";
-import SliversOfAmbiguityPreview from "./components/SliversOfAmbiguity/SliversPreview"; // Import the new preview component
+import SliversOfAmbiguityPreview from "./components/SliversOfAmbiguity/SliversPreview";
 import DYPToolPreview from "./components/DYPTool/DYPToolPreview";
 import DYPToolGenerator from "./components/DYPTool/DYPToolGenerator";
+// Import the new DYP Licensed User components
+import DYPLicensedUserPreview from "./components/DYPLicensedUser/DYPLicensedUserPreview";
+import DYPLicensedUserGenerator from "./components/DYPLicensedUser/DYPLicensedUserGenerator";
 
 const theme = createTheme({
   palette: {
@@ -46,6 +49,7 @@ const sectionTitles = {
   dypAdvantages: "DYP Advantages",
   sliversOfAmbiguity: "Slivers of Ambiguity",
   dypTool: "The DYP Tool Section",
+  dypLicensedUser: "DYP Licensed User Section", // Add new section title
 };
 
 function App() {
@@ -124,12 +128,11 @@ function App() {
     transitionSpeed: 0.3,
   });
 
-  // Add state for the new Slivers of Ambiguity section
   const [sliversOfAmbiguityConfig, setSliversOfAmbiguityConfig] = useState({
-    backgroundColor: "#e6ecef", // Match the light grayish-blue background from the image
+    backgroundColor: "#e6ecef",
     textColor: "#333333",
     headingColor: "#333333",
-    accentColor: "#d5ad36", // Match the gold border color from the image
+    accentColor: "#d5ad36",
     headingFont: "serif",
     bodyFont: "sans-serif",
   });
@@ -139,8 +142,20 @@ function App() {
     textColor: "#2c3e50",
     headingFont: "serif",
     bodyFont: "sans-serif",
-    imageSrc: "/dyp_tool.png", // update path as needed
+    imageSrc: "/dyp_tool.png",
     imageRadius: 8,
+  });
+
+  // Add new state for DYP Licensed User section
+  const [dypLicensedUserConfig, setDypLicensedUserConfig] = useState({
+    backgroundColor: "#1e3553", // Dark blue background
+    textColor: "#ffffff", // White text
+    accentColor: "#d5ad36", // Gold accent
+    headingFont: "serif",
+    bodyFont: "sans-serif",
+    buttonText: "Contact PHCG",
+    buttonRadius: 4,
+    organizationName: "PHCG", // Organization name can be customized
   });
 
   const renderSection = () => {
@@ -317,7 +332,28 @@ function App() {
             </Paper>
           </>
         );
-
+      // Add new case for DYP Licensed User section
+      case "dypLicensedUser":
+        return (
+          <>
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">
+                  Preview
+                </Typography>
+                <DYPLicensedUserPreview config={dypLicensedUserConfig} />
+              </Box>
+            </Paper>
+            <Paper elevation={3}>
+              <Box p={3}>
+                <DYPLicensedUserGenerator
+                  config={dypLicensedUserConfig}
+                  onConfigChange={setDypLicensedUserConfig}
+                />
+              </Box>
+            </Paper>
+          </>
+        );
       default:
         return <AppIntroduction />;
     }

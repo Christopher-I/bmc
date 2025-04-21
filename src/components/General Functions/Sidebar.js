@@ -18,6 +18,7 @@ const sections = [
   { key: "dypAdvantages", label: "DYP Advantages" },
   { key: "sliversOfAmbiguity", label: "Slivers of Ambiguity" },
   { key: "dypTool", label: "The DYP Tool Section" },
+  { key: "dypLicensedUser", label: "DYP Licensed User Section" }, // Added new section
 ];
 
 const Sidebar = ({ active, onSelect }) => {

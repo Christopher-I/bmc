@@ -2,7 +2,7 @@
 
 export const getSafeCharterImageUrl = (imageSrc) => {
   if (!imageSrc || imageSrc.includes("placehold.co")) {
-    return "https://PHCG-neon.vercel.app/chartersection_computer.jpg";
+    return "https://bmc-neon.vercel.app/chartersection_computer.jpg";
   }
   return imageSrc;
 };
@@ -147,6 +147,6 @@ export const defaultCharterConfig = {
   accentColor: "#d5ad36",
   headingFont: "serif",
   bodyFont: "sans-serif",
-  logoSrc: "https://PHCG-neon.vercel.app/tpci_logo.svg",
-  imageSrc: "https://PHCG-neon.vercel.app/chartersection_computer.jpg",
+  logoSrc: "https://bmc-neon.vercel.app/tpci_logo.svg",
+  imageSrc: "https://bmc-neon.vercel.app/chartersection_computer.jpg",
 };

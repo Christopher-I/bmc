@@ -15,7 +15,7 @@ const PartnersBenefitsPreview = ({
   // Handle image error by falling back to remote URL
   const handleImageError = (e) => {
     console.log("Local image failed to load, falling back to remote URL");
-    e.target.src = "https://PHCG-neon.vercel.app/trust_confidence.png";
+    e.target.src = "https://bmc-neon.vercel.app/trust_confidence.png";
   };
 
   return (

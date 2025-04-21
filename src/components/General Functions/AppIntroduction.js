@@ -6,8 +6,8 @@ import {
   Grid,
   Card,
   CardContent,
-  CardMedia,
-  Divider,
+  Alert,
+  AlertTitle,
   List,
   ListItem,
   ListItemIcon,
@@ -23,6 +23,16 @@ import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import CodeIcon from '@mui/icons-material/Code';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import WarningIcon from '@mui/icons-material/Warning';
+import ColorLensIcon from '@mui/icons-material/ColorLens';
+import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
+import FormatShapesIcon from '@mui/icons-material/FormatShapes';
+import SettingsIcon from '@mui/icons-material/Settings';
+import WebIcon from '@mui/icons-material/Web';
+import WebAssetIcon from '@mui/icons-material/WebAsset';
+import HtmlIcon from '@mui/icons-material/Html';
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
+import EmailIcon from '@mui/icons-material/Email';
 
 const AppIntroduction = () => {
   const steps = [
@@ -61,6 +71,25 @@ const AppIntroduction = () => {
           This tool helps you create beautiful, customized Post-haste Consulting Group(PHCG) sections for your website without any coding knowledge.
           Simply choose a section type, customize it to match your brand, and get ready-to-use embed code to paste into your website.
         </Typography>
+        
+        {/* TPCI Logo Note Alert */}
+        <Alert 
+          severity="info" 
+          icon={<WarningIcon fontSize="inherit" />}
+          sx={{ 
+            mb: 4, 
+            backgroundColor: 'rgba(232, 244, 253, 0.9)', 
+            border: '1px solid rgba(66, 165, 245, 0.3)',
+            '& .MuiAlert-icon': {
+              color: '#1976d2'
+            }
+          }}
+        >
+          <AlertTitle sx={{ fontWeight: 'bold' }}>Important Note About Customization</AlertTitle>
+          <Typography variant="body2">
+            While you can change your company name throughout the sections, please note that the TPCI logo should not be modified or removed. This logo is an essential part of the branding and must remain intact in all implementations.
+          </Typography>
+        </Alert>
         
         <Box sx={{ my: 4 }}>
           <Grid container spacing={3} alignItems="stretch">
@@ -276,7 +305,7 @@ const AppIntroduction = () => {
                   <List dense sx={{ flexGrow: 1 }}>
                     <ListItem>
                       <ListItemIcon>
-                        <DesignServicesIcon fontSize="small" sx={{ color: '#7e57c2' }} />
+                        <ColorLensIcon fontSize="small" sx={{ color: '#7e57c2' }} />
                       </ListItemIcon>
                       <ListItemText 
                         primary="Colors" 
@@ -285,7 +314,7 @@ const AppIntroduction = () => {
                     </ListItem>
                     <ListItem>
                       <ListItemIcon>
-                        <DesignServicesIcon fontSize="small" sx={{ color: '#7e57c2' }} />
+                        <FormatColorTextIcon fontSize="small" sx={{ color: '#7e57c2' }} />
                       </ListItemIcon>
                       <ListItemText 
                         primary="Fonts" 
@@ -294,7 +323,7 @@ const AppIntroduction = () => {
                     </ListItem>
                     <ListItem>
                       <ListItemIcon>
-                        <DesignServicesIcon fontSize="small" sx={{ color: '#7e57c2' }} />
+                        <FormatShapesIcon fontSize="small" sx={{ color: '#7e57c2' }} />
                       </ListItemIcon>
                       <ListItemText 
                         primary="Button Styles" 
@@ -303,7 +332,7 @@ const AppIntroduction = () => {
                     </ListItem>
                     <ListItem>
                       <ListItemIcon>
-                        <DesignServicesIcon fontSize="small" sx={{ color: '#7e57c2' }} />
+                        <SettingsIcon fontSize="small" sx={{ color: '#7e57c2' }} />
                       </ListItemIcon>
                       <ListItemText 
                         primary="Additional Options" 
@@ -368,7 +397,7 @@ const AppIntroduction = () => {
                   <List dense sx={{ flexGrow: 1 }}>
                     <ListItem>
                     <ListItemIcon>
-                        <CodeIcon fontSize="small" sx={{ color: '#66bb6a' }} />
+                        <WebIcon fontSize="small" sx={{ color: '#66bb6a' }} />
                       </ListItemIcon>
                       <ListItemText 
                         primary="WordPress" 
@@ -377,7 +406,7 @@ const AppIntroduction = () => {
                     </ListItem>
                     <ListItem>
                     <ListItemIcon>
-                        <CodeIcon fontSize="small" sx={{ color: '#66bb6a' }} />
+                        <WebAssetIcon fontSize="small" sx={{ color: '#66bb6a' }} />
                       </ListItemIcon>
                       <ListItemText 
                         primary="Webflow" 
@@ -386,7 +415,7 @@ const AppIntroduction = () => {
                     </ListItem>
                     <ListItem>
                       <ListItemIcon>
-                        <CodeIcon fontSize="small" sx={{ color: '#66bb6a' }} />
+                        <InsertDriveFileIcon fontSize="small" sx={{ color: '#66bb6a' }} />
                       </ListItemIcon>
                       <ListItemText 
                         primary="Other Website Builders" 
@@ -395,7 +424,7 @@ const AppIntroduction = () => {
                     </ListItem>
                     <ListItem>
                       <ListItemIcon>
-                        <CodeIcon fontSize="small" sx={{ color: '#66bb6a' }} />
+                        <HtmlIcon fontSize="small" sx={{ color: '#66bb6a' }} />
                       </ListItemIcon>
                       <ListItemText 
                         primary="HTML Websites" 
@@ -429,7 +458,7 @@ const AppIntroduction = () => {
           <Button 
             variant="contained" 
             color="primary"
-            endIcon={<ContentCopyIcon />}
+            endIcon={<EmailIcon />}
             sx={{ 
               borderRadius: 2,
               textTransform: 'none', 

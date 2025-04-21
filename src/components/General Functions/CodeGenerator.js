@@ -6,7 +6,7 @@ const CodeGenerator = ({ config }) => {
   // Generate embed code based on configuration
   const generateEmbedCode = () => {
     return `<script 
-  src="https://PHCG-neon.vercel.app/embed/section.js" 
+  src="https://bmc-neon.vercel.app/embed/section.js" 
   data-background="${config.backgroundColor}"
   data-text-color="${config.textColor}"
   data-heading-font="${config.headingFont}"

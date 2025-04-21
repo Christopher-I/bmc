@@ -10,10 +10,10 @@
     bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
     logoSrc:
       currentScript.getAttribute("data-logo-src") ||
-      "https://PHCG-neon.vercel.app/tpci_logo.svg",
+      "https://bmc-neon.vercel.app/tpci_logo.svg",
     imageSrc:
       currentScript.getAttribute("data-image-src") ||
-      "https://PHCG-neon.vercel.app/chartersection_computer.jpg",
+      "https://bmc-neon.vercel.app/chartersection_computer.jpg",
   };
 
   const container = document.createElement("div");

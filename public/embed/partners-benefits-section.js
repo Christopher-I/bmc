@@ -23,7 +23,7 @@
     // Default to the full Vercel URL - this ensures it works when embedded externally
     imageSrc:
       currentScript.getAttribute("data-image-src") ||
-      "https://PHCG-neon.vercel.app/trust_confidence.png",
+      "https://bmc-neon.vercel.app/trust_confidence.png",
   };
 
   // Create container element

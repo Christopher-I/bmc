@@ -43,10 +43,10 @@ const CharterSectionGenerator = ({
       ...config,
       logoSrc: config.logoSrc?.startsWith("http")
         ? config.logoSrc
-        : "https://PHCG-neon.vercel.app/tpci_logo.svg",
+        : "https://bmc-neon.vercel.app/tpci_logo.svg",
       imageSrc: config.imageSrc?.startsWith("http")
         ? config.imageSrc
-        : "https://PHCG-neon.vercel.app/chartersection_computer.jpg",
+        : "https://bmc-neon.vercel.app/chartersection_computer.jpg",
     };
     navigator.clipboard.writeText(generateCharterEmbedScript(absoluteConfig));
   };

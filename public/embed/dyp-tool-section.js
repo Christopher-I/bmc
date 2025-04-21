@@ -18,7 +18,7 @@
     imageRadius: currentScript.getAttribute("data-image-radius") || "8",
     imageSrc:
       currentScript.getAttribute("data-image-src") ||
-      "https://PHCG-neon.vercel.app/dyp_tool.png",
+      "https://bmc-neon.vercel.app/dyp_tool.png",
   };
 
   // Create container element
