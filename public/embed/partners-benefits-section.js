@@ -1,5 +1,5 @@
 /**
- * Post-haste Consulting Group Partners Benefits Section Embed Script
+ * Post-haste Consulting Group Partners Benefits Block Embed Script
  *
  * This script creates an embeddable section highlighting partner benefits
  * with a two-column layout.

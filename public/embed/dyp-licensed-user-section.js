@@ -1,5 +1,5 @@
 /**
- * DYP Licensed User Section Embed Script
+ * DYP Licensed User Block Embed Script
  *
  * This script creates an embeddable section showing an organization is a licensed
  * user of Design Your Partnership™ that can be customized via data attributes

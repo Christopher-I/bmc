@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   TextField,
@@ -11,9 +11,9 @@ import {
   Slider,
   Button,
   Paper,
-} from '@mui/material';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { generateDYPToolEmbedCode } from './DYPToolShared';
+} from "@mui/material";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { generateDYPToolEmbedCode } from "./DYPToolShared";
 
 const DYPToolGenerator = ({ config, onConfigChange }) => {
   const handleChange = (name, value) => {
@@ -38,13 +38,12 @@ const DYPToolGenerator = ({ config, onConfigChange }) => {
 
   return (
     <Box>
-      <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
-        <Typography variant="h6" gutterBottom>
+      {/* <Paper elevation={3} sx={{ p: 3, mb: 3 }}> */}
+      {/* <Typography variant="h6" gutterBottom>
           Customize The DYP Tool Section
-        </Typography>
+        </Typography> */}
 
-        <Grid container spacing={3}>
-          {/* Background Color */}
+      {/* <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <TextField
               label="Background Color"
@@ -57,7 +56,7 @@ const DYPToolGenerator = ({ config, onConfigChange }) => {
             />
           </Grid>
 
-          {/* Text Color */}
+
           <Grid item xs={12} sm={6}>
             <TextField
               label="Text Color"
@@ -70,7 +69,7 @@ const DYPToolGenerator = ({ config, onConfigChange }) => {
             />
           </Grid>
 
-          {/* Heading Font */}
+    
           <Grid item xs={12} sm={6}>
             <FormControl fullWidth size="small">
               <InputLabel>Heading Font</InputLabel>
@@ -90,7 +89,7 @@ const DYPToolGenerator = ({ config, onConfigChange }) => {
             </FormControl>
           </Grid>
 
-          {/* Body Font */}
+
           <Grid item xs={12} sm={6}>
             <FormControl fullWidth size="small">
               <InputLabel>Body Font</InputLabel>
@@ -109,7 +108,7 @@ const DYPToolGenerator = ({ config, onConfigChange }) => {
             </FormControl>
           </Grid>
 
-          {/* Image URL */}
+ 
           <Grid item xs={12}>
             <TextField
               label="Image URL"
@@ -121,7 +120,7 @@ const DYPToolGenerator = ({ config, onConfigChange }) => {
             />
           </Grid>
 
-          {/* Image Radius */}
+
           <Grid item xs={12}>
             <Typography gutterBottom>
               Image Radius: {config.imageRadius}px
@@ -135,8 +134,8 @@ const DYPToolGenerator = ({ config, onConfigChange }) => {
               valueLabelDisplay="auto"
             />
           </Grid>
-        </Grid>
-      </Paper>
+        </Grid> */}
+      {/* </Paper> */}
 
       <Paper elevation={3} sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom>
@@ -149,8 +148,8 @@ const DYPToolGenerator = ({ config, onConfigChange }) => {
         >
           Copy Embed Code
         </Button>
-        <Box sx={{ mt: 2, fontSize: '0.875rem', color: 'text.secondary' }}>
-          Paste this code where you want the section to appear on your site.
+        <Box sx={{ mt: 2, fontSize: "0.875rem", color: "text.secondary" }}>
+          Paste this code where you want the block to appear on your site.
         </Box>
       </Paper>
     </Box>

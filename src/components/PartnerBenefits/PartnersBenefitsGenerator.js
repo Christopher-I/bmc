@@ -1,21 +1,27 @@
-import React from 'react';
-import { 
-  Box, 
-  TextField, 
-  Select, 
-  MenuItem, 
-  FormControl, 
+import React from "react";
+import {
+  Box,
+  TextField,
+  Select,
+  MenuItem,
+  FormControl,
   InputLabel,
   Slider,
   Typography,
   Grid,
   Button,
-  Paper
-} from '@mui/material';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { generatePartnersBenefitsEmbedCode, defaultPartnersBenefitsConfig } from './PartnersBenefitsShared';
+  Paper,
+} from "@mui/material";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import {
+  generatePartnersBenefitsEmbedCode,
+  defaultPartnersBenefitsConfig,
+} from "./PartnersBenefitsShared";
 
-const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onConfigChange }) => {
+const PartnersBenefitsGenerator = ({
+  config = defaultPartnersBenefitsConfig,
+  onConfigChange,
+}) => {
   // Handle input changes
   const handleChange = (name, value) => {
     onConfigChange({ ...config, [name]: value });
@@ -49,10 +55,10 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
   return (
     <Box>
       {/* <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
-        <Typography variant="h6" gutterBottom>Customize Partners Benefits Section</Typography> */}
-        {/* <Grid container spacing={3}> */}
-          {/* Colors Section */}
-          {/* <Grid item xs={12} sm={6}>
+        <Typography variant="h6" gutterBottom>Customize Partners Benefits Block</Typography> */}
+      {/* <Grid container spacing={3}> */}
+      {/* Colors Section */}
+      {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Background Color
@@ -78,8 +84,8 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
               </Box>
             </Box>
           </Grid> */}
-          
-          {/* <Grid item xs={12} sm={6}>
+
+      {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Text Color
@@ -105,8 +111,8 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
               </Box>
             </Box>
           </Grid> */}
-          
-          {/* <Grid item xs={12} sm={6}>
+
+      {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Heading Color
@@ -132,8 +138,8 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
               </Box>
             </Box>
           </Grid> */}
-          
-          {/* <Grid item xs={12} sm={6}>
+
+      {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Accent Color (Checkmarks)
@@ -159,8 +165,8 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
               </Box>
             </Box>
           </Grid> */}
-          
-          {/* <Grid item xs={12} sm={6}>
+
+      {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Button Color
@@ -186,9 +192,9 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
               </Box>
             </Box>
           </Grid> */}
-          
-          {/* Fonts Section */}
-          {/* <Grid item xs={12} sm={6}>
+
+      {/* Fonts Section */}
+      {/* <Grid item xs={12} sm={6}>
             <FormControl fullWidth margin="normal" size="small">
               <InputLabel id="heading-font-label">Heading Font</InputLabel>
               <Select
@@ -208,7 +214,7 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
             </FormControl>
           </Grid>
            */}
-          {/* <Grid item xs={12} sm={6}>
+      {/* <Grid item xs={12} sm={6}>
             <FormControl fullWidth margin="normal" size="small">
               <InputLabel id="body-font-label">Body Font</InputLabel>
               <Select
@@ -227,9 +233,9 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
               </Select>
             </FormControl>
           </Grid> */}
-          
-          {/* Button Text */}
-          {/* <Grid item xs={12} sm={6}>
+
+      {/* Button Text */}
+      {/* <Grid item xs={12} sm={6}>
             <TextField
               label="Button Text"
               name="buttonText"
@@ -240,9 +246,9 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
               size="small"
             />
           </Grid> */}
-          
-          {/* Button Radius */}
-          {/* <Grid item xs={12} sm={6}>
+
+      {/* Button Radius */}
+      {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mt: 3 }}>
               <Typography id="button-radius-slider" gutterBottom>
                 Button Radius: {config.buttonRadius}px
@@ -259,9 +265,9 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
               />
             </Box>
           </Grid> */}
-          
-          {/* Image Radius */}
-          {/* <Grid item xs={12} sm={6}>
+
+      {/* Image Radius */}
+      {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mt: 1 }}>
               <Typography id="image-radius-slider" gutterBottom>
                 Image Radius: {config.imageRadius}px
@@ -278,9 +284,9 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
               />
             </Box>
           </Grid> */}
-          
-          {/* Image Source */}
-          {/* <Grid item xs={12}>
+
+      {/* Image Source */}
+      {/* <Grid item xs={12}>
             <TextField
               label="Image URL (Optional)"
               name="imageSrc"
@@ -293,11 +299,13 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
               helperText="Leave default for a placeholder image. For production, use an absolute URL to your own hosted image."
             />
           </Grid> */}
-        {/* </Grid> */}
+      {/* </Grid> */}
       {/* </Paper> */}
-      
+
       <Paper elevation={3} sx={{ p: 3 }}>
-        <Typography variant="h6" gutterBottom>Generated Embed Code</Typography>
+        <Typography variant="h6" gutterBottom>
+          Generated Embed Code
+        </Typography>
         {/* <TextField
           value={generatePartnersBenefitsEmbedCode(config)}
           multiline
@@ -310,16 +318,17 @@ const PartnersBenefitsGenerator = ({ config = defaultPartnersBenefitsConfig, onC
           }}
           sx={{ mb: 2 }}
         /> */}
-        <Button 
-          variant="contained" 
+        <Button
+          variant="contained"
           startIcon={<ContentCopyIcon />}
           onClick={copyToClipboard}
         >
           Copy Embed Code
         </Button>
-        <Box sx={{ mt: 2, fontSize: '0.875rem', color: 'text.secondary' }}>
-          Simply copy this code and paste it into your website where you want the Partners Benefits section to appear.
-          Works with WordPress, Webflow, and most other website builders.
+        <Box sx={{ mt: 2, fontSize: "0.875rem", color: "text.secondary" }}>
+          Simply copy this code and paste it into your website where you want
+          the Partners Benefits Block to appear. Works with WordPress, Webflow,
+          and most other website builders.
         </Box>
       </Paper>
     </Box>

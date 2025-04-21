@@ -41,12 +41,12 @@ const CodeGenerator = ({ config }) => {
         startIcon={<ContentCopyIcon />}
         onClick={copyToClipboard}
       >
-        Copy Section
+        Copy Block
       </Button>
 
       <Box sx={{ mt: 2, fontSize: "0.875rem", color: "text.secondary" }}>
         Simply copy this code and paste it into your website where you want the
-        PHCG section to appear. Works with WordPress, Webflow, and most other
+        PHCG block to appear. Works with WordPress, Webflow, and most other
         website builders.
       </Box>
     </Box>

@@ -46,7 +46,7 @@ const DYPAdvantagesGenerator = ({ config, onConfigChange }) => {
     <Box>
       {/* <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
         <Typography variant="h6" gutterBottom>
-          Customize DYP Advantages Section
+          Customize DYP Advantages block
         </Typography>
         <Grid container spacing={3}>
           {/* Background Color */}
@@ -224,12 +224,12 @@ const DYPAdvantagesGenerator = ({ config, onConfigChange }) => {
           startIcon={<ContentCopyIcon />}
           onClick={copyToClipboard}
         >
-          Copy Section
+          Copy Block
         </Button>
         <Box sx={{ mt: 2, fontSize: "0.875rem", color: "text.secondary" }}>
           Simply copy this code and paste it into your website where you want
-          the DYP Advantages section to appear. Works with WordPress, Webflow,
-          and most other website builders.
+          the DYP Advantages block to appear. Works with WordPress, Webflow, and
+          most other website builders.
         </Box>
       </Paper>
     </Box>

@@ -1,4 +1,4 @@
-// PartnersBenefitsShared.js - Shared utilities and code templates for Partners Benefits section
+// PartnersBenefitsShared.js - Shared utilities and code templates for Partners Benefits Block
 
 /**
  * Helper to normalize imageSrc fallback logic

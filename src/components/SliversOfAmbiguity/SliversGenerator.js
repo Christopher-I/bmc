@@ -31,7 +31,7 @@ const SliversOfAmbiguityGenerator = ({ config, onConfigChange }) => {
           Customize Slivers of Ambiguity Section
         </Typography>
         <Grid container spacing={3}> */}
-          {/* <Grid item xs={12} sm={6}>
+      {/* <Grid item xs={12} sm={6}>
             <Typography variant="subtitle2">Background Color</Typography>
             <TextField
               type="color"
@@ -57,7 +57,7 @@ const SliversOfAmbiguityGenerator = ({ config, onConfigChange }) => {
             />
           </Grid> */}
 
-          {/* <Grid item xs={12} sm={6}>
+      {/* <Grid item xs={12} sm={6}>
             <Typography variant="subtitle2">Heading Color</Typography>
             <TextField
               type="color"
@@ -98,7 +98,8 @@ const SliversOfAmbiguityGenerator = ({ config, onConfigChange }) => {
           Copy Embed Script
         </Button>
         <Typography variant="body2" color="text.secondary">
-          Paste this code where you'd like the section to appear on your site. It works with most platforms like Webflow, WordPress, Framer, and more.
+          Paste this code where you'd like the block to appear on your site. It
+          works with most platforms like Webflow, WordPress, Framer, and more.
         </Typography>
       </Paper>
     </Box>

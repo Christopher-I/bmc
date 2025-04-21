@@ -1,5 +1,5 @@
 /**
- * Post-haste Consulting Group PC Process Section Embed Script
+ * Post-haste Consulting Group PC Process block Embed Script
  *
  * This script creates an embeddable accordion section for the PC Process
  * with perfectly synchronized accordion and arrow animations.

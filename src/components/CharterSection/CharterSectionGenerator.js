@@ -53,12 +53,12 @@ const CharterSectionGenerator = ({
 
   return (
     <Box>
-      <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
-        <Typography variant="h6" gutterBottom>
-          Customize Charter Section
-        </Typography>
-        <Grid container spacing={3}>
-          {/* <Grid item xs={12} sm={6}>
+      {/* <Paper elevation={3} sx={{ p: 3, mb: 3 }}> */}
+      {/* <Typography variant="h6" gutterBottom>
+          Customize "What is a PC?"
+        </Typography> */}
+      <Grid container spacing={3}>
+        {/* <Grid item xs={12} sm={6}>
             <TextField
               label="Image URL"
               name="imageSrc"
@@ -83,8 +83,8 @@ const CharterSectionGenerator = ({
               helperText="URL to the logo (optional)"
             />
           </Grid> */}
-        </Grid>
-      </Paper>
+      </Grid>
+      {/* </Paper> */}
 
       <Paper elevation={3} sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom>
@@ -110,8 +110,8 @@ const CharterSectionGenerator = ({
           Copy Embed Code
         </Button>
         <Box sx={{ mt: 2, fontSize: "0.875rem", color: "text.secondary" }}>
-          Paste this script into your website to embed the Charter section. It
-          works with Webflow, WordPress, and most other platforms.
+          Paste this script into your website to embed the "What is a PC?”
+          block. It works with Webflow, WordPress, and most other platforms.
         </Box>
       </Paper>
     </Box>

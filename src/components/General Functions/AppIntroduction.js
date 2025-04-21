@@ -36,7 +36,7 @@ import EmailIcon from '@mui/icons-material/Email';
 
 const AppIntroduction = () => {
   const steps = [
-    'Select a section type',
+    'Select a block type',
     'Customize appearance',
     'Copy the embed code',
     'Paste into your website'
@@ -62,14 +62,14 @@ const AppIntroduction = () => {
 
   return (
     <Box sx={{ pb: 5 }}>
-      {/* Welcome Section */}
+      {/* Welcome block */}
       <Paper elevation={3} sx={{ p: 4, mb: 4, borderRadius: 2, background: 'linear-gradient(to right, #f5f7fa, #e0e4ec)' }}>
         <Typography variant="h4" component="h2" gutterBottom sx={{ color: '#1e4164', fontWeight: 'medium' }}>
-          Welcome to Post-haste Consulting Group(PHCG) Section Embedding Tool
+          Welcome to Post-haste Consulting Group(PHCG) Block Embedding Tool
         </Typography>
         <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', maxWidth: '900px' }}>
-          This tool helps you create beautiful, customized Post-haste Consulting Group(PHCG) sections for your website without any coding knowledge.
-          Simply choose a section type, customize it to match your brand, and get ready-to-use embed code to paste into your website.
+          This tool helps you create beautiful, customized Post-haste Consulting Group(PHCG) blocks for your website without any coding knowledge.
+          Simply choose a block type, customize it to match your brand, and get ready-to-use embed code to paste into your website.
         </Typography>
         
         {/* TPCI Logo Note Alert */}
@@ -87,7 +87,7 @@ const AppIntroduction = () => {
         >
           <AlertTitle sx={{ fontWeight: 'bold' }}>Important Note About Customization</AlertTitle>
           <Typography variant="body2">
-            While you can change your company name throughout the sections, please note that the TPCI logo should not be modified or removed. This logo is an essential part of the branding and must remain intact in all implementations.
+            While you can change your company name throughout the blocks, please note that the TPCI logo should not be modified or removed. This logo is an essential part of the branding and must remain intact in all implementations.
           </Typography>
         </Alert>
         
@@ -101,9 +101,9 @@ const AppIntroduction = () => {
                     What is this tool?
                   </Typography>
                   <Typography variant="body2" color="text.secondary" sx={{ flexGrow: 1 }}>
-                    The Post-haste Consulting Group(PHCG) Section Embedding Tool allows you to create professional website sections related to Business Model Canvas, 
+                    The Post-haste Consulting Group(PHCG) Block Embedding Tool allows you to create professional website blocks related to Business Model Canvas, 
                     Partnership Charters, and business processes. You can customize colors, fonts, and content to match your brand, 
-                    then embed these sections directly into your website.
+                    then embed these blocks directly into your website.
                   </Typography>
                 </CardContent>
               </Card>
@@ -120,7 +120,7 @@ const AppIntroduction = () => {
                       <ListItemIcon sx={{ minWidth: '30px' }}>
                         <CheckCircleIcon fontSize="small" color="success" />
                       </ListItemIcon>
-                      <ListItemText primary="Save time with pre-designed, professional sections" />
+                      <ListItemText primary="Save time with pre-designed, professional blocks" />
                     </ListItem>
                     <ListItem>
                       <ListItemIcon sx={{ minWidth: '30px' }}>
@@ -148,7 +148,7 @@ const AppIntroduction = () => {
         </Box>
       </Paper>
 
-      {/* Video Tutorial Section */}
+      {/* Video Tutorial block */}
       <Paper elevation={3} sx={{ p: 4, mb: 4, borderRadius: 2, bgcolor: '#f8f9fc' }}>
         <Typography variant="h5" component="h2" gutterBottom sx={{ 
           display: 'flex', 
@@ -161,7 +161,7 @@ const AppIntroduction = () => {
         </Typography>
         
         <Typography variant="body1" paragraph sx={{ fontSize: '1.05rem' }}>
-          Watch this quick tutorial to learn how to use the Post-haste Consulting Group(PHCG) Section Embedding Tool.
+          Watch this quick tutorial to learn how to use the Post-haste Consulting Group(PHCG) Block Embedding Tool.
         </Typography>
         
         {/* Embedded Loom Video */}
@@ -187,7 +187,7 @@ const AppIntroduction = () => {
               width: '100%',
               height: '100%',
             }}
-            title="PHCG Section Embedding Tool Tutorial"
+            title="PHCG block Embedding Tool Tutorial"
           ></iframe>
         </Box>
         
@@ -197,7 +197,7 @@ const AppIntroduction = () => {
         </Typography>
       </Paper>
 
-      {/* How to use section with steps */}
+      {/* How to use block with steps */}
       <Paper elevation={3} sx={{ p: 4, mb: 4, borderRadius: 2, bgcolor: '#f8f9fc' }}>
         <Typography variant="h5" component="h2" gutterBottom sx={{ 
           display: 'flex', 
@@ -237,10 +237,10 @@ const AppIntroduction = () => {
                 <CardContent sx={cardContentStyle}>
                   <Typography variant="h6" gutterBottom color="primary" sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'center' }}>
                     <Box component="span" sx={{ bgcolor: '#1976d2', color: 'white', width: 24, height: 24, borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', mr: 1, fontSize: '14px', fontWeight: 'bold' }}>1</Box>
-                    Select a Section Type
+                    Select a block Type
                   </Typography>
                   <Typography variant="body2" paragraph>
-                    Click on any tab above to choose which type of section you want to create:
+                    Click on any tab above to choose which type of block you want to create:
                   </Typography>
                   <List dense sx={{ flexGrow: 1 }}>
                     <ListItem>
@@ -248,8 +248,8 @@ const AppIntroduction = () => {
                         <CheckCircleIcon fontSize="small" color="primary" />
                       </ListItemIcon>
                       <ListItemText 
-                        primary="About Post-haste Consulting Group(PHCG) Section" 
-                        secondary="A general introduction section about Business Model Canvas"
+                        primary="About Post-haste Consulting Group(PHCG) Block" 
+                        secondary="A general introduction block about Business Model Canvas"
                       />
                     </ListItem>
                     <ListItem>
@@ -257,7 +257,7 @@ const AppIntroduction = () => {
                         <CheckCircleIcon fontSize="small" color="primary" />
                       </ListItemIcon>
                       <ListItemText 
-                        primary="PC Process Section" 
+                        primary="PC Process block" 
                         secondary="Shows the Partnership Charter process with interactive accordions"
                       />
                     </ListItem>
@@ -266,7 +266,7 @@ const AppIntroduction = () => {
                         <CheckCircleIcon fontSize="small" color="primary" />
                       </ListItemIcon>
                       <ListItemText 
-                        primary="Partners Benefits Section" 
+                        primary="Partners Benefits block" 
                         secondary="Highlights the benefits of partnership with visual elements"
                       />
                     </ListItem>
@@ -275,7 +275,7 @@ const AppIntroduction = () => {
                         <CheckCircleIcon fontSize="small" color="primary" />
                       </ListItemIcon>
                       <ListItemText 
-                        primary="Charter Section" 
+                        primary="What is a PC?”" 
                         secondary="Details about charter development and implementation"
                       />
                     </ListItem>
@@ -298,10 +298,10 @@ const AppIntroduction = () => {
                 <CardContent sx={cardContentStyle}>
                   <Typography variant="h6" gutterBottom sx={{ color: '#7e57c2', fontWeight: 'bold', display: 'flex', alignItems: 'center' }}>
                     <Box component="span" sx={{ bgcolor: '#7e57c2', color: 'white', width: 24, height: 24, borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', mr: 1, fontSize: '14px', fontWeight: 'bold' }}>2</Box>
-                    Customize Your Section
+                    Customize Your block
                   </Typography>
                   <Typography variant="body2" paragraph>
-                    Once you've selected a section type, you'll see a preview at the top of the page. 
+                    Once you've selected a block type, you'll see a preview at the top of the page. 
                     Below the preview, you'll find customization options:
                   </Typography>
                   <List dense sx={{ flexGrow: 1 }}>
@@ -338,7 +338,7 @@ const AppIntroduction = () => {
                       </ListItemIcon>
                       <ListItemText 
                         primary="Additional Options" 
-                        secondary="Each section type has unique customization options"
+                        secondary="Each block type has unique customization options"
                       />
                     </ListItem>
                   </List>
@@ -354,7 +354,7 @@ const AppIntroduction = () => {
                     Get Your Embed Code
                   </Typography>
                   <Typography variant="body2" paragraph>
-                    After customizing your section:
+                    After customizing your block:
                   </Typography>
                   <List dense>
                     <ListItem>
@@ -362,7 +362,7 @@ const AppIntroduction = () => {
                         <CodeIcon sx={{ color: '#26a69a' }} />
                       </ListItemIcon>
                       <ListItemText 
-                        primary="Find the 'Embed Code' section at the bottom of the page"
+                        primary="Find the 'Embed Code' block at the bottom of the page"
                         secondary="All settings and customizations are included automatically"
                       />
                     </ListItem>
@@ -379,7 +379,7 @@ const AppIntroduction = () => {
                   <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'flex-end', mt: 2 }}>
                     <Typography variant="body2" sx={{ fontStyle: 'italic', display: 'flex', alignItems: 'center' }}>
                       <InfoIcon sx={{ mr: 1, fontSize: 16, color: '#26a69a' }} />
-                      The embed code contains everything needed for the section to work correctly on your website.
+                      The embed code contains everything needed for the block to work correctly on your website.
                     </Typography>
                   </Box>
                 </CardContent>
@@ -394,7 +394,7 @@ const AppIntroduction = () => {
                     Add to Your Website
                   </Typography>
                   <Typography variant="body2" paragraph>
-                    To add the section to your website:
+                    To add the block to your website:
                   </Typography>
                   <List dense sx={{ flexGrow: 1 }}>
                     <ListItem>
@@ -430,7 +430,7 @@ const AppIntroduction = () => {
                       </ListItemIcon>
                       <ListItemText 
                         primary="HTML Websites" 
-                        secondary="Paste the code directly into your HTML file where you want the section to appear"
+                        secondary="Paste the code directly into your HTML file where you want the block to appear"
                       />
                     </ListItem>
                   </List>
@@ -454,7 +454,7 @@ const AppIntroduction = () => {
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Typography variant="body1" sx={{ flex: 1 }}>
-            If you have any questions about using this tool or implementing the sections on your website, 
+            If you have any questions about using this tool or implementing the blocks on your website, 
             please contact our support team at <Box component="span" sx={{ color: '#1976d2', fontWeight: 'medium' }}>support@example.com</Box>.
           </Typography>
           <Button 

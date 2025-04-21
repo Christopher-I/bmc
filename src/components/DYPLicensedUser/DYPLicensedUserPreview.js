@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, Button, Grid } from "@mui/material";
 
-// This component displays a preview of the DYP Licensed User section
+// This component displays a preview of the DYP Licensed User Block
 const DYPLicensedUserPreview = ({ config }) => {
   const {
     backgroundColor = "#1e3553",
@@ -60,17 +60,27 @@ const DYPLicensedUserPreview = ({ config }) => {
         {organizationName} is a licensed user of Design Your Partnership™
       </Typography>
 
-      <Grid container spacing={2} alignItems="center" sx={{ marginBottom: "1.5rem" }}>
+      <Grid
+        container
+        spacing={2}
+        alignItems="center"
+        sx={{ marginBottom: "1.5rem" }}
+      >
         <Grid item xs>
           <Typography sx={paragraphStyle} style={{ marginBottom: 0 }}>
-            {organizationName} professionals are trained and skilled in the use of the groundbreaking PC
-            process and the user-friendly "Design Your Partnership™" tool. They can provide
-            any level of facilitation and support partners may need when developing a
-            Partnership Charter.
+            {organizationName} professionals are trained and skilled in the use
+            of the groundbreaking PC process and the user-friendly "Design Your
+            Partnership™" tool. They can provide any level of facilitation and
+            support partners may need when developing a Partnership Charter.
           </Typography>
         </Grid>
         <Grid item>
-          <Box component="img" src="/dyp_logo.png" alt="DYP Logo" sx={logoStyle} />
+          <Box
+            component="img"
+            src="/dyp_logo.png"
+            alt="DYP Logo"
+            sx={logoStyle}
+          />
         </Grid>
       </Grid>
 

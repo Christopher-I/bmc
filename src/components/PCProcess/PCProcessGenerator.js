@@ -50,7 +50,7 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
     <Box>
       <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
         <Typography variant="h6" gutterBottom>
-          Customize PC Process Section
+          Customize PC Process block
         </Typography>
         <Grid container spacing={3}>
           {/* Colors Section */}
@@ -296,11 +296,11 @@ const PCProcessGenerator = ({ config, onConfigChange }) => {
           startIcon={<ContentCopyIcon />}
           onClick={copyToClipboard}
         >
-          Copy Section
+          Copy Block
         </Button>
         <Box sx={{ mt: 2, fontSize: "0.875rem", color: "text.secondary" }}>
           Simply copy this code and paste it into your website where you want
-          the PC Process section to appear. Works with WordPress, Webflow, and
+          the PC Process block to appear. Works with WordPress, Webflow, and
           most other website builders.
         </Box>
       </Paper>

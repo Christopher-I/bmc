@@ -1,5 +1,5 @@
 /**
- * DYP Advantages Section Embed Script
+ * DYP Advantages block Embed Script
  *
  * This script creates an embeddable accordion section for the DYP Advantages
  * with synchronized accordion and arrow animations.
@@ -16,7 +16,8 @@
     headingFont: currentScript.getAttribute("data-heading-font") || "serif",
     bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
     accordionRadius: currentScript.getAttribute("data-accordion-radius") || "4",
-    transitionSpeed: currentScript.getAttribute("data-transition-speed") || "0.3",
+    transitionSpeed:
+      currentScript.getAttribute("data-transition-speed") || "0.3",
   };
 
   // Animation duration variable to ensure synchronized animations
@@ -26,35 +27,43 @@
   const dypAdvantagesData = [
     {
       title: "Tailored workbooks",
-      content: "The DYP tool makes it easy for Guides to tailor the content of the Workbook to match certain specifics of the partners’ situation (e.g., the types of roles in their business, whether or not they have a Board)."
+      content:
+        "The DYP tool makes it easy for Guides to tailor the content of the Workbook to match certain specifics of the partners’ situation (e.g., the types of roles in their business, whether or not they have a Board).",
     },
     {
       title: "Virtual and in-person",
-      content: "DYP has been used in-person, and virtually by partners and Guides separated by thousands of miles. It’s equally effective regardless of whether partners and Guides are sitting at the same table or halfway around the globe."
+      content:
+        "DYP has been used in-person, and virtually by partners and Guides separated by thousands of miles. It’s equally effective regardless of whether partners and Guides are sitting at the same table or halfway around the globe.",
     },
     {
       title: "DYP technology",
-      content: "The DYP technology makes it possible for Guides to effortlessly move partners’ preparation into the draft templates, and even edit the partners’ commitments and agreements as they are forming them."
+      content:
+        "The DYP technology makes it possible for Guides to effortlessly move partners’ preparation into the draft templates, and even edit the partners’ commitments and agreements as they are forming them.",
     },
     {
       title: "Guide Tips",
-      content: "While Guides facilitate the partners’ Joint Meetings, they have easy access to suggestions for helping partners discuss and negotiate issues, especially those that are complicated."
+      content:
+        "While Guides facilitate the partners’ Joint Meetings, they have easy access to suggestions for helping partners discuss and negotiate issues, especially those that are complicated.",
     },
     {
       title: "Scheduling and navigation",
-      content: "The custom-designed scheduling system and navigation windows allow each partner to be informed of each partner’s progress, making it easier for the partners to maintain their momentum throughout the Charter process."
+      content:
+        "The custom-designed scheduling system and navigation windows allow each partner to be informed of each partner’s progress, making it easier for the partners to maintain their momentum throughout the Charter process.",
     },
     {
       title: "Charter document",
-      content: "When the partners complete the process, DYP gives them a beautifully formatted 60-90-page Charter document that memorializes the partners’ understandings, commitments, and agreements."
+      content:
+        "When the partners complete the process, DYP gives them a beautifully formatted 60-90-page Charter document that memorializes the partners’ understandings, commitments, and agreements.",
     },
     {
       title: "Joint Meetings",
-      content: "Partners come to Joint Meetings completely prepared to share their ideas because they’ve answered the Workbook’s 500 questions. That ensures they have amazingly thorough discussions and negotiations, unlike any they would have without that level of preparation."
+      content:
+        "Partners come to Joint Meetings completely prepared to share their ideas because they’ve answered the Workbook’s 500 questions. That ensures they have amazingly thorough discussions and negotiations, unlike any they would have without that level of preparation.",
     },
     {
       title: "Secure platform",
-      content: "The platform’s secure system puts an end to partners and Guides emailing documents back and forth. Important, confidential documents are shared securely on the platform. The completed and signed Partnership Charter is available to each partner."
+      content:
+        "The platform’s secure system puts an end to partners and Guides emailing documents back and forth. Important, confidential documents are shared securely on the platform. The completed and signed Partnership Charter is available to each partner.",
     },
   ];
 
@@ -214,7 +223,7 @@
         </div>
       </div>`
     )
-    .join('');
+    .join("");
 
   // Create HTML content
   const content = document.createElement("div");

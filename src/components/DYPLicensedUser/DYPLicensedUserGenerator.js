@@ -38,14 +38,14 @@ const DYPLicensedUserEmbedGenerator = ({ config }) => {
   return (
     <Box>
       <Typography variant="h6" gutterBottom>
-        Embed Code for DYP Licensed User Section
+        Embed Code for DYP Licensed User Block
       </Typography>
       <Typography variant="body2" color="text.secondary" paragraph>
         Copy and paste this code into your website to embed the DYP Licensed
-        User section.
+        User Block.
       </Typography>
 
-      <Paper
+      {/* <Paper
         variant="outlined"
         sx={{
           p: 2,
@@ -59,7 +59,7 @@ const DYPLicensedUserEmbedGenerator = ({ config }) => {
         >
           {generateEmbedCode()}
         </pre>
-      </Paper>
+      </Paper> */}
 
       <Button
         variant="contained"
@@ -70,12 +70,12 @@ const DYPLicensedUserEmbedGenerator = ({ config }) => {
         Copy Embed Code
       </Button>
 
-      <Typography variant="body2" color="text.secondary" sx={{ mt: 3 }}>
+      {/* <Typography variant="body2" color="text.secondary" sx={{ mt: 3 }}>
         <strong>Note:</strong> You will need to upload the
         <code>dyp-licensed-user-section.js</code> file to your web server and
         update the <code>src</code> attribute in the embed code to point to its
         location.
-      </Typography>
+      </Typography> */}
     </Box>
   );
 };

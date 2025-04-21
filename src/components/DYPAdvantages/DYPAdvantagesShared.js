@@ -1,7 +1,7 @@
 // DYPAdvantagesShared.js - Shared utilities and code templates for DYP Advantages components
 
 /**
- * Shared accordion data for DYP Advantages section
+ * Shared accordion data for DYP Advantages block
  */
 export const dypAdvantagesData = [
   {

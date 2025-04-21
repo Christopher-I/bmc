@@ -1,18 +1,18 @@
-import React from 'react';
-import { 
-  Box, 
-  TextField, 
-  Select, 
-  MenuItem, 
-  FormControl, 
+import React from "react";
+import {
+  Box,
+  TextField,
+  Select,
+  MenuItem,
+  FormControl,
   InputLabel,
   Typography,
   Grid,
   Button,
-  Paper
-} from '@mui/material';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { generateEmbedCode } from './CharterTypesShared';
+  Paper,
+} from "@mui/material";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { generateEmbedCode } from "./CharterTypesShared";
 
 const CharterTypesGenerator = ({ config, onConfigChange }) => {
   // Handle input changes
@@ -39,10 +39,10 @@ const CharterTypesGenerator = ({ config, onConfigChange }) => {
   return (
     <Box>
       {/* <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
-        <Typography variant="h6" gutterBottom>Customize Charter Types Section</Typography>
+        <Typography variant="h6" gutterBottom>Customize Charter Types block</Typography>
         <Grid container spacing={3}> */}
-          {/* Colors Section */}
-          {/* <Grid item xs={12} sm={6}>
+      {/* Colors Section */}
+      {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Background Color
@@ -69,7 +69,7 @@ const CharterTypesGenerator = ({ config, onConfigChange }) => {
             </Box>
           </Grid>
            */}
-          {/* <Grid item xs={12} sm={6}>
+      {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Text Color
@@ -95,8 +95,8 @@ const CharterTypesGenerator = ({ config, onConfigChange }) => {
               </Box>
             </Box>
           </Grid> */}
-          
-          {/* <Grid item xs={12} sm={6}>
+
+      {/* <Grid item xs={12} sm={6}>
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Heading Color
@@ -122,9 +122,9 @@ const CharterTypesGenerator = ({ config, onConfigChange }) => {
               </Box>
             </Box>
           </Grid> */}
-          
-          {/* Fonts Section */}
-          {/* <Grid item xs={12} sm={6}>
+
+      {/* Fonts Section */}
+      {/* <Grid item xs={12} sm={6}>
             <FormControl fullWidth margin="normal" size="small">
               <InputLabel id="heading-font-label">Heading Font</InputLabel>
               <Select
@@ -143,8 +143,8 @@ const CharterTypesGenerator = ({ config, onConfigChange }) => {
               </Select>
             </FormControl>
           </Grid> */}
-          
-          {/* <Grid item xs={12} sm={6}>
+
+      {/* <Grid item xs={12} sm={6}>
             <FormControl fullWidth margin="normal" size="small">
               <InputLabel id="body-font-label">Body Font</InputLabel>
               <Select
@@ -163,21 +163,24 @@ const CharterTypesGenerator = ({ config, onConfigChange }) => {
               </Select>
             </FormControl>
           </Grid> */}
-        {/* </Grid>
+      {/* </Grid>
       </Paper> */}
-      
+
       <Paper elevation={3} sx={{ p: 3 }}>
-        <Typography variant="h6" gutterBottom>Generated Embed Code</Typography>
-        <Button 
-          variant="contained" 
+        <Typography variant="h6" gutterBottom>
+          Generated Embed Code
+        </Typography>
+        <Button
+          variant="contained"
           startIcon={<ContentCopyIcon />}
           onClick={copyToClipboard}
         >
-          Copy Section
+          Copy Block
         </Button>
-        <Box sx={{ mt: 2, fontSize: '0.875rem', color: 'text.secondary' }}>
-          Simply copy this code and paste it into your website where you want the Charter Types section to appear.
-          Works with WordPress, Webflow, and most other website builders.
+        <Box sx={{ mt: 2, fontSize: "0.875rem", color: "text.secondary" }}>
+          Simply copy this code and paste it into your website where you want
+          the Charter Types block to appear. Works with WordPress, Webflow, and
+          most other website builders.
         </Box>
       </Paper>
     </Box>

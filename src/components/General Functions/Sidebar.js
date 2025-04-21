@@ -8,17 +8,17 @@ import {
   Divider,
 } from "@mui/material";
 
-const sections = [
+const blocks = [
   { key: "introduction", label: "Introduction & Guide" },
-  { key: "PHCG", label: "About PHCG Section" },
-  { key: "pcProcess", label: "PC Process Section" },
-  { key: "partners", label: "Partners Benefits Section" },
-  { key: "charter", label: "Charter Section" },
+  { key: "PHCG", label: "About PHCG" },
+  { key: "pcProcess", label: "PC Process" },
+  { key: "partners", label: "Partners Benefits" },
+  { key: "charter", label: "What is a PC?" },
   { key: "charterTypes", label: "Who Should Develop a Charter" },
   { key: "dypAdvantages", label: "DYP Advantages" },
   { key: "sliversOfAmbiguity", label: "Slivers of Ambiguity" },
-  { key: "dypTool", label: "The DYP Tool Section" },
-  { key: "dypLicensedUser", label: "DYP Licensed User Section" },
+  { key: "dypTool", label: "The DYP Tool" },
+  { key: "dypLicensedUser", label: "DYP Licensed User" },
 ];
 
 const Sidebar = ({ active, onSelect }) => {
@@ -42,7 +42,7 @@ const Sidebar = ({ active, onSelect }) => {
           gutterBottom
           sx={{ fontWeight: "bold", color: "primary.main" }}
         >
-          Sections
+          Blocks
         </Typography>
 
         <Divider sx={{ mb: 2 }} />
@@ -54,18 +54,18 @@ const Sidebar = ({ active, onSelect }) => {
         pb: 2 // Add some padding at the bottom
       }}>
         <List>
-          {sections.map((section) => (
+          {blocks.map((block) => (
             <ListItemButton
-              key={section.key}
-              selected={active === section.key}
-              onClick={() => onSelect(section.key)}
+              key={block.key}
+              selected={active === block.key}
+              onClick={() => onSelect(block.key)}
               sx={{
-                borderLeft: active === section.key ? "4px solid #1976d2" : "none",
+                borderLeft: active === block.key ? "4px solid #1976d2" : "none",
                 backgroundColor:
-                  active === section.key
+                  active === block.key
                     ? "rgba(25, 118, 210, 0.08)"
                     : "transparent",
-                fontWeight: active === section.key ? "bold" : "normal",
+                fontWeight: active === block.key ? "bold" : "normal",
                 "&:hover": {
                   backgroundColor: "rgba(25, 118, 210, 0.04)",
                 },
@@ -75,9 +75,9 @@ const Sidebar = ({ active, onSelect }) => {
               }}
             >
               <ListItemText
-                primary={section.label}
+                primary={block.label}
                 primaryTypographyProps={{
-                  fontWeight: active === section.key ? "bold" : "normal",
+                  fontWeight: active === block.key ? "bold" : "normal",
                 }}
               />
             </ListItemButton>

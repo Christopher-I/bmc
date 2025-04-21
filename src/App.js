@@ -41,15 +41,15 @@ const theme = createTheme({
 
 const sectionTitles = {
   introduction: "Introduction & Guide",
-  PHCG: "About Post-haste Consulting Group (PHCG) Section",
-  pcProcess: "PC Process Section",
-  partners: "Partners Benefits Section",
-  charter: "Charter Section",
-  charterTypes: "Who Should Develop a Charter",
+  PHCG: "About Post-haste Consulting Group (PHCG)",
+  pcProcess: "PC Process block",
+  partners: "Partners Benefits Block",
+  charter: "What is a PC?",
+  charterTypes: "Who Should Develop a Charter?",
   dypAdvantages: "DYP Advantages",
   sliversOfAmbiguity: "Slivers of Ambiguity",
-  dypTool: "The DYP Tool Section",
-  dypLicensedUser: "DYP Licensed User Section", // Add new section title
+  dypTool: "The DYP Tool",
+  dypLicensedUser: "DYP Licensed User", // Add new section title
 };
 
 function App() {
@@ -146,7 +146,7 @@ function App() {
     imageRadius: 8,
   });
 
-  // Add new state for DYP Licensed User section
+  // Add new state for DYP Licensed User Block
   const [dypLicensedUserConfig, setDypLicensedUserConfig] = useState({
     backgroundColor: "#1e3553", // Dark blue background
     textColor: "#ffffff", // White text
@@ -332,7 +332,7 @@ function App() {
             </Paper>
           </>
         );
-      // Add new case for DYP Licensed User section
+      // Add new case for DYP Licensed User Block
       case "dypLicensedUser":
         return (
           <>
@@ -381,7 +381,7 @@ function App() {
                 variant="h6"
                 sx={{ fontWeight: "bold", color: "primary.main" }}
               >
-                Website Section Builder
+                Website Builder
               </Typography>
             </Container>
           </Box>
