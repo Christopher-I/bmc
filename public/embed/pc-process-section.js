@@ -1,5 +1,5 @@
 /**
- * BMC Associates PC Process Section Embed Script
+ * Post-haste Consulting Group PC Process Section Embed Script
  *
  * This script creates an embeddable accordion section for the PC Process
  * with perfectly synchronized accordion and arrow animations.
@@ -17,7 +17,8 @@
     headingFont: currentScript.getAttribute("data-heading-font") || "serif",
     bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
     buttonColor: currentScript.getAttribute("data-button-color") || "#d5ad36",
-    buttonText: currentScript.getAttribute("data-button-text") || "Contact BMC",
+    buttonText:
+      currentScript.getAttribute("data-button-text") || "Contact PHCG",
     buttonRadius: currentScript.getAttribute("data-button-radius") || "4",
     accordionRadius: currentScript.getAttribute("data-accordion-radius") || "4",
     transitionSpeed:

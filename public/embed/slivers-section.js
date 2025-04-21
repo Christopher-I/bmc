@@ -1,5 +1,5 @@
 /**
- * BMC Associates Slivers of Ambiguity Embed Script
+ * Post-haste Consulting Group Slivers of Ambiguity Embed Script
  * Embeds a stylized card layout showing common partnership issues
  */
 

@@ -10,7 +10,7 @@ import {
 
 const sections = [
   { key: "introduction", label: "Introduction & Guide" },
-  { key: "bmc", label: "About BMC Section" },
+  { key: "PHCG", label: "About PHCG Section" },
   { key: "pcProcess", label: "PC Process Section" },
   { key: "partners", label: "Partners Benefits Section" },
   { key: "charter", label: "Charter Section" },

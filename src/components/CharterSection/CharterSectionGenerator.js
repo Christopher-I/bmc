@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   TextField,
@@ -9,15 +9,18 @@ import {
   Typography,
   Grid,
   Button,
-  Paper
-} from '@mui/material';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+  Paper,
+} from "@mui/material";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import {
   defaultCharterConfig,
-  generateCharterEmbedScript
-} from './CharterSectionShared';
+  generateCharterEmbedScript,
+} from "./CharterSectionShared";
 
-const CharterSectionGenerator = ({ config = defaultCharterConfig, onConfigChange }) => {
+const CharterSectionGenerator = ({
+  config = defaultCharterConfig,
+  onConfigChange,
+}) => {
   const handleChange = (name, value) => {
     onConfigChange({ ...config, [name]: value });
   };
@@ -38,8 +41,12 @@ const CharterSectionGenerator = ({ config = defaultCharterConfig, onConfigChange
     // Always use absolute URLs in the embed code
     const absoluteConfig = {
       ...config,
-      logoSrc: config.logoSrc?.startsWith('http') ? config.logoSrc : 'https://bmc-neon.vercel.app/tpci_logo.svg',
-      imageSrc: config.imageSrc?.startsWith('http') ? config.imageSrc : 'https://bmc-neon.vercel.app/chartersection_computer.jpg'
+      logoSrc: config.logoSrc?.startsWith("http")
+        ? config.logoSrc
+        : "https://PHCG-neon.vercel.app/tpci_logo.svg",
+      imageSrc: config.imageSrc?.startsWith("http")
+        ? config.imageSrc
+        : "https://PHCG-neon.vercel.app/chartersection_computer.jpg",
     };
     navigator.clipboard.writeText(generateCharterEmbedScript(absoluteConfig));
   };
@@ -47,7 +54,9 @@ const CharterSectionGenerator = ({ config = defaultCharterConfig, onConfigChange
   return (
     <Box>
       <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
-        <Typography variant="h6" gutterBottom>Customize Charter Section</Typography>
+        <Typography variant="h6" gutterBottom>
+          Customize Charter Section
+        </Typography>
         <Grid container spacing={3}>
           {/* <Grid item xs={12} sm={6}>
             <TextField
@@ -78,7 +87,9 @@ const CharterSectionGenerator = ({ config = defaultCharterConfig, onConfigChange
       </Paper>
 
       <Paper elevation={3} sx={{ p: 3 }}>
-        <Typography variant="h6" gutterBottom>Generated Embed Code</Typography>
+        <Typography variant="h6" gutterBottom>
+          Generated Embed Code
+        </Typography>
         {/* <TextField
           value={generateCharterEmbedScript(config)}
           multiline
@@ -98,8 +109,9 @@ const CharterSectionGenerator = ({ config = defaultCharterConfig, onConfigChange
         >
           Copy Embed Code
         </Button>
-        <Box sx={{ mt: 2, fontSize: '0.875rem', color: 'text.secondary' }}>
-          Paste this script into your website to embed the Charter section. It works with Webflow, WordPress, and most other platforms.
+        <Box sx={{ mt: 2, fontSize: "0.875rem", color: "text.secondary" }}>
+          Paste this script into your website to embed the Charter section. It
+          works with Webflow, WordPress, and most other platforms.
         </Box>
       </Paper>
     </Box>

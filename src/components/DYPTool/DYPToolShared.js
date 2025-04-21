@@ -9,7 +9,7 @@
  */
 export const getSafeImageUrl = (imageSrc) => {
   if (!imageSrc || imageSrc === "/dyp_tool.png") {
-    return "https://bmc-neon.vercel.app/dyp_tool.png"; // Fallback to a hosted image
+    return "https://PHCG-neon.vercel.app/dyp_tool.png"; // Fallback to a hosted image
   }
   return imageSrc;
 };
@@ -174,7 +174,7 @@ export const generateExternalScriptReference = (config) => {
   const imageUrl = getSafeImageUrl(config.imageSrc);
 
   return `<script 
-  src="https://bmc-neon.vercel.app/dyp_tool.pngg" 
+  src="https://PHCG-neon.vercel.app/dyp_tool.pngg" 
   data-background="${config.backgroundColor || "#ecf0f1"}"
   data-text-color="${config.textColor || "#2c3e50"}"
   data-heading-font="${config.headingFont || "serif"}"
@@ -193,5 +193,5 @@ export const defaultDYPToolConfig = {
   headingFont: "serif",
   bodyFont: "sans-serif",
   imageRadius: 8,
-  imageSrc: "https://bmc-neon.vercel.app/dyp_tool.png",
+  imageSrc: "https://PHCG-neon.vercel.app/dyp_tool.png",
 };

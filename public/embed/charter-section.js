@@ -8,8 +8,12 @@
     accentColor: currentScript.getAttribute("data-accent-color") || "#d5ad36",
     headingFont: currentScript.getAttribute("data-heading-font") || "serif",
     bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
-    logoSrc: currentScript.getAttribute("data-logo-src") || "https://bmc-neon.vercel.app/tpci_logo.svg",
-    imageSrc: currentScript.getAttribute("data-image-src") || "https://bmc-neon.vercel.app/chartersection_computer.jpg"
+    logoSrc:
+      currentScript.getAttribute("data-logo-src") ||
+      "https://PHCG-neon.vercel.app/tpci_logo.svg",
+    imageSrc:
+      currentScript.getAttribute("data-image-src") ||
+      "https://PHCG-neon.vercel.app/chartersection_computer.jpg",
   };
 
   const container = document.createElement("div");
@@ -113,7 +117,7 @@
       <div class="charter-image-section">
         <img class="charter-image" src="${config.imageSrc}" alt="Partnership Charter Image" />
         <div class="charter-licensed">Licensed by</div>
-        <img class="charter-logo" src="${config.logoSrc}" alt="BMC Logo" />
+        <img class="charter-logo" src="${config.logoSrc}" alt="PHCG Logo" />
       </div>
     </div>
   `;

@@ -38,13 +38,13 @@ const theme = createTheme({
 
 const sectionTitles = {
   introduction: "Introduction & Guide",
-  bmc: "About BMC Section",
+  PHCG: "About Post-haste Consulting Group (PHCG) Section",
   pcProcess: "PC Process Section",
   partners: "Partners Benefits Section",
   charter: "Charter Section",
   charterTypes: "Who Should Develop a Charter",
   dypAdvantages: "DYP Advantages",
-  sliversOfAmbiguity: "Slivers of Ambiguity", // Add new section title
+  sliversOfAmbiguity: "Slivers of Ambiguity",
   dypTool: "The DYP Tool Section",
 };
 
@@ -58,13 +58,13 @@ function App() {
     localStorage.setItem("activeSection", activeSection);
   }, [activeSection]);
 
-  const [bmcConfig, setBmcConfig] = useState({
+  const [PHCGConfig, setPHCGConfig] = useState({
     backgroundColor: "#2c3e50",
     textColor: "#ffffff",
     headingFont: "serif",
     bodyFont: "sans-serif",
     buttonColor: "#e67e22",
-    buttonText: "More About BMC",
+    buttonText: "More About Post-haste Consulting Group (PHCG)",
     buttonRadius: 4,
   });
 
@@ -75,7 +75,7 @@ function App() {
     headingFont: "serif",
     bodyFont: "sans-serif",
     buttonColor: "#d5ad36",
-    buttonText: "Contact BMC",
+    buttonText: "Contact Post-haste Consulting Group (PHCG)",
     buttonRadius: 4,
     accordionRadius: 4,
     transitionSpeed: 0.3,
@@ -147,7 +147,7 @@ function App() {
     switch (activeSection) {
       case "introduction":
         return <AppIntroduction />;
-      case "bmc":
+      case "PHCG":
         return (
           <>
             <Paper elevation={3} sx={{ mb: 4 }}>
@@ -155,7 +155,7 @@ function App() {
                 <Typography variant="h6" gutterBottom align="center">
                   Preview
                 </Typography>
-                <PreviewPanel config={bmcConfig} />
+                <PreviewPanel config={PHCGConfig} />
               </Box>
             </Paper>
             <Paper elevation={3}>
@@ -164,7 +164,7 @@ function App() {
                   Embed Code
                 </Typography>
                 <Box sx={{ maxWidth: "100%", overflowX: "auto" }}>
-                  <CodeGenerator config={bmcConfig} />
+                  <CodeGenerator config={PHCGConfig} />
                 </Box>
               </Box>
             </Paper>
@@ -296,27 +296,27 @@ function App() {
             </Paper>
           </>
         );
-        case "dypTool":
-          return (
-            <>
-              <Paper elevation={3} sx={{ mb: 4 }}>
-                <Box p={3}>
-                  <Typography variant="h6" gutterBottom align="center">
-                    Preview
-                  </Typography>
-                  <DYPToolPreview config={dypToolConfig} />
-                </Box>
-              </Paper>
-              <Paper elevation={3}>
-                <Box p={3}>
-                  <DYPToolGenerator
-                    config={dypToolConfig}
-                    onConfigChange={setDypToolConfig}
-                  />
-                </Box>
-              </Paper>
-            </>
-          );
+      case "dypTool":
+        return (
+          <>
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">
+                  Preview
+                </Typography>
+                <DYPToolPreview config={dypToolConfig} />
+              </Box>
+            </Paper>
+            <Paper elevation={3}>
+              <Box p={3}>
+                <DYPToolGenerator
+                  config={dypToolConfig}
+                  onConfigChange={setDypToolConfig}
+                />
+              </Box>
+            </Paper>
+          </>
+        );
 
       default:
         return <AppIntroduction />;

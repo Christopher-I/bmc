@@ -6,8 +6,12 @@
  * @returns {string} - Safe image URL
  */
 export const getSafeImageUrl = (imageSrc) => {
-  if (!imageSrc || imageSrc === "https://placehold.co/600x400/e6e6e6/1e4164?text=Partnership+diagram") {
-    return "https://bmc-neon.vercel.app/trust_confidence.png";
+  if (
+    !imageSrc ||
+    imageSrc ===
+      "https://placehold.co/600x400/e6e6e6/1e4164?text=Partnership+diagram"
+  ) {
+    return "https://PHCG-neon.vercel.app/trust_confidence.png";
   }
   return imageSrc;
 };
@@ -107,7 +111,9 @@ export const generatePartnersBenefitsStyles = (config) => {
     .pb-button {
       display: inline-block;
       padding: 0.9rem 2.5rem;
-      background-color: ${config.buttonColor || config.accentColor || "#4a69dd"};
+      background-color: ${
+        config.buttonColor || config.accentColor || "#4a69dd"
+      };
       color: white;
       text-decoration: none;
       border-radius: ${config.buttonRadius || 4}px;
@@ -122,7 +128,10 @@ export const generatePartnersBenefitsStyles = (config) => {
     }
     
     .pb-button:hover {
-      background-color: ${config.buttonHoverColor || `${config.buttonColor || config.accentColor || "#4a69dd"}dd`};
+      background-color: ${
+        config.buttonHoverColor ||
+        `${config.buttonColor || config.accentColor || "#4a69dd"}dd`
+      };
     }
     
     @media (max-width: 900px) {
@@ -157,12 +166,16 @@ export const generatePartnersBenefitsHTML = (config) => {
   return `
     <div class="pb-content-wrapper">
       <div class="pb-image-container">
-        <img class="pb-image" src="${config.imageSrc}" alt="Partnership Trust Diagram">
+        <img class="pb-image" src="${
+          config.imageSrc
+        }" alt="Partnership Trust Diagram">
       </div>
       <div class="pb-content">
         <h2 class="pb-heading">Partners get exactly what they're looking for</h2>
         <ul class="pb-benefit-list">
-          ${partnersBenefitsList.map(benefit => `
+          ${partnersBenefitsList
+            .map(
+              (benefit) => `
             <li class="pb-benefit-item">
               <div class="pb-check-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -170,7 +183,9 @@ export const generatePartnersBenefitsHTML = (config) => {
                 </svg>
               </div>
               <p class="pb-benefit-text">${benefit.text}</p>
-            </li>`).join('')}
+            </li>`
+            )
+            .join("")}
         </ul>
       </div>
     </div>
@@ -209,7 +224,7 @@ export const generateExternalScriptReference = (config) => {
   const imageUrl = getSafeImageUrl(config.imageSrc);
 
   return `<script 
-  src="https://bmc-neon.vercel.app/embed/partners-benefits-section.js" 
+  src="https://PHCG-neon.vercel.app/embed/partners-benefits-section.js" 
   data-background="${config.backgroundColor || "#f5f7fa"}"
   data-text-color="${config.textColor || "#333333"}"
   data-heading-color="${config.headingColor || "#1e4164"}"

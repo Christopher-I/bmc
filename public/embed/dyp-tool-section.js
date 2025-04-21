@@ -1,5 +1,5 @@
 /**
- * BMC Associates DYP Tool Section Embed Script
+ * Post-haste Consulting Group DYP Tool Section Embed Script
  *
  * This script creates an embeddable section for the DYP Tool
  * with a two-column layout.
@@ -18,7 +18,7 @@
     imageRadius: currentScript.getAttribute("data-image-radius") || "8",
     imageSrc:
       currentScript.getAttribute("data-image-src") ||
-      "https://bmc-neon.vercel.app/dyp_tool.png",
+      "https://PHCG-neon.vercel.app/dyp_tool.png",
   };
 
   // Create container element

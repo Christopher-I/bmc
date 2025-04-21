@@ -139,7 +139,7 @@ const CharterSectionPreview = ({ config = {} }) => {
               </div>
               <img
                 src={mergedConfig.logoSrc}
-                alt="BMC Logo"
+                alt="PHCG Logo"
                 style={{ width: "90px", height: "auto" }}
               />
             </div>

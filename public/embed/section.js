@@ -1,18 +1,18 @@
 /**
- * BMC Associates Section Embed Script
+ * Post-haste Consulting Group Section Embed Script
  *
- * This script creates an embeddable section for BMC Associates that can be
+ * This script creates an embeddable section for Post-haste Consulting Group that can be
  * customized via data attributes on the script tag.
  *
  * Usage:
  * <script
- *   src="https://bmc-associates.com/embed/section.js"
+ *   src="https://PHCG-associates.com/embed/section.js"
  *   data-background="#2c3e50"
  *   data-text-color="#ffffff"
  *   data-heading-font="serif"
  *   data-body-font="sans-serif"
  *   data-button-color="#e67e22"
- *   data-button-text="More About BMC"
+ *   data-button-text="More About PHCG"
  *   data-button-radius="4">
  * </script>
  */
@@ -29,11 +29,11 @@
     bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
     buttonColor: currentScript.getAttribute("data-button-color") || "#e67e22",
     buttonText:
-      currentScript.getAttribute("data-button-text") || "More About BMC",
+      currentScript.getAttribute("data-button-text") || "More About PHCG",
     buttonRadius: currentScript.getAttribute("data-button-radius") || "4",
     buttonUrl:
       currentScript.getAttribute("data-button-url") ||
-      "https://bmc-associates.com",
+      "https://PHCG-associates.com",
   };
 
   // Create container element
@@ -45,7 +45,7 @@
   // Add styles
   const style = document.createElement("style");
   style.textContent = `
-      .bmc-container {
+      .PHCG-container {
         background-color: ${config.backgroundColor};
         color: ${config.textColor};
         padding: 2rem;
@@ -54,26 +54,26 @@
         box-sizing: border-box;
       }
       
-      .bmc-subtitle {
+      .PHCG-subtitle {
         text-transform: uppercase;
         letter-spacing: 0.05em;
         font-size: 0.875rem;
         margin-bottom: 0.5rem;
       }
       
-      .bmc-heading {
+      .PHCG-heading {
         font-family: ${config.headingFont};
         font-size: 2rem;
         margin-top: 0.5rem;
         margin-bottom: 1rem;
       }
       
-      .bmc-paragraph {
+      .PHCG-paragraph {
         line-height: 1.6;
         margin-bottom: 1rem;
       }
       
-      .bmc-button {
+      .PHCG-button {
         background-color: ${config.buttonColor};
         color: white;
         font-family: ${config.bodyFont};
@@ -86,30 +86,30 @@
         display: inline-block;
       }
       
-      .bmc-button:hover {
+      .PHCG-button:hover {
         opacity: 0.9;
       }
     `;
 
   // Create HTML content
   const content = document.createElement("div");
-  content.classList.add("bmc-container");
+  content.classList.add("PHCG-container");
   content.innerHTML = `
-      <div class="bmc-subtitle">ABOUT US</div>
-      <h2 class="bmc-heading">BMC Associates</h2>
-      <p class="bmc-paragraph">
-        BMC Associates pioneered a speciality in business partnerships beginning
+      <div class="PHCG-subtitle">ABOUT US</div>
+      <h2 class="PHCG-heading">Post-haste Consulting Group</h2>
+      <p class="PHCG-paragraph">
+        Post-haste Consulting Group pioneered a speciality in business partnerships beginning
         in 1990. During the 1990s it focused on mediating family and non-family
-        business partner disputes. Those early clients taught BMC's mediators
+        business partner disputes. Those early clients taught PHCG's mediators
         about the approximately dozen different ways partners can wind up
         "sideways" with one another.
       </p>
-      <p class="bmc-paragraph">
-        BMC used that information to begin focusing on conflict prevention among
-        partners. Since around 2000, BMC has offered two services to partners:
+      <p class="PHCG-paragraph">
+        PHCG used that information to begin focusing on conflict prevention among
+        partners. Since around 2000, PHCG has offered two services to partners:
         conflict resolution and conflict prevention.
       </p>
-      <a href="${config.buttonUrl}" class="bmc-button">${config.buttonText}</a>
+      <a href="${config.buttonUrl}" class="PHCG-button">${config.buttonText}</a>
     `;
 
   // Append style and content to shadow DOM

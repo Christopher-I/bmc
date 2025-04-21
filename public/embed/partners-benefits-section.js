@@ -1,5 +1,5 @@
 /**
- * BMC Associates Partners Benefits Section Embed Script
+ * Post-haste Consulting Group Partners Benefits Section Embed Script
  *
  * This script creates an embeddable section highlighting partner benefits
  * with a two-column layout.
@@ -23,7 +23,7 @@
     // Default to the full Vercel URL - this ensures it works when embedded externally
     imageSrc:
       currentScript.getAttribute("data-image-src") ||
-      "https://bmc-neon.vercel.app/trust_confidence.png",
+      "https://PHCG-neon.vercel.app/trust_confidence.png",
   };
 
   // Create container element

@@ -55,10 +55,10 @@ const AppIntroduction = () => {
       {/* Welcome Section */}
       <Paper elevation={3} sx={{ p: 4, mb: 4, borderRadius: 2, background: 'linear-gradient(to right, #f5f7fa, #e0e4ec)' }}>
         <Typography variant="h4" component="h2" gutterBottom sx={{ color: '#1e4164', fontWeight: 'medium' }}>
-          Welcome to BMC Section Embedding Tool
+          Welcome to Post-haste Consulting Group(PHCG) Section Embedding Tool
         </Typography>
         <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', maxWidth: '900px' }}>
-          This tool helps you create beautiful, customized BMC sections for your website without any coding knowledge.
+          This tool helps you create beautiful, customized Post-haste Consulting Group(PHCG) sections for your website without any coding knowledge.
           Simply choose a section type, customize it to match your brand, and get ready-to-use embed code to paste into your website.
         </Typography>
         
@@ -72,7 +72,7 @@ const AppIntroduction = () => {
                     What is this tool?
                   </Typography>
                   <Typography variant="body2" color="text.secondary" sx={{ flexGrow: 1 }}>
-                    The BMC Section Embedding Tool allows you to create professional website sections related to Business Model Canvas, 
+                    The Post-haste Consulting Group(PHCG) Section Embedding Tool allows you to create professional website sections related to Business Model Canvas, 
                     Partnership Charters, and business processes. You can customize colors, fonts, and content to match your brand, 
                     then embed these sections directly into your website.
                   </Typography>
@@ -132,7 +132,7 @@ const AppIntroduction = () => {
         </Typography>
         
         <Typography variant="body1" paragraph sx={{ fontSize: '1.05rem' }}>
-          Watch this quick tutorial to learn how to use the BMC Section Embedding Tool.
+          Watch this quick tutorial to learn how to use the Post-haste Consulting Group(PHCG) Section Embedding Tool.
         </Typography>
         
         {/* Video placeholder - this will be where you embed your video later */}
@@ -217,7 +217,7 @@ const AppIntroduction = () => {
                         <CheckCircleIcon fontSize="small" color="primary" />
                       </ListItemIcon>
                       <ListItemText 
-                        primary="About BMC Section" 
+                        primary="About Post-haste Consulting Group(PHCG) Section" 
                         secondary="A general introduction section about Business Model Canvas"
                       />
                     </ListItem>
