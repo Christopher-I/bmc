@@ -69,7 +69,7 @@ export const generateAssistanceLevelsStyles = (config) => {
       }
   
       .assistance-levels-image {
-        width: 100%;
+        width: 50%;
         height: auto;
         border-radius: ${config.imageRadius || 8}px;
       }

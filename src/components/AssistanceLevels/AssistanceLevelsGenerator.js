@@ -40,7 +40,7 @@ const AssistanceLevelsGenerator = ({ config, onConfigChange }) => {
 
   return (
     <Box>
-      <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
+      {/* <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
         <Typography variant="h6" gutterBottom>
           Customize Partners Assistance Section
         </Typography>
@@ -156,7 +156,7 @@ const AssistanceLevelsGenerator = ({ config, onConfigChange }) => {
             />
           </Grid>
         </Grid>
-      </Paper>
+      </Paper> */}
 
       <Paper elevation={3} sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom>

@@ -81,7 +81,7 @@
 
     
       .assistance-levels-image {
-  width: 100%;
+  width: 50%;
   height: auto;
   border-radius: ${config.imageRadius}px;
   object-fit: contain; // Add this to maintain aspect ratio
