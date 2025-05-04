@@ -19,6 +19,7 @@ const blocks = [
   { key: "sliversOfAmbiguity", label: "Slivers of Ambiguity" },
   { key: "dypTool", label: "The DYP Tool" },
   { key: "dypLicensedUser", label: "DYP Licensed User" },
+  { key: "assistanceLevels", label: "Partners Get Assistance" }, // Add new block
 ];
 
 const Sidebar = ({ active, onSelect }) => {

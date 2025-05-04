@@ -31,6 +31,8 @@ import DYPToolGenerator from "./components/DYPTool/DYPToolGenerator";
 // Import the new DYP Licensed User components
 import DYPLicensedUserPreview from "./components/DYPLicensedUser/DYPLicensedUserPreview";
 import DYPLicensedUserGenerator from "./components/DYPLicensedUser/DYPLicensedUserGenerator";
+import AssistanceLevelsPreview from "./components/AssistanceLevels/AssistanceLevelsPreview";
+import AssistanceLevelsGenerator from "./components/AssistanceLevels/AssistanceLevelsGenerator";
 
 const theme = createTheme({
   palette: {
@@ -49,7 +51,8 @@ const sectionTitles = {
   dypAdvantages: "DYP Advantages",
   sliversOfAmbiguity: "Slivers of Ambiguity",
   dypTool: "The DYP Tool",
-  dypLicensedUser: "DYP Licensed User", // Add new section title
+  dypLicensedUser: "DYP Licensed User",
+  assistanceLevels: "Partners Get Assistance", // Add new section title
 };
 
 function App() {
@@ -61,6 +64,17 @@ function App() {
   useEffect(() => {
     localStorage.setItem("activeSection", activeSection);
   }, [activeSection]);
+
+  const [assistanceLevelsConfig, setAssistanceLevelsConfig] = useState({
+    backgroundColor: "#ffffff",
+    textColor: "#333333",
+    headingColor: "#333333",
+    accentColor: "#0066B2",
+    headingFont: "serif",
+    bodyFont: "sans-serif",
+    imageRadius: 8,
+    imageSrc: "/assistance_levels_diagram.png",
+  });
 
   const [PHCGConfig, setPHCGConfig] = useState({
     backgroundColor: "#2c3e50",
@@ -349,6 +363,27 @@ function App() {
                 <DYPLicensedUserGenerator
                   config={dypLicensedUserConfig}
                   onConfigChange={setDypLicensedUserConfig}
+                />
+              </Box>
+            </Paper>
+          </>
+        );
+      case "assistanceLevels":
+        return (
+          <>
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">
+                  Preview
+                </Typography>
+                <AssistanceLevelsPreview config={assistanceLevelsConfig} />
+              </Box>
+            </Paper>
+            <Paper elevation={3}>
+              <Box p={3}>
+                <AssistanceLevelsGenerator
+                  config={assistanceLevelsConfig}
+                  onConfigChange={setAssistanceLevelsConfig}
                 />
               </Box>
             </Paper>
