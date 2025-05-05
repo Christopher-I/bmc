@@ -83,18 +83,18 @@ function App() {
   });
 
   const [bookPromoConfig, setBookPromoConfig] = useState({
-    backgroundColor: "#CE950F", 
+    backgroundColor: "#CE950F",
     textColor: "#ffffff",
     headingFont: "serif",
     bodyFont: "sans-serif",
-    borderRadius: 10,
-    bookImageSrc: "/book_partnership_charter.png",
-    contactLink: "https://www.partnershipcharter.com/book",
-    barnesNobleLogo: "/logo_barnes_noble.png",
-    googlePlayLogo: "/logo_google_play.png",
-    amazonLogo: "/logo_amazon.png",
-    indieBoundLogo: "/logo_indie_bound.png",
-    audibleLogo: "/logo_audible.png",
+    borderRadius: 16,
+    bookImageSrc: "https://bmc-neon.vercel.app/book_partnership_charter.png",
+    contactLink: "https://example.com/contact",
+    barnesNobleLogo: "https://bmc-neon.vercel.app/logo_barnes_noble.png",
+    googlePlayLogo: "https://bmc-neon.vercel.app/logo_google_play.png",
+    amazonLogo: "https://bmc-neon.vercel.app/logo_amazon.png",
+    indieBoundLogo: "https://bmc-neon.vercel.app/logo_indie_bound.png",
+    audibleLogo: "https://bmc-neon.vercel.app/logo_audible.png",
     invertLogos: false,
   });
 

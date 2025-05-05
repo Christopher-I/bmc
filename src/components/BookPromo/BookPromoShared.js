@@ -11,34 +11,53 @@
  * @returns {string} - Safe image URL
  */
 export const getSafeImageUrl = (src, type) => {
-    if (!src) {
-      switch (type) {
-        case 'book':
-          return "/book_partnership_charter.png";
-        case 'barnes':
-          return "/logo_barnes_noble.png";
-        case 'google':
-          return "/logo_google_play.png";
-        case 'amazon':
-          return "/logo_amazon.png";
-        case 'indie':
-          return "/logo_indie_bound.png";
-        case 'audible':
-          return "/logo_audible.png";
-        default:
-          return src;
-      }
+  if (!src) {
+    switch (type) {
+      case "book":
+        return "https://bmc-neon.vercel.app/book_partnership_charter.png";
+      case "barnes":
+        return "https://bmc-neon.vercel.app/logo_barnes_noble.png";
+      case "google":
+        return "https://bmc-neon.vercel.app/logo_google_play.png";
+      case "amazon":
+        return "https://bmc-neon.vercel.app/logo_amazon.png";
+      case "indie":
+        return "https://bmc-neon.vercel.app/logo_indie_bound.png";
+      case "audible":
+        return "https://bmc-neon.vercel.app/logo_audible.png";
+      default:
+        return src;
     }
-    return src;
-  };
-  
-  /**
-   * Generates the CSS styles for the Book Promo component
-   * @param {Object} config - Configuration object with styling parameters
-   * @returns {string} - CSS styles as a string
-   */
-  export const generateBookPromoStyles = (config) => {
-    return `
+  }
+  // If source provided but matches local path, return CDN version
+  if (src === "/book_partnership_charter.png") {
+    return "https://bmc-neon.vercel.app/book_partnership_charter.png";
+  }
+  if (src === "/logo_barnes_noble.png") {
+    return "https://bmc-neon.vercel.app/logo_barnes_noble.png";
+  }
+  if (src === "/logo_google_play.png") {
+    return "https://bmc-neon.vercel.app/logo_google_play.png";
+  }
+  if (src === "/logo_amazon.png") {
+    return "https://bmc-neon.vercel.app/logo_amazon.png";
+  }
+  if (src === "/logo_indie_bound.png") {
+    return "https://bmc-neon.vercel.app/logo_indie_bound.png";
+  }
+  if (src === "/logo_audible.png") {
+    return "https://bmc-neon.vercel.app/logo_audible.png";
+  }
+  return src;
+};
+
+/**
+ * Generates the CSS styles for the Book Promo component
+ * @param {Object} config - Configuration object with styling parameters
+ * @returns {string} - CSS styles as a string
+ */
+export const generateBookPromoStyles = (config) => {
+  return `
       .book-promo-container {
         background-color: ${config.backgroundColor || "#B88B4A"};
         color: ${config.textColor || "#ffffff"};
@@ -112,7 +131,7 @@ export const getSafeImageUrl = (src, type) => {
         width: auto;
         max-width: 100%;
         object-fit: contain;
-        filter: ${config.invertLogos ? 'invert(1)' : 'none'};
+        filter: ${config.invertLogos ? "invert(1)" : "none"};
       }
   
       .contact-text {
@@ -173,23 +192,23 @@ export const getSafeImageUrl = (src, type) => {
         }
       }
     `;
-  };
-  
-  /**
-   * Generates the HTML for the Book Promo component
-   * @param {Object} config - Configuration object with styling parameters
-   * @returns {string} - HTML content as a string
-   */
-  export const generateBookPromoHTML = (config) => {
-    const retailers = [
-      { name: 'Barnes & Noble', src: config.barnesNobleLogo },
-      { name: 'Google Play', src: config.googlePlayLogo },
-      { name: 'Amazon', src: config.amazonLogo },
-      { name: 'IndieBound', src: config.indieBoundLogo },
-      { name: 'Audible', src: config.audibleLogo }
-    ];
-  
-    return `
+};
+
+/**
+ * Generates the HTML for the Book Promo component
+ * @param {Object} config - Configuration object with styling parameters
+ * @returns {string} - HTML content as a string
+ */
+export const generateBookPromoHTML = (config) => {
+  const retailers = [
+    { name: "Barnes & Noble", src: config.barnesNobleLogo },
+    { name: "Google Play", src: config.googlePlayLogo },
+    { name: "Amazon", src: config.amazonLogo },
+    { name: "IndieBound", src: config.indieBoundLogo },
+    { name: "Audible", src: config.audibleLogo },
+  ];
+
+  return `
       <div class="book-promo-wrapper">
         <div class="book-promo-content">
           <h2 class="book-promo-heading">
@@ -209,43 +228,51 @@ export const getSafeImageUrl = (src, type) => {
           </h3>
   
           <div class="retailers-container">
-            ${retailers.map(retailer => `
+            ${retailers
+              .map(
+                (retailer) => `
               <div class="retailer-logo">
                 <img src="${retailer.src}" alt="${retailer.name}">
               </div>
-            `).join('')}
+            `
+              )
+              .join("")}
           </div>
   
           <p class="contact-text">
-            For discounts on 25 or more books, <a href="${config.contactLink}" class="contact-link">contact PHCG</a>
+            For discounts on 25 or more books, <a href="${
+              config.contactLink
+            }" class="contact-link">contact PHCG</a>
           </p>
         </div>
   
         <div class="book-image-container">
-          <img class="book-image" src="${config.bookImageSrc}" alt="Partnership Charter Book">
+          <img class="book-image" src="${
+            config.bookImageSrc
+          }" alt="Partnership Charter Book">
         </div>
       </div>
     `;
+};
+
+/**
+ * Generates the embed code for the Book Promo component
+ * @param {Object} config - Configuration object with styling parameters
+ * @returns {string} - Embed script as a string
+ */
+export const generateBookPromoEmbedCode = (config) => {
+  // Create a merged config with safe image URLs
+  const mergedConfig = {
+    ...config,
+    bookImageSrc: getSafeImageUrl(config.bookImageSrc, "book"),
+    barnesNobleLogo: getSafeImageUrl(config.barnesNobleLogo, "barnes"),
+    googlePlayLogo: getSafeImageUrl(config.googlePlayLogo, "google"),
+    amazonLogo: getSafeImageUrl(config.amazonLogo, "amazon"),
+    indieBoundLogo: getSafeImageUrl(config.indieBoundLogo, "indie"),
+    audibleLogo: getSafeImageUrl(config.audibleLogo, "audible"),
   };
-  
-  /**
-   * Generates the embed code for the Book Promo component
-   * @param {Object} config - Configuration object with styling parameters
-   * @returns {string} - Embed script as a string
-   */
-  export const generateBookPromoEmbedCode = (config) => {
-    // Create a merged config with safe image URLs
-    const mergedConfig = {
-      ...config,
-      bookImageSrc: getSafeImageUrl(config.bookImageSrc, 'book'),
-      barnesNobleLogo: getSafeImageUrl(config.barnesNobleLogo, 'barnes'),
-      googlePlayLogo: getSafeImageUrl(config.googlePlayLogo, 'google'),
-      amazonLogo: getSafeImageUrl(config.amazonLogo, 'amazon'),
-      indieBoundLogo: getSafeImageUrl(config.indieBoundLogo, 'indie'),
-      audibleLogo: getSafeImageUrl(config.audibleLogo, 'audible')
-    };
-  
-    return `<script>
+
+  return `<script>
   (function() {
     const config = ${JSON.stringify(mergedConfig)};
   
@@ -267,23 +294,23 @@ export const getSafeImageUrl = (src, type) => {
     document.currentScript.parentNode.replaceChild(container, document.currentScript);
   })();
   </script>`;
-  };
-  
-  /**
-   * Default configuration for the Book Promo section
-   */
-  export const defaultBookPromoConfig = {
-    backgroundColor: "#B88B4A",
-    textColor: "#ffffff",
-    headingFont: "serif",
-    bodyFont: "sans-serif",
-    borderRadius: 10,
-    bookImageSrc: "/book_partnership_charter.png",
-    contactLink: "https://www.partnershipcharter.com/book/",
-    barnesNobleLogo: "/logo_barnes_noble.png",
-    googlePlayLogo: "/logo_google_play.png",
-    amazonLogo: "/logo_amazon.png",
-    indieBoundLogo: "/logo_indie_bound.png",
-    audibleLogo: "/logo_audible.png",
-    invertLogos: false,
-  };
+};
+
+/**
+ * Default configuration for the Book Promo section
+ */
+export const defaultBookPromoConfig = {
+  backgroundColor: "#CE950F",
+  textColor: "#ffffff",
+  headingFont: "serif",
+  bodyFont: "sans-serif",
+  borderRadius: 16,
+  bookImageSrc: "https://bmc-neon.vercel.app/book_partnership_charter.png",
+  contactLink: "https://example.com/contact",
+  barnesNobleLogo: "https://bmc-neon.vercel.app/logo_barnes_noble.png",
+  googlePlayLogo: "https://bmc-neon.vercel.app/logo_google_play.png",
+  amazonLogo: "https://bmc-neon.vercel.app/logo_amazon.png",
+  indieBoundLogo: "https://bmc-neon.vercel.app/logo_indie_bound.png",
+  audibleLogo: "https://bmc-neon.vercel.app/logo_audible.png",
+  invertLogos: false,
+};

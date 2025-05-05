@@ -6,35 +6,51 @@
  */
 
 (function () {
-    // Get current script tag
-    const currentScript = document.currentScript;
-  
-    // Get configuration from data attributes
-    const config = {
-      backgroundColor: currentScript.getAttribute("data-background") || "#B88B4A",
-      textColor: currentScript.getAttribute("data-text-color") || "#ffffff",
-      headingFont: currentScript.getAttribute("data-heading-font") || "serif",
-      bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
-      borderRadius: currentScript.getAttribute("data-border-radius") || "10",
-      bookImageSrc: currentScript.getAttribute("data-book-image") || "/book_partnership_charter.png",
-      contactLink: currentScript.getAttribute("data-contact-link") || "https://www.partnershipcharter.com/book/",
-      barnesNobleLogo: currentScript.getAttribute("data-barnes-logo") || "/logo_barnes_noble.png",
-      googlePlayLogo: currentScript.getAttribute("data-google-logo") || "/logo_google_play.png",
-      amazonLogo: currentScript.getAttribute("data-amazon-logo") || "/logo_amazon.png",
-      indieBoundLogo: currentScript.getAttribute("data-indie-logo") || "/logo_indie_bound.png",
-      audibleLogo: currentScript.getAttribute("data-audible-logo") || "/logo_audible.png",
-      invertLogos: currentScript.getAttribute("data-invert-logos") === "true",
-    };
-  
-    // Create container element
-    const container = document.createElement("div");
-  
-    // Create shadow DOM for style isolation
-    const shadow = container.attachShadow({ mode: "open" });
-  
-    // Add styles
-    const style = document.createElement("style");
-    style.textContent = `
+  // Get current script tag
+  const currentScript = document.currentScript;
+
+  // Get configuration from data attributes
+
+  // In book-promo.js, update the config object:
+  const config = {
+    backgroundColor: currentScript.getAttribute("data-background") || "#CE950F",
+    textColor: currentScript.getAttribute("data-text-color") || "#ffffff",
+    headingFont: currentScript.getAttribute("data-heading-font") || "serif",
+    bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
+    borderRadius: currentScript.getAttribute("data-border-radius") || "16",
+    bookImageSrc:
+      currentScript.getAttribute("data-book-image") ||
+      "https://bmc-neon.vercel.app/book_partnership_charter.png",
+    contactLink:
+      currentScript.getAttribute("data-contact-link") ||
+      "https://example.com/contact",
+    barnesNobleLogo:
+      currentScript.getAttribute("data-barnes-logo") ||
+      "https://bmc-neon.vercel.app/logo_barnes_noble.png",
+    googlePlayLogo:
+      currentScript.getAttribute("data-google-logo") ||
+      "https://bmc-neon.vercel.app/logo_google_play.png",
+    amazonLogo:
+      currentScript.getAttribute("data-amazon-logo") ||
+      "https://bmc-neon.vercel.app/logo_amazon.png",
+    indieBoundLogo:
+      currentScript.getAttribute("data-indie-logo") ||
+      "https://bmc-neon.vercel.app/logo_indie_bound.png",
+    audibleLogo:
+      currentScript.getAttribute("data-audible-logo") ||
+      "https://bmc-neon.vercel.app/logo_audible.png",
+    invertLogos: currentScript.getAttribute("data-invert-logos") === "true",
+  };
+
+  // Create container element
+  const container = document.createElement("div");
+
+  // Create shadow DOM for style isolation
+  const shadow = container.attachShadow({ mode: "open" });
+
+  // Add styles
+  const style = document.createElement("style");
+  style.textContent = `
         .book-promo-container {
           background-color: ${config.backgroundColor};
           color: ${config.textColor};
@@ -108,7 +124,7 @@
           width: auto;
           max-width: 100%;
           object-fit: contain;
-          filter: ${config.invertLogos ? 'invert(1)' : 'none'};
+          filter: ${config.invertLogos ? "invert(1)" : "none"};
         }
     
         .contact-text {
@@ -169,11 +185,11 @@
           }
         }
       `;
-  
-    // Create content elements
-    const content = document.createElement("div");
-    content.classList.add("book-promo-container");
-    content.innerHTML = `
+
+  // Create content elements
+  const content = document.createElement("div");
+  content.classList.add("book-promo-container");
+  content.innerHTML = `
         <div class="book-promo-wrapper">
           <div class="book-promo-content">
             <h2 class="book-promo-heading">
@@ -220,11 +236,11 @@
           </div>
         </div>
       `;
-  
-    // Append style and content to shadow DOM
-    shadow.appendChild(style);
-    shadow.appendChild(content);
-  
-    // Replace script tag with our container
-    currentScript.parentNode.replaceChild(container, currentScript);
-  })();
+
+  // Append style and content to shadow DOM
+  shadow.appendChild(style);
+  shadow.appendChild(content);
+
+  // Replace script tag with our container
+  currentScript.parentNode.replaceChild(container, currentScript);
+})();
