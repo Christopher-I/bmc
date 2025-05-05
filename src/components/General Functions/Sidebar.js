@@ -22,6 +22,7 @@ const blocks = [
   { key: "assistanceLevels", label: "Partners Get Assistance" }, // Add new block
   { key: "threeSteps", label: "Three Steps to Partnership" }, // Add new block
   { key: "bookPromo", label: "Partnership Charter Book" },
+  { key: "testimonials", label: "Client Testimonials" },
 ];
 
 const Sidebar = ({ active, onSelect }) => {

@@ -37,6 +37,8 @@ import ThreeStepsPreview from "./components/ThreeSteps/ThreeStepsPreview";
 import ThreeStepsGenerator from "./components/ThreeSteps/ThreeStepsGenerator";
 import BookPromoPreview from "./components/BookPromo/BookPromoPreview";
 import BookPromoGenerator from "./components/BookPromo/BookPromoGenerator";
+import TestimonialsPreview from "./components/Testimonials/TestimonialsPreview";
+import TestimonialsGenerator from "./components/Testimonials/TestimonialsGenerator";
 
 const theme = createTheme({
   palette: {
@@ -59,6 +61,7 @@ const sectionTitles = {
   assistanceLevels: "Partners Get Assistance", // Add new section title
   threeSteps: "Three Steps to Partnership",
   bookPromo: "Partnership Charter Book",
+  testimonials: "Client Testimonials",
 };
 
 function App() {
@@ -80,6 +83,14 @@ function App() {
     bodyFont: "sans-serif",
     imageRadius: 8,
     imageSrc: "/assistance_levels_diagram.png",
+  });
+  const [testimonialsConfig, setTestimonialsConfig] = useState({
+    backgroundColor: "#2F475E",
+    textColor: "#ffffff",
+    headingFont: "serif",
+    bodyFont: "sans-serif",
+    testimonial1Image: "https://bmc-neon.vercel.app/testimonial1_photo.jpg",
+    testimonial2Image: "https://bmc-neon.vercel.app/testimonial2_photo.jpg",
   });
 
   const [bookPromoConfig, setBookPromoConfig] = useState({
@@ -464,6 +475,27 @@ function App() {
                 <BookPromoGenerator
                   config={bookPromoConfig}
                   onConfigChange={setBookPromoConfig}
+                />
+              </Box>
+            </Paper>
+          </>
+        );
+      case "testimonials":
+        return (
+          <>
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">
+                  Preview
+                </Typography>
+                <TestimonialsPreview config={testimonialsConfig} />
+              </Box>
+            </Paper>
+            <Paper elevation={3}>
+              <Box p={3}>
+                <TestimonialsGenerator
+                  config={testimonialsConfig}
+                  onConfigChange={setTestimonialsConfig}
                 />
               </Box>
             </Paper>
