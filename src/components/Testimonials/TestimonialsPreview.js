@@ -10,26 +10,26 @@ const TestimonialsPreview = ({ config }) => {
 
   const testimonials = [
     {
-      image: config.testimonial1Image,
       quote: `"We engaged BMC in a Partnership Charter (PC) process at a critical juncture in our firm's life. We needed more formal infrastructure and operating capabilities to meet increasing market demands. Thanks to the PC process and the expert help of our two Guides, we were able to crystallize our long-term vision and engage in dynamic conversations to align our personal styles, values, and strengths against reaching this vision. Our Charter clearly laid out the structures essential for our firm and gave the two of us a roadmap with milestones to track our progress as we became more successful and the firm grew. We are grateful for their partnership expertise, their guidance, and the high quality service they delivered throughout the process."`,
       author: "Amy Sue & Muriel Wilkins",
       title: "Managing Partners, Paravis Partners"
     },
     {
-      image: config.testimonial2Image,
       quote: `"We actually got pretty far along in developing the Charter, and in the process decided that our primary goals and vision weren't as aligned as we thought they were, and needed to be if we hoped to be successful. Through some open and honest dialog, we decided to keep our two companies separate and maintain a strategic relationship. While not exactly the result we'd hoped for, we both concluded it was an excellent result of the process and says a lot about how valuable it was.\n\nI've been singing the praises of the book and your PC process to everyone who will listen. It stopped me from making what could have been a huge mistake."`,
       author: "Samantha",
       title: "Austin, Texas"
     }
   ];
 
-  const handlePrevious = () => {
+  const handlePrevious = (e) => {
+    e.preventDefault();
     setCurrentTestimonial((prev) => 
       prev === 0 ? testimonials.length - 1 : prev - 1
     );
   };
 
-  const handleNext = () => {
+  const handleNext = (e) => {
+    e.preventDefault();
     setCurrentTestimonial((prev) => 
       prev === testimonials.length - 1 ? 0 : prev + 1
     );
@@ -59,8 +59,8 @@ const TestimonialsPreview = ({ config }) => {
           >
             <Box
               component="img"
-              src={currentData.image}
-              alt="Testimonial"
+              src={config.testimonialImage}
+              alt="Client testimonial"
               sx={{
                 width: '100%',
                 height: 'auto',

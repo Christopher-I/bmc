@@ -35,7 +35,7 @@ const TestimonialsGenerator = ({ config, onConfigChange }) => {
 
   return (
     <Box>
-      {/* <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
+      <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
         <Typography variant="h6" gutterBottom>
           Customize Testimonials Section
         </Typography>
@@ -104,31 +104,18 @@ const TestimonialsGenerator = ({ config, onConfigChange }) => {
  
           <Grid item xs={12}>
             <Typography variant="subtitle2" gutterBottom>
-              Testimonial 1 Image URL
+              Testimonial Image URL
             </Typography>
             <TextField
-              name="testimonial1Image"
-              value={config.testimonial1Image}
-              onChange={handleTextChange}
-              fullWidth
-              size="small"
-            />
-          </Grid>
-
-          <Grid item xs={12}>
-            <Typography variant="subtitle2" gutterBottom>
-              Testimonial 2 Image URL
-            </Typography>
-            <TextField
-              name="testimonial2Image"
-              value={config.testimonial2Image}
+              name="testimonialImage"
+              value={config.testimonialImage}
               onChange={handleTextChange}
               fullWidth
               size="small"
             />
           </Grid>
         </Grid>
-      </Paper> */}
+      </Paper>
 
       <Paper elevation={3} sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom>
