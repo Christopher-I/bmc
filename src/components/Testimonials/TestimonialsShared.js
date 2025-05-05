@@ -10,8 +10,8 @@
  * @returns {string} - Safe image URL
  */
 export const getSafeImageUrl = (imageSrc) => {
-  if (!imageSrc || imageSrc === "/testimonial_photo.jpeg") {
-    return "https://bmc-neon.vercel.app/testimonial_photo.jpeg";
+  if (!imageSrc || imageSrc === "/testimonial_photo.jpg") {
+    return "https://bmc-neon.vercel.app/testimonial_photo.jpg";
   }
   return imageSrc;
 };
@@ -218,70 +218,98 @@ export const generateTestimonialsHTML = (config) => {
         </div>
 
         <div class="testimonials-navigation">
-          <button class="nav-arrow" onclick="prevTestimonial(event)" id="prevButton">
+          <button class="nav-arrow" id="prevButton">
             <span class="arrow-icon">‹</span>
           </button>
-          <button class="nav-arrow" onclick="nextTestimonial(event)" id="nextButton">
+          <button class="nav-arrow" id="nextButton">
             <span class="arrow-icon">›</span>
           </button>
         </div>
       </div>
     </div>
+  `;
+};
 
-    <script>
-      let currentTestimonialIndex = 0;
-      let isTransitioning = false;
-      const testimonials = ${JSON.stringify(testimonials)};
+/**
+ * Generates the JavaScript code for the Testimonials component
+ * @param {Object} config - Configuration object with styling parameters
+ * @returns {string} - JavaScript code as a string
+ */
+export const generateTestimonialsJS = (config) => {
+  const testimonials = [
+    {
+      quote: `"We engaged BMC in a Partnership Charter (PC) process at a critical juncture in our firm's life. We needed more formal infrastructure and operating capabilities to meet increasing market demands. Thanks to the PC process and the expert help of our two Guides, we were able to crystallize our long-term vision and engage in dynamic conversations to align our personal styles, values, and strengths against reaching this vision. Our Charter clearly laid out the structures essential for our firm and gave the two of us a roadmap with milestones to track our progress as we became more successful and the firm grew. We are grateful for their partnership expertise, their guidance, and the high quality service they delivered throughout the process."`,
+      author: "Amy Sue & Muriel Wilkins",
+      title: "Managing Partners, Paravis Partners"
+    },
+    {
+      quote: `"We actually got pretty far along in developing the Charter, and in the process decided that our primary goals and vision weren't as aligned as we thought they were, and needed to be if we hoped to be successful. Through some open and honest dialog, we decided to keep our two companies separate and maintain a strategic relationship. While not exactly the result we'd hoped for, we both concluded it was an excellent result of the process and says a lot about how valuable it was.\n\nI've been singing the praises of the book and your PC process to everyone who will listen. It stopped me from making what could have been a huge mistake."`,
+      author: "Samantha",
+      title: "Austin, Texas"
+    }
+  ];
 
-      function updateTestimonial() {
-        const testimonial = testimonials[currentTestimonialIndex];
-        document.getElementById('testimonialQuote').textContent = testimonial.quote;
-        document.getElementById('testimonialAuthor').textContent = testimonial.author;
-        document.getElementById('testimonialTitle').textContent = testimonial.title;
-      }
+  return `
+    let currentTestimonialIndex = 0;
+    let isTransitioning = false;
+    const testimonials = ${JSON.stringify(testimonials)};
 
-      function transitionTestimonial(newIndex) {
-        if (isTransitioning) return;
+    function updateTestimonial() {
+      const testimonial = testimonials[currentTestimonialIndex];
+      const quote = shadow.getElementById('testimonialQuote');
+      const author = shadow.getElementById('testimonialAuthor');
+      const title = shadow.getElementById('testimonialTitle');
+      
+      quote.textContent = testimonial.quote;
+      author.textContent = testimonial.author;
+      title.textContent = testimonial.title;
+    }
+
+    function transitionTestimonial(newIndex) {
+      if (isTransitioning) return;
+      
+      isTransitioning = true;
+      const content = shadow.getElementById('testimonialContent');
+      const prevButton = shadow.getElementById('prevButton');
+      const nextButton = shadow.getElementById('nextButton');
+      
+      // Disable buttons
+      prevButton.disabled = true;
+      nextButton.disabled = true;
+      
+      // Fade out
+      content.classList.add('hidden');
+      
+      setTimeout(() => {
+        currentTestimonialIndex = newIndex;
+        updateTestimonial();
         
-        isTransitioning = true;
-        const content = document.getElementById('testimonialContent');
-        const prevButton = document.getElementById('prevButton');
-        const nextButton = document.getElementById('nextButton');
-        
-        // Disable buttons
-        prevButton.disabled = true;
-        nextButton.disabled = true;
-        
-        // Fade out
-        content.classList.add('hidden');
+        // Fade in
+        content.classList.remove('hidden');
         
         setTimeout(() => {
-          currentTestimonialIndex = newIndex;
-          updateTestimonial();
-          
-          // Fade in
-          content.classList.remove('hidden');
-          
-          setTimeout(() => {
-            isTransitioning = false;
-            prevButton.disabled = false;
-            nextButton.disabled = false;
-          }, 300);
+          isTransitioning = false;
+          prevButton.disabled = false;
+          nextButton.disabled = false;
         }, 300);
-      }
+      }, 300);
+    }
 
-      function prevTestimonial(event) {
-        event.preventDefault();
-        const newIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
-        transitionTestimonial(newIndex);
-      }
-
-      function nextTestimonial(event) {
-        event.preventDefault();
-        const newIndex = (currentTestimonialIndex + 1) % testimonials.length;
-        transitionTestimonial(newIndex);
-      }
-    </script>
+    // Add event listeners
+    const prevButton = shadow.getElementById('prevButton');
+    const nextButton = shadow.getElementById('nextButton');
+    
+    prevButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      const newIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
+      transitionTestimonial(newIndex);
+    });
+    
+    nextButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      const newIndex = (currentTestimonialIndex + 1) % testimonials.length;
+      transitionTestimonial(newIndex);
+    });
   `;
 };
 
@@ -315,6 +343,9 @@ export const generateTestimonialsEmbedCode = (config) => {
   shadow.appendChild(style);
   shadow.appendChild(content);
 
+  // Execute JavaScript
+  ${generateTestimonialsJS(mergedConfig)}
+
   document.currentScript.parentNode.replaceChild(container, document.currentScript);
 })();
 </script>`;
@@ -328,5 +359,5 @@ export const defaultTestimonialsConfig = {
   textColor: "#ffffff",
   headingFont: "serif",
   bodyFont: "sans-serif",
-  testimonialImage: "https://bmc-neon.vercel.app/testimonial_photo.jpeg",
+  testimonialImage: "https://bmc-neon.vercel.app/testimonial_photo.jpg",
 };

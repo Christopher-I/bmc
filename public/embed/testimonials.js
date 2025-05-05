@@ -15,7 +15,7 @@
     textColor: currentScript.getAttribute("data-text-color") || "#ffffff",
     headingFont: currentScript.getAttribute("data-heading-font") || "serif",
     bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
-    testimonialImage: currentScript.getAttribute("data-testimonial-image") || "https://bmc-neon.vercel.app/testimonial_photo.jpeg",
+    testimonialImage: currentScript.getAttribute("data-testimonial-image") || "https://bmc-neon.vercel.app/testimonial_photo.jpg",
   };
 
   // Create container element
@@ -219,10 +219,10 @@
           </div>
 
           <div class="testimonials-navigation">
-            <button class="nav-arrow" onclick="prevTestimonial(event)" id="prevButton">
+            <button class="nav-arrow" id="prevButton">
               <span class="arrow-icon">‹</span>
             </button>
-            <button class="nav-arrow" onclick="nextTestimonial(event)" id="nextButton">
+            <button class="nav-arrow" id="nextButton">
               <span class="arrow-icon">›</span>
             </button>
           </div>
@@ -230,67 +230,70 @@
       </div>
     `;
 
-  // JavaScript for carousel functionality
-  const script = document.createElement("script");
-  script.textContent = `
-      let currentTestimonialIndex = 0;
-      let isTransitioning = false;
-      const testimonials = ${JSON.stringify(testimonials)};
+  // Add JavaScript functionality directly (not as a script tag)
+  let currentTestimonialIndex = 0;
+  let isTransitioning = false;
 
-      function updateTestimonial() {
-        const testimonial = testimonials[currentTestimonialIndex];
-        document.getElementById('testimonialQuote').textContent = testimonial.quote;
-        document.getElementById('testimonialAuthor').textContent = testimonial.author;
-        document.getElementById('testimonialTitle').textContent = testimonial.title;
-      }
+  function updateTestimonial() {
+    const testimonial = testimonials[currentTestimonialIndex];
+    const quote = shadow.getElementById('testimonialQuote');
+    const author = shadow.getElementById('testimonialAuthor');
+    const title = shadow.getElementById('testimonialTitle');
+    
+    quote.textContent = testimonial.quote;
+    author.textContent = testimonial.author;
+    title.textContent = testimonial.title;
+  }
 
-      function transitionTestimonial(newIndex) {
-        if (isTransitioning) return;
-        
-        isTransitioning = true;
-        const content = document.getElementById('testimonialContent');
-        const prevButton = document.getElementById('prevButton');
-        const nextButton = document.getElementById('nextButton');
-        
-        // Disable buttons
-        prevButton.disabled = true;
-        nextButton.disabled = true;
-        
-        // Fade out
-        content.classList.add('hidden');
-        
-        setTimeout(() => {
-          currentTestimonialIndex = newIndex;
-          updateTestimonial();
-          
-          // Fade in
-          content.classList.remove('hidden');
-          
-          setTimeout(() => {
-            isTransitioning = false;
-            prevButton.disabled = false;
-            nextButton.disabled = false;
-          }, 300);
-        }, 300);
-      }
+  function transitionTestimonial(newIndex) {
+    if (isTransitioning) return;
+    
+    isTransitioning = true;
+    const content = shadow.getElementById('testimonialContent');
+    const prevButton = shadow.getElementById('prevButton');
+    const nextButton = shadow.getElementById('nextButton');
+    
+    // Disable buttons
+    prevButton.disabled = true;
+    nextButton.disabled = true;
+    
+    // Fade out
+    content.classList.add('hidden');
+    
+    setTimeout(() => {
+      currentTestimonialIndex = newIndex;
+      updateTestimonial();
+      
+      // Fade in
+      content.classList.remove('hidden');
+      
+      setTimeout(() => {
+        isTransitioning = false;
+        prevButton.disabled = false;
+        nextButton.disabled = false;
+      }, 300);
+    }, 300);
+  }
 
-      function prevTestimonial(event) {
-        event.preventDefault();
-        const newIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
-        transitionTestimonial(newIndex);
-      }
-
-      function nextTestimonial(event) {
-        event.preventDefault();
-        const newIndex = (currentTestimonialIndex + 1) % testimonials.length;
-        transitionTestimonial(newIndex);
-      }
-    `;
-
-  // Append style, content, and script to shadow DOM
+  // Append style and content to shadow DOM
   shadow.appendChild(style);
   shadow.appendChild(content);
-  shadow.appendChild(script);
+
+  // Add event listeners
+  const prevButton = shadow.getElementById('prevButton');
+  const nextButton = shadow.getElementById('nextButton');
+  
+  prevButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const newIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
+    transitionTestimonial(newIndex);
+  });
+  
+  nextButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const newIndex = (currentTestimonialIndex + 1) % testimonials.length;
+    transitionTestimonial(newIndex);
+  });
 
   // Replace script tag with our container
   currentScript.parentNode.replaceChild(container, currentScript);
