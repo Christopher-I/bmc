@@ -33,6 +33,8 @@ import DYPLicensedUserPreview from "./components/DYPLicensedUser/DYPLicensedUser
 import DYPLicensedUserGenerator from "./components/DYPLicensedUser/DYPLicensedUserGenerator";
 import AssistanceLevelsPreview from "./components/AssistanceLevels/AssistanceLevelsPreview";
 import AssistanceLevelsGenerator from "./components/AssistanceLevels/AssistanceLevelsGenerator";
+import ThreeStepsPreview from "./components/ThreeSteps/ThreeStepsPreview";
+import ThreeStepsGenerator from "./components/ThreeSteps/ThreeStepsGenerator";
 
 const theme = createTheme({
   palette: {
@@ -53,6 +55,7 @@ const sectionTitles = {
   dypTool: "The DYP Tool",
   dypLicensedUser: "DYP Licensed User",
   assistanceLevels: "Partners Get Assistance", // Add new section title
+  threeSteps: "Three Steps to Partnership",
 };
 
 function App() {
@@ -74,6 +77,20 @@ function App() {
     bodyFont: "sans-serif",
     imageRadius: 8,
     imageSrc: "/assistance_levels_diagram.png",
+  });
+  const [threeStepsConfig, setThreeStepsConfig] = useState({
+    backgroundColor: "#ffffff",
+    textColor: "#333333",
+    headingColor: "#333333",
+    cardBackgroundColor: "#E5E7EA", // Changed from "#f0f0f0"
+    stepBadgeColor: "#9FAEBF", //
+    stepBadgeTextColor: "#ffffff",
+    headingFont: "serif",
+    bodyFont: "sans-serif",
+    discoverIconSrc: "/step1.png", // Changed from "/icon_discover.png"
+    discussIconSrc: "/step2.png",
+    documentIconSrc: "/step3.png",
+    cardShadow: false,
   });
 
   const [PHCGConfig, setPHCGConfig] = useState({
@@ -384,6 +401,27 @@ function App() {
                 <AssistanceLevelsGenerator
                   config={assistanceLevelsConfig}
                   onConfigChange={setAssistanceLevelsConfig}
+                />
+              </Box>
+            </Paper>
+          </>
+        );
+      case "threeSteps":
+        return (
+          <>
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">
+                  Preview
+                </Typography>
+                <ThreeStepsPreview config={threeStepsConfig} />
+              </Box>
+            </Paper>
+            <Paper elevation={3}>
+              <Box p={3}>
+                <ThreeStepsGenerator
+                  config={threeStepsConfig}
+                  onConfigChange={setThreeStepsConfig}
                 />
               </Box>
             </Paper>

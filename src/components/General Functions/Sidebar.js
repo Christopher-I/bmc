@@ -20,6 +20,7 @@ const blocks = [
   { key: "dypTool", label: "The DYP Tool" },
   { key: "dypLicensedUser", label: "DYP Licensed User" },
   { key: "assistanceLevels", label: "Partners Get Assistance" }, // Add new block
+  { key: "threeSteps", label: "Three Steps to Partnership" }, // Add new block
 ];
 
 const Sidebar = ({ active, onSelect }) => {
