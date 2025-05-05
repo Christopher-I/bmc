@@ -89,7 +89,7 @@ function App() {
     textColor: "#ffffff",
     headingFont: "serif",
     bodyFont: "sans-serif",
-    testimonialImage: "https://bmc-neon.vercel.app/testimonial_photo.jpg", // Single image for all testimonials
+    testimonialImage: "https://bmc-neon.vercel.app/testimonial_photo.jpeg", // Single image for all testimonials
   });
 
   const [bookPromoConfig, setBookPromoConfig] = useState({

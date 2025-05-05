@@ -10,8 +10,8 @@
  * @returns {string} - Safe image URL
  */
 export const getSafeImageUrl = (imageSrc) => {
-  if (!imageSrc || imageSrc === "/testimonial_photo.jpg") {
-    return "https://bmc-neon.vercel.app/testimonial_photo.jpg";
+  if (!imageSrc || imageSrc === "/testimonial_photo.jpeg") {
+    return "https://bmc-neon.vercel.app/testimonial_photo.jpeg";
   }
   return imageSrc;
 };
@@ -80,6 +80,22 @@ export const generateTestimonialsStyles = (config) => {
       line-height: 1.2;
     }
 
+    .testimonials-content-wrapper {
+      min-height: 250px;
+      position: relative;
+    }
+
+    .testimonials-content-transition {
+      transition: all 0.3s ease-in-out;
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .testimonials-content-transition.hidden {
+      transform: translateX(20px);
+      opacity: 0;
+    }
+
     .testimonials-quote {
       font-size: 1rem;
       line-height: 1.8;
@@ -128,6 +144,12 @@ export const generateTestimonialsStyles = (config) => {
 
     .nav-arrow:focus {
       outline: none;
+    }
+
+    .nav-arrow:disabled {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.5);
+      cursor: not-allowed;
     }
 
     .arrow-icon {
@@ -186,15 +208,20 @@ export const generateTestimonialsHTML = (config) => {
       <div class="testimonials-content">
         <div class="testimonials-label">TESTIMONIALS</div>
         <h2 class="testimonials-heading">PC clients had this to say</h2>
-        <p class="testimonials-quote" id="testimonialQuote">${testimonials[0].quote}</p>
-        <div class="testimonials-author" id="testimonialAuthor">${testimonials[0].author}</div>
-        <div class="testimonials-title" id="testimonialTitle">${testimonials[0].title}</div>
+        
+        <div class="testimonials-content-wrapper">
+          <div class="testimonials-content-transition" id="testimonialContent">
+            <p class="testimonials-quote" id="testimonialQuote">${testimonials[0].quote}</p>
+            <div class="testimonials-author" id="testimonialAuthor">${testimonials[0].author}</div>
+            <div class="testimonials-title" id="testimonialTitle">${testimonials[0].title}</div>
+          </div>
+        </div>
 
         <div class="testimonials-navigation">
-          <button class="nav-arrow" onclick="prevTestimonial(event)">
+          <button class="nav-arrow" onclick="prevTestimonial(event)" id="prevButton">
             <span class="arrow-icon">‹</span>
           </button>
-          <button class="nav-arrow" onclick="nextTestimonial(event)">
+          <button class="nav-arrow" onclick="nextTestimonial(event)" id="nextButton">
             <span class="arrow-icon">›</span>
           </button>
         </div>
@@ -203,6 +230,7 @@ export const generateTestimonialsHTML = (config) => {
 
     <script>
       let currentTestimonialIndex = 0;
+      let isTransitioning = false;
       const testimonials = ${JSON.stringify(testimonials)};
 
       function updateTestimonial() {
@@ -212,16 +240,46 @@ export const generateTestimonialsHTML = (config) => {
         document.getElementById('testimonialTitle').textContent = testimonial.title;
       }
 
+      function transitionTestimonial(newIndex) {
+        if (isTransitioning) return;
+        
+        isTransitioning = true;
+        const content = document.getElementById('testimonialContent');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        
+        // Disable buttons
+        prevButton.disabled = true;
+        nextButton.disabled = true;
+        
+        // Fade out
+        content.classList.add('hidden');
+        
+        setTimeout(() => {
+          currentTestimonialIndex = newIndex;
+          updateTestimonial();
+          
+          // Fade in
+          content.classList.remove('hidden');
+          
+          setTimeout(() => {
+            isTransitioning = false;
+            prevButton.disabled = false;
+            nextButton.disabled = false;
+          }, 300);
+        }, 300);
+      }
+
       function prevTestimonial(event) {
         event.preventDefault();
-        currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
-        updateTestimonial();
+        const newIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
+        transitionTestimonial(newIndex);
       }
 
       function nextTestimonial(event) {
         event.preventDefault();
-        currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
-        updateTestimonial();
+        const newIndex = (currentTestimonialIndex + 1) % testimonials.length;
+        transitionTestimonial(newIndex);
       }
     </script>
   `;
@@ -270,5 +328,5 @@ export const defaultTestimonialsConfig = {
   textColor: "#ffffff",
   headingFont: "serif",
   bodyFont: "sans-serif",
-  testimonialImage: "https://bmc-neon.vercel.app/testimonial_photo.jpg",
+  testimonialImage: "https://bmc-neon.vercel.app/testimonial_photo.jpeg",
 };

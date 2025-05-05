@@ -7,6 +7,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const TestimonialsPreview = ({ config }) => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const testimonials = [
     {
@@ -23,16 +24,28 @@ const TestimonialsPreview = ({ config }) => {
 
   const handlePrevious = (e) => {
     e.preventDefault();
-    setCurrentTestimonial((prev) => 
-      prev === 0 ? testimonials.length - 1 : prev - 1
-    );
+    if (isTransitioning) return;
+    
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentTestimonial((prev) => 
+        prev === 0 ? testimonials.length - 1 : prev - 1
+      );
+      setIsTransitioning(false);
+    }, 300);
   };
 
   const handleNext = (e) => {
     e.preventDefault();
-    setCurrentTestimonial((prev) => 
-      prev === testimonials.length - 1 ? 0 : prev + 1
-    );
+    if (isTransitioning) return;
+    
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentTestimonial((prev) => 
+        prev === testimonials.length - 1 ? 0 : prev + 1
+      );
+      setIsTransitioning(false);
+    }, 300);
   };
 
   const currentData = testimonials[currentTestimonial];
@@ -97,42 +110,53 @@ const TestimonialsPreview = ({ config }) => {
             PC clients had this to say
           </Typography>
 
-          <Typography
-            variant="body1"
+          <Box
             sx={{
-              mb: 4,
-              fontSize: '1rem',
-              lineHeight: 1.8,
-              whiteSpace: 'pre-line',
-              fontStyle: 'italic'
+              position: 'relative',
+              minHeight: '250px', // Fixed height to prevent content shift
+              transition: 'all 0.3s ease-in-out',
+              opacity: isTransitioning ? 0 : 1,
+              transform: isTransitioning ? 'translateX(20px)' : 'translateX(0)',
             }}
           >
-            {currentData.quote}
-          </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                mb: 4,
+                fontSize: '1rem',
+                lineHeight: 1.8,
+                whiteSpace: 'pre-line',
+                fontStyle: 'italic'
+              }}
+            >
+              {currentData.quote}
+            </Typography>
 
-          <Typography
-            variant="subtitle1"
-            sx={{
-              fontWeight: 'bold',
-              mb: 0.5,
-              fontSize: '1.125rem'
-            }}
-          >
-            {currentData.author}
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              fontSize: '1rem',
-              opacity: 0.9
-            }}
-          >
-            {currentData.title}
-          </Typography>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                fontWeight: 'bold',
+                mb: 0.5,
+                fontSize: '1.125rem'
+              }}
+            >
+              {currentData.author}
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                fontSize: '1rem',
+                opacity: 0.9
+              }}
+            >
+              {currentData.title}
+            </Typography>
+          </Box>
 
           <Box sx={{ mt: 6, display: 'flex', gap: 2 }}>
             <IconButton
               onClick={handlePrevious}
+              disabled={isTransitioning}
               sx={{
                 backgroundColor: 'rgba(255, 255, 255, 0.1)',
                 color: '#ffffff',
@@ -140,6 +164,10 @@ const TestimonialsPreview = ({ config }) => {
                 height: 48,
                 '&:hover': {
                   backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                },
+                '&:disabled': {
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  color: 'rgba(255, 255, 255, 0.5)',
                 }
               }}
             >
@@ -147,6 +175,7 @@ const TestimonialsPreview = ({ config }) => {
             </IconButton>
             <IconButton
               onClick={handleNext}
+              disabled={isTransitioning}
               sx={{
                 backgroundColor: 'rgba(255, 255, 255, 0.1)',
                 color: '#ffffff',
@@ -154,6 +183,10 @@ const TestimonialsPreview = ({ config }) => {
                 height: 48,
                 '&:hover': {
                   backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                },
+                '&:disabled': {
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  color: 'rgba(255, 255, 255, 0.5)',
                 }
               }}
             >
