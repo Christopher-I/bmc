@@ -21,6 +21,7 @@ const blocks = [
   { key: "dypLicensedUser", label: "DYP Licensed User" },
   { key: "assistanceLevels", label: "Partners Get Assistance" }, // Add new block
   { key: "threeSteps", label: "Three Steps to Partnership" }, // Add new block
+  { key: "bookPromo", label: "Partnership Charter Book" },
 ];
 
 const Sidebar = ({ active, onSelect }) => {
@@ -50,11 +51,13 @@ const Sidebar = ({ active, onSelect }) => {
         <Divider sx={{ mb: 2 }} />
       </Box>
 
-      <Box sx={{ 
-        overflowY: "auto", // Enable vertical scrolling
-        flexGrow: 1, // Take remaining space
-        pb: 2 // Add some padding at the bottom
-      }}>
+      <Box
+        sx={{
+          overflowY: "auto", // Enable vertical scrolling
+          flexGrow: 1, // Take remaining space
+          pb: 2, // Add some padding at the bottom
+        }}
+      >
         <List>
           {blocks.map((block) => (
             <ListItemButton

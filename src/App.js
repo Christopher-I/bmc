@@ -35,6 +35,8 @@ import AssistanceLevelsPreview from "./components/AssistanceLevels/AssistanceLev
 import AssistanceLevelsGenerator from "./components/AssistanceLevels/AssistanceLevelsGenerator";
 import ThreeStepsPreview from "./components/ThreeSteps/ThreeStepsPreview";
 import ThreeStepsGenerator from "./components/ThreeSteps/ThreeStepsGenerator";
+import BookPromoPreview from "./components/BookPromo/BookPromoPreview";
+import BookPromoGenerator from "./components/BookPromo/BookPromoGenerator";
 
 const theme = createTheme({
   palette: {
@@ -56,6 +58,7 @@ const sectionTitles = {
   dypLicensedUser: "DYP Licensed User",
   assistanceLevels: "Partners Get Assistance", // Add new section title
   threeSteps: "Three Steps to Partnership",
+  bookPromo: "Partnership Charter Book",
 };
 
 function App() {
@@ -77,6 +80,22 @@ function App() {
     bodyFont: "sans-serif",
     imageRadius: 8,
     imageSrc: "/assistance_levels_diagram.png",
+  });
+
+  const [bookPromoConfig, setBookPromoConfig] = useState({
+    backgroundColor: "#CE950F", 
+    textColor: "#ffffff",
+    headingFont: "serif",
+    bodyFont: "sans-serif",
+    borderRadius: 10,
+    bookImageSrc: "/book_partnership_charter.png",
+    contactLink: "https://www.partnershipcharter.com/book",
+    barnesNobleLogo: "/logo_barnes_noble.png",
+    googlePlayLogo: "/logo_google_play.png",
+    amazonLogo: "/logo_amazon.png",
+    indieBoundLogo: "/logo_indie_bound.png",
+    audibleLogo: "/logo_audible.png",
+    invertLogos: false,
   });
 
   // In App.js, update the threeStepsConfig initial state:
@@ -424,6 +443,27 @@ function App() {
                 <ThreeStepsGenerator
                   config={threeStepsConfig}
                   onConfigChange={setThreeStepsConfig}
+                />
+              </Box>
+            </Paper>
+          </>
+        );
+      case "bookPromo":
+        return (
+          <>
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">
+                  Preview
+                </Typography>
+                <BookPromoPreview config={bookPromoConfig} />
+              </Box>
+            </Paper>
+            <Paper elevation={3}>
+              <Box p={3}>
+                <BookPromoGenerator
+                  config={bookPromoConfig}
+                  onConfigChange={setBookPromoConfig}
                 />
               </Box>
             </Paper>
