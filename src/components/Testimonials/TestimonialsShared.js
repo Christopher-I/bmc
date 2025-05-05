@@ -13,8 +13,8 @@
 
 // Update the getSafeImageUrl function:
 export const getSafeImageUrl = (imageSrc, testimonialNumber) => {
-  if (!imageSrc || imageSrc === `/testimonial${testimonialNumber}_photo.jpg`) {
-    return `https://bmc-neon.vercel.app/testimonial${testimonialNumber}_photo.jpg`;
+  if (!imageSrc || imageSrc === `/testimonial${testimonialNumber}_photo.jpeg`) {
+    return `https://bmc-neon.vercel.app/testimonial${testimonialNumber}_photo.jpeg`;
   }
   return imageSrc;
 };
@@ -277,6 +277,6 @@ export const defaultTestimonialsConfig = {
   textColor: "#ffffff",
   headingFont: "serif",
   bodyFont: "sans-serif",
-  testimonial1Image: "https://bmc-neon.vercel.app/testimonial1_photo.jpg",
-  testimonial2Image: "https://bmc-neon.vercel.app/testimonial2_photo.jpg",
+  testimonial1Image: "https://bmc-neon.vercel.app/testimonial1_photo.jpeg",
+  testimonial2Image: "https://bmc-neon.vercel.app/testimonial2_photo.jpeg",
 };
