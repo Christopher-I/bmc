@@ -41,7 +41,7 @@ const ThreeStepsGenerator = ({ config, onConfigChange }) => {
 
   return (
     <Box>
-      <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
+      {/* <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
         <Typography variant="h6" gutterBottom>
           Customize Three Steps Section
         </Typography>
@@ -202,7 +202,7 @@ const ThreeStepsGenerator = ({ config, onConfigChange }) => {
             />
           </Grid>
         </Grid>
-      </Paper>
+      </Paper> */}
 
       <Paper elevation={3} sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom>

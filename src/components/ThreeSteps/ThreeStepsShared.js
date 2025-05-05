@@ -12,10 +12,10 @@
  */
 export const getSafeIconUrl = (iconSrc, iconName) => {
   const stepNumber = iconName === "discover" ? "1" : iconName === "discuss" ? "2" : "3";
-  const defaultUrl = `/step${stepNumber}.png`;
   
-  if (!iconSrc || iconSrc === defaultUrl) {
-    return defaultUrl;
+  // If no source provided or using default local path, use hosted version
+  if (!iconSrc || iconSrc === `/step${stepNumber}.png`) {
+    return `https://bmc-neon.vercel.app/step${stepNumber}.png`; // Fallback to hosted images
   }
   return iconSrc;
 };
@@ -238,8 +238,8 @@ export const defaultThreeStepsConfig = {
   stepBadgeTextColor: "#ffffff",
   headingFont: "serif",
   bodyFont: "sans-serif",
-  discoverIconSrc: "/step1.png",
-  discussIconSrc: "/step2.png",
-  documentIconSrc: "/step3.png",
+  discoverIconSrc: "https://bmc-neon.vercel.app/step1.png", // Use hosted images
+  discussIconSrc: "https://bmc-neon.vercel.app/step2.png",  
+  documentIconSrc: "https://bmc-neon.vercel.app/step3.png",
   cardShadow: false,
 };

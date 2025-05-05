@@ -78,18 +78,20 @@ function App() {
     imageRadius: 8,
     imageSrc: "/assistance_levels_diagram.png",
   });
+
+  // In App.js, update the threeStepsConfig initial state:
   const [threeStepsConfig, setThreeStepsConfig] = useState({
     backgroundColor: "#ffffff",
     textColor: "#333333",
     headingColor: "#333333",
-    cardBackgroundColor: "#E5E7EA", // Changed from "#f0f0f0"
-    stepBadgeColor: "#9FAEBF", //
+    cardBackgroundColor: "#E5E7EA",
+    stepBadgeColor: "#ABB9C7",
     stepBadgeTextColor: "#ffffff",
     headingFont: "serif",
     bodyFont: "sans-serif",
-    discoverIconSrc: "/step1.png", // Changed from "/icon_discover.png"
-    discussIconSrc: "/step2.png",
-    documentIconSrc: "/step3.png",
+    discoverIconSrc: "https://bmc-neon.vercel.app/step1.png", // Use hosted images
+    discussIconSrc: "https://bmc-neon.vercel.app/step2.png",
+    documentIconSrc: "https://bmc-neon.vercel.app/step3.png",
     cardShadow: false,
   });
 

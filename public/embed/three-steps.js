@@ -14,15 +14,25 @@
     backgroundColor: currentScript.getAttribute("data-background") || "#ffffff",
     textColor: currentScript.getAttribute("data-text-color") || "#333333",
     headingColor: currentScript.getAttribute("data-heading-color") || "#333333",
-    cardBackgroundColor: currentScript.getAttribute("data-card-background") || "#E5E7EA",
+    cardBackgroundColor:
+      currentScript.getAttribute("data-card-background") || "#E5E7EA",
     stepBadgeColor: currentScript.getAttribute("data-badge-color") || "#ABB9C7",
-    stepBadgeTextColor: currentScript.getAttribute("data-badge-text-color") || "#ffffff",
+    stepBadgeTextColor:
+      currentScript.getAttribute("data-badge-text-color") || "#ffffff",
     headingFont: currentScript.getAttribute("data-heading-font") || "serif",
     bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
-    discoverIconSrc: currentScript.getAttribute("data-discover-icon") || "/step1.png",
-    discussIconSrc: currentScript.getAttribute("data-discuss-icon") || "/step2.png",
-    documentIconSrc: currentScript.getAttribute("data-document-icon") || "/step3.png",
     cardShadow: currentScript.getAttribute("data-card-shadow") === "true",
+    discoverIconSrc:
+      currentScript.getAttribute("data-discover-icon") ||
+      "https://bmc-neon.vercel.app/step1.png",
+
+    discussIconSrc:
+      currentScript.getAttribute("data-discuss-icon") ||
+      "https://bmc-neon.vercel.app/step2.png",
+
+    documentIconSrc:
+      currentScript.getAttribute("data-document-icon") ||
+      "https://bmc-neon.vercel.app/step3.png",
   };
 
   // Define the steps data
@@ -30,18 +40,21 @@
     {
       number: "1",
       title: "Discover",
-      content: "The PC Workbook is like a short course in partnerships. It touches every critical topic and on their own partners discover the issues and enter their thoughts – the first step in designing a healthy, resilient partnership."
+      content:
+        "The PC Workbook is like a short course in partnerships. It touches every critical topic and on their own partners discover the issues and enter their thoughts – the first step in designing a healthy, resilient partnership.",
     },
     {
       number: "2",
       title: "Discuss",
-      content: "Going back and forth – sharing and listening – each partner reveals their thoughts about what's important to them. They creatively discover what works for them and build a foundation based on everyone's ideas."
+      content:
+        "Going back and forth – sharing and listening – each partner reveals their thoughts about what's important to them. They creatively discover what works for them and build a foundation based on everyone's ideas.",
     },
     {
       number: "3",
       title: "Document",
-      content: "The partners' Guides edit what was generated in the Joint Meetings. The platform helps draft a 70-100 page Charter that memorializes the partners' understandings, commitments and agreements."
-    }
+      content:
+        "The partners' Guides edit what was generated in the Joint Meetings. The platform helps draft a 70-100 page Charter that memorializes the partners' understandings, commitments and agreements.",
+    },
   ];
 
   // Create container element
@@ -168,7 +181,9 @@
         <h2 class="three-steps-heading">Design any complex partnership in 3 simple steps using the Charter process</h2>
         
         <div class="three-steps-grid">
-          ${steps.map((step, index) => `
+          ${steps
+            .map(
+              (step, index) => `
             <div class="step-card">
               <div>
                 <span class="step-badge">STEP ${step.number}</span>
@@ -182,13 +197,17 @@
               
               <div class="step-icon-container">
                 <img class="step-icon" src="${
-                  index === 0 ? config.discoverIconSrc : 
-                  index === 1 ? config.discussIconSrc : 
-                  config.documentIconSrc
+                  index === 0
+                    ? config.discoverIconSrc
+                    : index === 1
+                    ? config.discussIconSrc
+                    : config.documentIconSrc
                 }" alt="${step.title} icon">
               </div>
             </div>
-          `).join('')}
+          `
+            )
+            .join("")}
         </div>
       </div>
     `;
