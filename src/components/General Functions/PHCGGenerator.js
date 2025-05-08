@@ -386,9 +386,9 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
 
       {/* Action Buttons */}
       <Box sx={{ mt: 3, display: "flex", justifyContent: "flex-end", gap: 2 }}>
-        <Button variant="outlined" onClick={resetToDefaults}>
+        {/* <Button variant="outlined" onClick={resetToDefaults}>
           Reset to Defaults
-        </Button>
+        </Button> */}
         <Button
           variant="contained"
           color="primary"
