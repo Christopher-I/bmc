@@ -1,0 +1,118 @@
+/* Charter Types Block Styles */
+:host {
+    display: block;
+    box-sizing: border-box;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --heading-color: #1e3553;
+    --heading-font: serif;
+    --body-font: sans-serif;
+  }
+  
+  .charter-types-container {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--body-font);
+    padding: 2rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  .charter-types-heading {
+    font-family: var(--heading-font);
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+    color: var(--heading-color);
+    font-weight: bold;
+  }
+  
+  .charter-types-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  @media (min-width: 768px) {
+    .charter-types-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .accordion {
+    position: relative;
+    margin-bottom: 1rem;
+    background-color: #1C436A;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    color: #ffffff;
+    height: auto;
+    align-self: start;
+  }
+  
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    justify-content: space-between;
+    transition: background-color 0.3s ease;
+  }
+  
+  .accordion-title-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .accordion-icon-container {
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+  }
+  
+  .accordion-title {
+    font-weight: bold;
+    font-size: 1.3rem;
+    font-family: var(--heading-font);
+    margin: 0;
+    text-align: left;
+  }
+  
+  .accordion-icon {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(45deg);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .accordion.active .accordion-icon {
+    transform: rotate(225deg); /* Rotates clockwise to point up when open */
+  }
+  
+  .accordion-content {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease-out;
+    text-align: left;
+  }
+  
+  .accordion-content-inner {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+  
+  .accordion-content-inner p {
+    line-height: 1.6;
+    font-size: 1rem;
+  }
