@@ -56,6 +56,8 @@ export const getSafeImageUrl = (src, type) => {
  * @param {Object} config - Configuration object with styling parameters
  * @returns {string} - CSS styles as a string
  */
+// Updated generateBookPromoStyles function in BookPromoShared.js
+
 export const generateBookPromoStyles = (config) => {
   return `
       .book-promo-container {
@@ -64,6 +66,8 @@ export const generateBookPromoStyles = (config) => {
         font-family: ${config.bodyFont || "sans-serif"};
         padding: 3rem 2rem;
         border-radius: ${config.borderRadius || 10}px;
+        margin-top: ${config.marginTop || 0}px; /* Added margin top */
+        margin-bottom: ${config.marginBottom || 0}px; /* Added margin bottom */
         max-width: 100%;
         box-sizing: border-box;
       }

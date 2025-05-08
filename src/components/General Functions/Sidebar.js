@@ -11,18 +11,19 @@ import {
 const blocks = [
   { key: "introduction", label: "Introduction & Guide" },
   { key: "PHCG", label: "About PHCG" },
-  { key: "pcProcess", label: "PC Process" },
-  { key: "partners", label: "Partners Benefits" },
   { key: "charter", label: "What is a PC?" },
   { key: "charterTypes", label: "Who Should Develop a Charter" },
-  { key: "dypAdvantages", label: "DYP Advantages" },
-  { key: "sliversOfAmbiguity", label: "Slivers of Ambiguity" },
-  { key: "dypTool", label: "The DYP Tool" },
-  { key: "dypLicensedUser", label: "DYP Licensed User" },
-  { key: "assistanceLevels", label: "Partners Get Assistance" }, // Add new block
   { key: "threeSteps", label: "Three Steps to Partnership" }, // Add new block
+  { key: "dypTool", label: "The DYP Tool" },
+  { key: "partners", label: "Partners Benefits" },
+  { key: "pcProcess", label: "PC Process" },
+  { key: "dypAdvantages", label: "DYP Advantages" },
+  { key: "assistanceLevels", label: "Partners Get Assistance" }, // Add new block
   { key: "bookPromo", label: "Partnership Charter Book" },
   { key: "testimonials", label: "Client Testimonials" },
+  { key: "sliversOfAmbiguity", label: "Slivers of Ambiguity" },
+  { key: "dypLicensedUser", label: "DYP Licensed User" },
+  { key: "fullPagePreview", label: "Full Page Preview" },
 ];
 
 const Sidebar = ({ active, onSelect }) => {

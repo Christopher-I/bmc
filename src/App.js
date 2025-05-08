@@ -11,57 +11,118 @@ import {
 } from "@mui/material";
 
 import Sidebar from "./components/General Functions/Sidebar";
+import AppIntroduction from "./components/General Functions/AppIntroduction";
 import PreviewPanel from "./components/General Functions/PreviewPanel";
-import SliversOfAmbiguityGenerator from "./components/SliversOfAmbiguity/SliversGenerator";
-import CodeGenerator from "./components/General Functions/CodeGenerator";
-import PCProcessPreview from "./components/PCProcess/PCProcessPreview";
-import PCProcessGenerator from "./components/PCProcess/PCProcessGenerator";
-import PartnersBenefitsPreview from "./components/PartnerBenefits/PartnersBenefitsPreview";
-import PartnersBenefitsGenerator from "./components/PartnerBenefits/PartnersBenefitsGenerator";
+import PHCGGenerator from "./components/General Functions/PHCGGenerator";
 import CharterSectionPreview from "./components/CharterSection/CharterSectionPreview";
 import CharterSectionGenerator from "./components/CharterSection/CharterSectionGenerator";
 import CharterTypesPreview from "./components/CharterTypes/CharterTypesPreview";
 import CharterTypesGenerator from "./components/CharterTypes/CharterTypesGenerator";
-import DYPAdvantagesPreview from "./components/DYPAdvantages/DYPAdvantagesPreview";
-import AppIntroduction from "./components/General Functions/AppIntroduction";
-import DYPAdvantagesGenerator from "./components/DYPAdvantages/DYPAdvantagesGenerator";
-import SliversOfAmbiguityPreview from "./components/SliversOfAmbiguity/SliversPreview";
-import DYPToolPreview from "./components/DYPTool/DYPToolPreview";
-import DYPToolGenerator from "./components/DYPTool/DYPToolGenerator";
-// Import the new DYP Licensed User components
-import DYPLicensedUserPreview from "./components/DYPLicensedUser/DYPLicensedUserPreview";
-import DYPLicensedUserGenerator from "./components/DYPLicensedUser/DYPLicensedUserGenerator";
-import AssistanceLevelsPreview from "./components/AssistanceLevels/AssistanceLevelsPreview";
-import AssistanceLevelsGenerator from "./components/AssistanceLevels/AssistanceLevelsGenerator";
 import ThreeStepsPreview from "./components/ThreeSteps/ThreeStepsPreview";
 import ThreeStepsGenerator from "./components/ThreeSteps/ThreeStepsGenerator";
+import DYPToolPreview from "./components/DYPTool/DYPToolPreview";
+import DYPToolGenerator from "./components/DYPTool/DYPToolGenerator";
+import PartnersBenefitsPreview from "./components/PartnerBenefits/PartnersBenefitsPreview";
+import PartnersBenefitsGenerator from "./components/PartnerBenefits/PartnersBenefitsGenerator";
+import PCProcessPreview from "./components/PCProcess/PCProcessPreview";
+import PCProcessGenerator from "./components/PCProcess/PCProcessGenerator";
+import DYPAdvantagesPreview from "./components/DYPAdvantages/DYPAdvantagesPreview";
+import DYPAdvantagesGenerator from "./components/DYPAdvantages/DYPAdvantagesGenerator";
+import AssistanceLevelsPreview from "./components/AssistanceLevels/AssistanceLevelsPreview";
+import AssistanceLevelsGenerator from "./components/AssistanceLevels/AssistanceLevelsGenerator";
 import BookPromoPreview from "./components/BookPromo/BookPromoPreview";
 import BookPromoGenerator from "./components/BookPromo/BookPromoGenerator";
 import TestimonialsPreview from "./components/Testimonials/TestimonialsPreview";
 import TestimonialsGenerator from "./components/Testimonials/TestimonialsGenerator";
+import SliversOfAmbiguityPreview from "./components/SliversOfAmbiguity/SliversPreview";
+import SliversOfAmbiguityGenerator from "./components/SliversOfAmbiguity/SliversGenerator";
+import DYPLicensedUserPreview from "./components/DYPLicensedUser/DYPLicensedUserPreview";
+import DYPLicensedUserGenerator from "./components/DYPLicensedUser/DYPLicensedUserGenerator";
+import FullPagePreview from "./components/FullPagePreview/FullPagePreview";
 
+// Define shared styling constants for the entire application
+const STYLE_CONSTANTS = {
+  // Brand colors
+  primaryBlue: "#1C436A",
+  primaryYellow: "#CE950F",
+  white: "#ffffff",
+  lightGray: "#f5f7fa",
+  darkText: "#333333",
+
+  // Fonts
+  headingFont: "serif",
+  bodyFont: "sans-serif",
+
+  // Common styling values
+  borderRadius: 4,
+  imageRadius: 8,
+  transitionSpeed: 0.3,
+
+  // Common spacing
+  defaultMargin: 20,
+};
+
+// Create theme using the styling constants
 const theme = createTheme({
   palette: {
-    primary: { main: "#1976d2" },
-    secondary: { main: "#e67e22" },
+    primary: { main: STYLE_CONSTANTS.primaryBlue },
+    secondary: { main: STYLE_CONSTANTS.primaryYellow },
+  },
+  typography: {
+    fontFamily: STYLE_CONSTANTS.bodyFont,
+    h1: { fontFamily: STYLE_CONSTANTS.headingFont },
+    h2: { fontFamily: STYLE_CONSTANTS.headingFont },
+    h3: { fontFamily: STYLE_CONSTANTS.headingFont },
+    h4: { fontFamily: STYLE_CONSTANTS.headingFont },
+    h5: { fontFamily: STYLE_CONSTANTS.headingFont },
+    h6: { fontFamily: STYLE_CONSTANTS.headingFont },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: STYLE_CONSTANTS.borderRadius,
+        },
+        containedPrimary: {
+          backgroundColor: STYLE_CONSTANTS.primaryBlue,
+          "&:hover": {
+            backgroundColor: "#16365A", // Slightly darker blue on hover
+          },
+        },
+        containedSecondary: {
+          backgroundColor: STYLE_CONSTANTS.primaryYellow,
+          "&:hover": {
+            backgroundColor: "#B5850D", // Slightly darker yellow on hover
+          },
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: STYLE_CONSTANTS.borderRadius,
+        },
+      },
+    },
   },
 });
 
 const sectionTitles = {
   introduction: "Introduction & Guide",
   PHCG: "About Post-haste Consulting Group (PHCG)",
-  pcProcess: "PC Process block",
-  partners: "Partners Benefits Block",
   charter: "What is a PC?",
   charterTypes: "Who Should Develop a Charter?",
-  dypAdvantages: "DYP Advantages",
-  sliversOfAmbiguity: "Slivers of Ambiguity",
-  dypTool: "The DYP Tool",
-  dypLicensedUser: "DYP Licensed User",
-  assistanceLevels: "Partners Get Assistance", // Add new section title
   threeSteps: "Three Steps to Partnership",
+  dypTool: "The DYP Tool",
+  partners: "Partners Benefits Block",
+  pcProcess: "PC Process block",
+  dypAdvantages: "DYP Advantages",
+  assistanceLevels: "Partners Get Assistance",
   bookPromo: "Partnership Charter Book",
   testimonials: "Client Testimonials",
+  sliversOfAmbiguity: "Slivers of Ambiguity",
+  dypLicensedUser: "DYP Licensed User",
+  fullPagePreview: "Full Page Preview",
 };
 
 function App() {
@@ -74,30 +135,130 @@ function App() {
     localStorage.setItem("activeSection", activeSection);
   }, [activeSection]);
 
-  const [assistanceLevelsConfig, setAssistanceLevelsConfig] = useState({
-    backgroundColor: "#ffffff",
-    textColor: "#333333",
-    headingColor: "#333333",
-    accentColor: "#0066B2",
-    headingFont: "serif",
-    bodyFont: "sans-serif",
-    imageRadius: 8,
-    imageSrc: "/assistance_levels_diagram.png",
-  });
-  const [testimonialsConfig, setTestimonialsConfig] = useState({
-    backgroundColor: "#2F475E",
-    textColor: "#ffffff",
-    headingFont: "serif",
-    bodyFont: "sans-serif",
-    testimonialImage: "https://bmc-neon.vercel.app/testimonial_photo.jpeg", // Single image for all testimonials
+  // Introduction - No config needed
+
+  // About PHCG
+  const [PHCGConfig, setPHCGConfig] = useState({
+    backgroundColor: STYLE_CONSTANTS.primaryBlue,
+    textColor: STYLE_CONSTANTS.white,
+    headingFont: STYLE_CONSTANTS.headingFont,
+    bodyFont: STYLE_CONSTANTS.bodyFont,
+    buttonColor: STYLE_CONSTANTS.primaryYellow,
+    buttonText: "More About Post-haste Consulting Group (PHCG)",
+    buttonRadius: STYLE_CONSTANTS.borderRadius,
   });
 
+  // What is a PC?
+  const [charterConfig, setCharterConfig] = useState({
+    backgroundColor: STYLE_CONSTANTS.primaryBlue,
+    textColor: STYLE_CONSTANTS.white,
+    headingColor: STYLE_CONSTANTS.white,
+    accentColor: STYLE_CONSTANTS.primaryYellow,
+    headingFont: STYLE_CONSTANTS.headingFont,
+    bodyFont: STYLE_CONSTANTS.bodyFont,
+    logoSrc: "/tpci_logo.svg",
+    imageSrc: "/chartersection_computer.jpg",
+  });
+
+  // Who Should Develop a Charter?
+  const [charterTypesConfig, setCharterTypesConfig] = useState({
+    backgroundColor: STYLE_CONSTANTS.white,
+    textColor: STYLE_CONSTANTS.darkText,
+    headingColor: STYLE_CONSTANTS.primaryBlue,
+    headingFont: STYLE_CONSTANTS.headingFont,
+    bodyFont: STYLE_CONSTANTS.bodyFont,
+  });
+
+  // Three Steps to Partnership
+  const [threeStepsConfig, setThreeStepsConfig] = useState({
+    backgroundColor: STYLE_CONSTANTS.white,
+    textColor: STYLE_CONSTANTS.darkText,
+    headingColor: STYLE_CONSTANTS.primaryBlue,
+    cardBackgroundColor: "#E5E7EA",
+    stepBadgeColor: STYLE_CONSTANTS.primaryBlue,
+    stepBadgeTextColor: STYLE_CONSTANTS.white,
+    headingFont: STYLE_CONSTANTS.headingFont,
+    bodyFont: STYLE_CONSTANTS.bodyFont,
+    discoverIconSrc: "https://bmc-neon.vercel.app/step1.png",
+    discussIconSrc: "https://bmc-neon.vercel.app/step2.png",
+    documentIconSrc: "https://bmc-neon.vercel.app/step3.png",
+    cardShadow: false,
+  });
+
+  // The DYP Tool
+  const [dypToolConfig, setDypToolConfig] = useState({
+    backgroundColor: STYLE_CONSTANTS.lightGray,
+    textColor: STYLE_CONSTANTS.darkText,
+    headingColor: STYLE_CONSTANTS.primaryBlue,
+    headingFont: STYLE_CONSTANTS.headingFont,
+    bodyFont: STYLE_CONSTANTS.bodyFont,
+    imageSrc: "/dyp_tool.png",
+    imageRadius: STYLE_CONSTANTS.imageRadius,
+  });
+
+  // Partners Benefits Block
+  const [partnersBenefitsConfig, setPartnersBenefitsConfig] = useState({
+    backgroundColor: STYLE_CONSTANTS.lightGray,
+    textColor: STYLE_CONSTANTS.darkText,
+    headingColor: STYLE_CONSTANTS.primaryBlue,
+    accentColor: STYLE_CONSTANTS.primaryYellow,
+    headingFont: STYLE_CONSTANTS.headingFont,
+    bodyFont: STYLE_CONSTANTS.bodyFont,
+    buttonColor: STYLE_CONSTANTS.primaryYellow,
+    buttonRadius: STYLE_CONSTANTS.borderRadius,
+    imageRadius: STYLE_CONSTANTS.imageRadius,
+    imageSrc: `https://placehold.co/600x400/e6e6e6/${STYLE_CONSTANTS.primaryBlue.replace(
+      "#",
+      ""
+    )}?text=Partnership+diagram`,
+  });
+
+  // PC Process block
+  const [pcProcessConfig, setPcProcessConfig] = useState({
+    backgroundColor: STYLE_CONSTANTS.primaryBlue,
+    textColor: STYLE_CONSTANTS.white,
+    accentColor: STYLE_CONSTANTS.primaryYellow,
+    headingFont: STYLE_CONSTANTS.headingFont,
+    bodyFont: STYLE_CONSTANTS.bodyFont,
+    buttonColor: STYLE_CONSTANTS.primaryYellow,
+    buttonText: "Contact Post-haste Consulting Group (PHCG)",
+    buttonRadius: STYLE_CONSTANTS.borderRadius,
+    accordionRadius: STYLE_CONSTANTS.borderRadius,
+    transitionSpeed: STYLE_CONSTANTS.transitionSpeed,
+  });
+
+  // DYP Advantages
+  const [dypAdvantagesConfig, setDypAdvantagesConfig] = useState({
+    backgroundColor: STYLE_CONSTANTS.primaryBlue,
+    textColor: STYLE_CONSTANTS.white,
+    accentColor: STYLE_CONSTANTS.primaryYellow,
+    headingFont: STYLE_CONSTANTS.headingFont,
+    bodyFont: STYLE_CONSTANTS.bodyFont,
+    accordionRadius: STYLE_CONSTANTS.borderRadius,
+    transitionSpeed: STYLE_CONSTANTS.transitionSpeed,
+  });
+
+  // Partners Get Assistance
+  const [assistanceLevelsConfig, setAssistanceLevelsConfig] = useState({
+    backgroundColor: STYLE_CONSTANTS.white,
+    textColor: STYLE_CONSTANTS.darkText,
+    headingColor: STYLE_CONSTANTS.primaryBlue,
+    accentColor: STYLE_CONSTANTS.primaryYellow,
+    headingFont: STYLE_CONSTANTS.headingFont,
+    bodyFont: STYLE_CONSTANTS.bodyFont,
+    imageRadius: STYLE_CONSTANTS.imageRadius,
+    imageSrc: "/assistance_levels_diagram.png",
+  });
+
+  // Partnership Charter Book
   const [bookPromoConfig, setBookPromoConfig] = useState({
-    backgroundColor: "#CE950F",
-    textColor: "#ffffff",
-    headingFont: "serif",
-    bodyFont: "sans-serif",
-    borderRadius: 16,
+    backgroundColor: STYLE_CONSTANTS.primaryYellow,
+    textColor: STYLE_CONSTANTS.white,
+    headingFont: STYLE_CONSTANTS.headingFont,
+    bodyFont: STYLE_CONSTANTS.bodyFont,
+    borderRadius: 5, // Keeping this specific value as it's intentionally larger
+    marginTop: STYLE_CONSTANTS.defaultMargin, // Added margin top
+    marginBottom: STYLE_CONSTANTS.defaultMargin, // Added margin bottom
     bookImageSrc: "https://bmc-neon.vercel.app/book_partnership_charter.png",
     contactLink: "https://example.com/contact",
     barnesNobleLogo: "https://bmc-neon.vercel.app/logo_barnes_noble.png",
@@ -108,122 +269,44 @@ function App() {
     invertLogos: false,
   });
 
-  // In App.js, update the threeStepsConfig initial state:
-  const [threeStepsConfig, setThreeStepsConfig] = useState({
-    backgroundColor: "#ffffff",
-    textColor: "#333333",
-    headingColor: "#333333",
-    cardBackgroundColor: "#E5E7EA",
-    stepBadgeColor: "#ABB9C7",
-    stepBadgeTextColor: "#ffffff",
-    headingFont: "serif",
-    bodyFont: "sans-serif",
-    discoverIconSrc: "https://bmc-neon.vercel.app/step1.png", // Use hosted images
-    discussIconSrc: "https://bmc-neon.vercel.app/step2.png",
-    documentIconSrc: "https://bmc-neon.vercel.app/step3.png",
-    cardShadow: false,
+  // Client Testimonials
+  const [testimonialsConfig, setTestimonialsConfig] = useState({
+    backgroundColor: STYLE_CONSTANTS.primaryBlue,
+    textColor: STYLE_CONSTANTS.white,
+    headingFont: STYLE_CONSTANTS.headingFont,
+    bodyFont: STYLE_CONSTANTS.bodyFont,
+    testimonialImage: "https://bmc-neon.vercel.app/testimonial_photo.jpeg",
   });
 
-  const [PHCGConfig, setPHCGConfig] = useState({
-    backgroundColor: "#2c3e50",
-    textColor: "#ffffff",
-    headingFont: "serif",
-    bodyFont: "sans-serif",
-    buttonColor: "#e67e22",
-    buttonText: "More About Post-haste Consulting Group (PHCG)",
-    buttonRadius: 4,
-  });
-
-  const [pcProcessConfig, setPcProcessConfig] = useState({
-    backgroundColor: "#1e4164",
-    textColor: "#ffffff",
-    accentColor: "#d5ad36",
-    headingFont: "serif",
-    bodyFont: "sans-serif",
-    buttonColor: "#d5ad36",
-    buttonText: "Contact Post-haste Consulting Group (PHCG)",
-    buttonRadius: 4,
-    accordionRadius: 4,
-    transitionSpeed: 0.3,
-  });
-
-  const [partnersBenefitsConfig, setPartnersBenefitsConfig] = useState({
-    backgroundColor: "#f5f7fa",
-    textColor: "#333333",
-    headingColor: "#1e4164",
-    accentColor: "#3366cc",
-    headingFont: "serif",
-    bodyFont: "sans-serif",
-    buttonColor: "#3366cc",
-    buttonRadius: 4,
-    imageRadius: 8,
-    imageSrc:
-      "https://placehold.co/600x400/e6e6e6/1e4164?text=Partnership+diagram",
-  });
-
-  const [charterConfig, setCharterConfig] = useState({
-    backgroundColor: "#1e3553",
-    textColor: "#ffffff",
-    headingColor: "#ffffff",
-    accentColor: "#d5ad36",
-    headingFont: "serif",
-    bodyFont: "sans-serif",
-    logoSrc: "/tpci_logo.svg",
-    imageSrc: "/chartersection_computer.jpg",
-  });
-
-  const [charterTypesConfig, setCharterTypesConfig] = useState({
-    backgroundColor: "#ffffff",
-    textColor: "#333333",
-    headingColor: "#1e3553",
-    headingFont: "serif",
-    bodyFont: "sans-serif",
-  });
-
-  const [dypAdvantagesConfig, setDypAdvantagesConfig] = useState({
-    backgroundColor: "#103c68",
-    textColor: "#ffffff",
-    accentColor: "#fcb040",
-    headingFont: "serif",
-    bodyFont: "sans-serif",
-    accordionRadius: 4,
-    transitionSpeed: 0.3,
-  });
-
+  // Slivers of Ambiguity
   const [sliversOfAmbiguityConfig, setSliversOfAmbiguityConfig] = useState({
-    backgroundColor: "#e6ecef",
-    textColor: "#333333",
-    headingColor: "#333333",
-    accentColor: "#d5ad36",
-    headingFont: "serif",
-    bodyFont: "sans-serif",
+    backgroundColor: STYLE_CONSTANTS.lightGray,
+    textColor: STYLE_CONSTANTS.darkText,
+    headingColor: STYLE_CONSTANTS.primaryBlue,
+    accentColor: STYLE_CONSTANTS.primaryYellow,
+    headingFont: STYLE_CONSTANTS.headingFont,
+    bodyFont: STYLE_CONSTANTS.bodyFont,
   });
 
-  const [dypToolConfig, setDypToolConfig] = useState({
-    backgroundColor: "#ecf0f1",
-    textColor: "#2c3e50",
-    headingFont: "serif",
-    bodyFont: "sans-serif",
-    imageSrc: "/dyp_tool.png",
-    imageRadius: 8,
-  });
-
-  // Add new state for DYP Licensed User Block
+  // DYP Licensed User
   const [dypLicensedUserConfig, setDypLicensedUserConfig] = useState({
-    backgroundColor: "#1e3553", // Dark blue background
-    textColor: "#ffffff", // White text
-    accentColor: "#d5ad36", // Gold accent
-    headingFont: "serif",
-    bodyFont: "sans-serif",
+    backgroundColor: STYLE_CONSTANTS.primaryBlue,
+    textColor: STYLE_CONSTANTS.white,
+    accentColor: STYLE_CONSTANTS.primaryYellow,
+    headingFont: STYLE_CONSTANTS.headingFont,
+    bodyFont: STYLE_CONSTANTS.bodyFont,
     buttonText: "Contact PHCG",
-    buttonRadius: 4,
-    organizationName: "PHCG", // Organization name can be customized
+    buttonRadius: STYLE_CONSTANTS.borderRadius,
+    organizationName: "PHCG",
   });
 
   const renderSection = () => {
     switch (activeSection) {
+      // Introduction & Guide
       case "introduction":
         return <AppIntroduction />;
+
+      // About PHCG
       case "PHCG":
         return (
           <>
@@ -237,58 +320,16 @@ function App() {
             </Paper>
             <Paper elevation={3}>
               <Box p={3}>
-                <Typography variant="h6" gutterBottom align="left">
-                  Embed Code
-                </Typography>
-                <Box sx={{ maxWidth: "100%", overflowX: "auto" }}>
-                  <CodeGenerator config={PHCGConfig} />
-                </Box>
-              </Box>
-            </Paper>
-          </>
-        );
-      case "pcProcess":
-        return (
-          <>
-            <Paper elevation={3} sx={{ mb: 4 }}>
-              <Box p={3}>
-                <Typography variant="h6" gutterBottom align="center">
-                  Preview
-                </Typography>
-                <PCProcessPreview config={pcProcessConfig} />
-              </Box>
-            </Paper>
-            <Paper elevation={3}>
-              <Box p={3}>
-                <PCProcessGenerator
-                  config={pcProcessConfig}
-                  onConfigChange={setPcProcessConfig}
+                <PHCGGenerator
+                  config={PHCGConfig}
+                  onConfigChange={setPHCGConfig}
                 />
               </Box>
             </Paper>
           </>
         );
-      case "partners":
-        return (
-          <>
-            <Paper elevation={3} sx={{ mb: 4 }}>
-              <Box p={3}>
-                <Typography variant="h6" gutterBottom align="center">
-                  Preview
-                </Typography>
-                <PartnersBenefitsPreview config={partnersBenefitsConfig} />
-              </Box>
-            </Paper>
-            <Paper elevation={3}>
-              <Box p={3}>
-                <PartnersBenefitsGenerator
-                  config={partnersBenefitsConfig}
-                  onConfigChange={setPartnersBenefitsConfig}
-                />
-              </Box>
-            </Paper>
-          </>
-        );
+
+      // What is a PC?
       case "charter":
         return (
           <>
@@ -310,6 +351,8 @@ function App() {
             </Paper>
           </>
         );
+
+      // Who Should Develop a Charter?
       case "charterTypes":
         return (
           <>
@@ -331,112 +374,8 @@ function App() {
             </Paper>
           </>
         );
-      case "dypAdvantages":
-        return (
-          <>
-            <Paper elevation={3} sx={{ mb: 4 }}>
-              <Box p={3}>
-                <Typography variant="h6" gutterBottom align="center">
-                  Preview
-                </Typography>
-                <DYPAdvantagesPreview config={dypAdvantagesConfig} />
-              </Box>
-            </Paper>
-            <Paper elevation={3}>
-              <Box p={3}>
-                <DYPAdvantagesGenerator
-                  config={dypAdvantagesConfig}
-                  onConfigChange={setDypAdvantagesConfig}
-                />
-              </Box>
-            </Paper>
-          </>
-        );
-      case "sliversOfAmbiguity":
-        return (
-          <>
-            <Paper elevation={3} sx={{ mb: 4 }}>
-              <Box p={3}>
-                <Typography variant="h6" gutterBottom align="center">
-                  Preview
-                </Typography>
-                <SliversOfAmbiguityPreview config={sliversOfAmbiguityConfig} />
-              </Box>
-            </Paper>
-            <Paper elevation={3}>
-              <Box p={3}>
-                <SliversOfAmbiguityGenerator
-                  config={sliversOfAmbiguityConfig}
-                  onConfigChange={setSliversOfAmbiguityConfig}
-                />
-              </Box>
-            </Paper>
-          </>
-        );
-      case "dypTool":
-        return (
-          <>
-            <Paper elevation={3} sx={{ mb: 4 }}>
-              <Box p={3}>
-                <Typography variant="h6" gutterBottom align="center">
-                  Preview
-                </Typography>
-                <DYPToolPreview config={dypToolConfig} />
-              </Box>
-            </Paper>
-            <Paper elevation={3}>
-              <Box p={3}>
-                <DYPToolGenerator
-                  config={dypToolConfig}
-                  onConfigChange={setDypToolConfig}
-                />
-              </Box>
-            </Paper>
-          </>
-        );
-      // Add new case for DYP Licensed User Block
-      case "dypLicensedUser":
-        return (
-          <>
-            <Paper elevation={3} sx={{ mb: 4 }}>
-              <Box p={3}>
-                <Typography variant="h6" gutterBottom align="center">
-                  Preview
-                </Typography>
-                <DYPLicensedUserPreview config={dypLicensedUserConfig} />
-              </Box>
-            </Paper>
-            <Paper elevation={3}>
-              <Box p={3}>
-                <DYPLicensedUserGenerator
-                  config={dypLicensedUserConfig}
-                  onConfigChange={setDypLicensedUserConfig}
-                />
-              </Box>
-            </Paper>
-          </>
-        );
-      case "assistanceLevels":
-        return (
-          <>
-            <Paper elevation={3} sx={{ mb: 4 }}>
-              <Box p={3}>
-                <Typography variant="h6" gutterBottom align="center">
-                  Preview
-                </Typography>
-                <AssistanceLevelsPreview config={assistanceLevelsConfig} />
-              </Box>
-            </Paper>
-            <Paper elevation={3}>
-              <Box p={3}>
-                <AssistanceLevelsGenerator
-                  config={assistanceLevelsConfig}
-                  onConfigChange={setAssistanceLevelsConfig}
-                />
-              </Box>
-            </Paper>
-          </>
-        );
+
+      // Three Steps to Partnership
       case "threeSteps":
         return (
           <>
@@ -458,6 +397,123 @@ function App() {
             </Paper>
           </>
         );
+
+      // The DYP Tool
+      case "dypTool":
+        return (
+          <>
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">
+                  Preview
+                </Typography>
+                <DYPToolPreview config={dypToolConfig} />
+              </Box>
+            </Paper>
+            <Paper elevation={3}>
+              <Box p={3}>
+                <DYPToolGenerator
+                  config={dypToolConfig}
+                  onConfigChange={setDypToolConfig}
+                />
+              </Box>
+            </Paper>
+          </>
+        );
+
+      // Partners Benefits
+      case "partners":
+        return (
+          <>
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">
+                  Preview
+                </Typography>
+                <PartnersBenefitsPreview config={partnersBenefitsConfig} />
+              </Box>
+            </Paper>
+            <Paper elevation={3}>
+              <Box p={3}>
+                <PartnersBenefitsGenerator
+                  config={partnersBenefitsConfig}
+                  onConfigChange={setPartnersBenefitsConfig}
+                />
+              </Box>
+            </Paper>
+          </>
+        );
+
+      // PC Process
+      case "pcProcess":
+        return (
+          <>
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">
+                  Preview
+                </Typography>
+                <PCProcessPreview config={pcProcessConfig} />
+              </Box>
+            </Paper>
+            <Paper elevation={3}>
+              <Box p={3}>
+                <PCProcessGenerator
+                  config={pcProcessConfig}
+                  onConfigChange={setPcProcessConfig}
+                />
+              </Box>
+            </Paper>
+          </>
+        );
+
+      // DYP Advantages
+      case "dypAdvantages":
+        return (
+          <>
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">
+                  Preview
+                </Typography>
+                <DYPAdvantagesPreview config={dypAdvantagesConfig} />
+              </Box>
+            </Paper>
+            <Paper elevation={3}>
+              <Box p={3}>
+                <DYPAdvantagesGenerator
+                  config={dypAdvantagesConfig}
+                  onConfigChange={setDypAdvantagesConfig}
+                />
+              </Box>
+            </Paper>
+          </>
+        );
+
+      // Partners Get Assistance
+      case "assistanceLevels":
+        return (
+          <>
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">
+                  Preview
+                </Typography>
+                <AssistanceLevelsPreview config={assistanceLevelsConfig} />
+              </Box>
+            </Paper>
+            <Paper elevation={3}>
+              <Box p={3}>
+                <AssistanceLevelsGenerator
+                  config={assistanceLevelsConfig}
+                  onConfigChange={setAssistanceLevelsConfig}
+                />
+              </Box>
+            </Paper>
+          </>
+        );
+
+      // Partnership Charter Book
       case "bookPromo":
         return (
           <>
@@ -479,6 +535,8 @@ function App() {
             </Paper>
           </>
         );
+
+      // Client Testimonials
       case "testimonials":
         return (
           <>
@@ -500,6 +558,73 @@ function App() {
             </Paper>
           </>
         );
+
+      // Slivers of Ambiguity
+      case "sliversOfAmbiguity":
+        return (
+          <>
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">
+                  Preview
+                </Typography>
+                <SliversOfAmbiguityPreview config={sliversOfAmbiguityConfig} />
+              </Box>
+            </Paper>
+            <Paper elevation={3}>
+              <Box p={3}>
+                <SliversOfAmbiguityGenerator
+                  config={sliversOfAmbiguityConfig}
+                  onConfigChange={setSliversOfAmbiguityConfig}
+                />
+              </Box>
+            </Paper>
+          </>
+        );
+
+      // DYP Licensed User
+      case "dypLicensedUser":
+        return (
+          <>
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">
+                  Preview
+                </Typography>
+                <DYPLicensedUserPreview config={dypLicensedUserConfig} />
+              </Box>
+            </Paper>
+            <Paper elevation={3}>
+              <Box p={3}>
+                <DYPLicensedUserGenerator
+                  config={dypLicensedUserConfig}
+                  onConfigChange={setDypLicensedUserConfig}
+                />
+              </Box>
+            </Paper>
+          </>
+        );
+
+      // Full Page Preview
+      case "fullPagePreview":
+        return (
+          <FullPagePreview
+            PHCGConfig={PHCGConfig}
+            pcProcessConfig={pcProcessConfig}
+            partnersBenefitsConfig={partnersBenefitsConfig}
+            charterConfig={charterConfig}
+            charterTypesConfig={charterTypesConfig}
+            dypAdvantagesConfig={dypAdvantagesConfig}
+            sliversOfAmbiguityConfig={sliversOfAmbiguityConfig}
+            dypToolConfig={dypToolConfig}
+            dypLicensedUserConfig={dypLicensedUserConfig}
+            assistanceLevelsConfig={assistanceLevelsConfig}
+            threeStepsConfig={threeStepsConfig}
+            bookPromoConfig={bookPromoConfig}
+            testimonialsConfig={testimonialsConfig}
+          />
+        );
+
       default:
         return <AppIntroduction />;
     }
@@ -516,7 +641,7 @@ function App() {
               px: { xs: 2, md: 4 },
               py: 2,
               borderBottom: "1px solid #e0e0e0",
-              backgroundColor: "#fff",
+              backgroundColor: STYLE_CONSTANTS.white,
               position: "sticky",
               top: 0,
               zIndex: 1000,
@@ -544,8 +669,8 @@ function App() {
                 key={activeSection}
                 sx={{
                   p: { xs: 2, md: 4 },
-                  backgroundColor: "#fafafa",
-                  borderRadius: 2,
+                  backgroundColor: STYLE_CONSTANTS.lightGray,
+                  borderRadius: STYLE_CONSTANTS.borderRadius,
                   opacity: 0,
                   transform: "translateY(20px)",
                   animation: "fadeIn 0.5s ease-in-out forwards",

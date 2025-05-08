@@ -1,20 +1,20 @@
+// src/components/General Functions/PHCGGenerator.js
+
 import React from "react";
 import { Box, Typography, Paper, TextField, Button } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { generateDYPLicensedUserEmbedCode } from "./DYPLicensedUserShared";
+import { generatePHCGEmbedCode } from "./PHCGShared";
 
-const DYPLicensedUserGenerator = ({ config, onConfigChange }) => {
+const PHCGGenerator = ({ config, onConfigChange }) => {
   const {
-    backgroundColor = "#1e3553",
+    backgroundColor = "#2c3e50",
     textColor = "#ffffff",
-    accentColor = "#d5ad36",
     headingFont = "serif",
     bodyFont = "sans-serif",
-    buttonText = "Contact PHCG",
+    buttonColor = "#e67e22",
+    buttonText = "More About PHCG",
     buttonRadius = 4,
-    organizationName = "PHCG",
-    buttonUrl = "#",
-    logoUrl = "https://bmc-neon.vercel.app/dyp_logo.png"
+    buttonUrl = "https://PHCG-associates.com"
   } = config || {};
 
   // Function to handle changes to any configuration option
@@ -29,32 +29,20 @@ const DYPLicensedUserGenerator = ({ config, onConfigChange }) => {
 
   // Function to copy the embed code to clipboard
   const handleCopyCode = () => {
-    navigator.clipboard.writeText(generateDYPLicensedUserEmbedCode(config));
+    navigator.clipboard.writeText(generatePHCGEmbedCode(config));
     alert("Embed code copied to clipboard!");
   };
 
   return (
     <Box>
       <Typography variant="h6" gutterBottom>
-        DYP Licensed User Block Configuration
+        About PHCG Section Configuration
       </Typography>
       
       <Box sx={{ mb: 4 }}>
         <Typography variant="subtitle1" gutterBottom>
           Content Settings
         </Typography>
-        
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            fullWidth
-            label="Organization Name"
-            value={organizationName}
-            onChange={(e) => handleConfigChange("organizationName", e.target.value)}
-            margin="normal"
-            variant="outlined"
-            helperText="Name of your organization that will be displayed in the text"
-          />
-        </Box>
         
         <Box sx={{ mb: 2 }}>
           <TextField
@@ -76,18 +64,6 @@ const DYPLicensedUserGenerator = ({ config, onConfigChange }) => {
             margin="normal"
             variant="outlined"
             helperText="Where the button will link to"
-          />
-        </Box>
-        
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            fullWidth
-            label="Logo URL"
-            value={logoUrl}
-            onChange={(e) => handleConfigChange("logoUrl", e.target.value)}
-            margin="normal"
-            variant="outlined"
-            helperText="URL to the DYP logo image"
           />
         </Box>
       </Box>
@@ -126,9 +102,9 @@ const DYPLicensedUserGenerator = ({ config, onConfigChange }) => {
         <Box sx={{ mb: 2 }}>
           <TextField
             fullWidth
-            label="Accent Color (Button)"
-            value={accentColor}
-            onChange={(e) => handleConfigChange("accentColor", e.target.value)}
+            label="Button Color"
+            value={buttonColor}
+            onChange={(e) => handleConfigChange("buttonColor", e.target.value)}
             margin="normal"
             variant="outlined"
             type="color"
@@ -200,7 +176,7 @@ const DYPLicensedUserGenerator = ({ config, onConfigChange }) => {
         <pre
           style={{ margin: 0, whiteSpace: "pre-wrap", wordBreak: "break-all" }}
         >
-          {generateDYPLicensedUserEmbedCode(config)}
+          {generatePHCGEmbedCode(config)}
         </pre>
       </Paper>
 
@@ -214,11 +190,11 @@ const DYPLicensedUserGenerator = ({ config, onConfigChange }) => {
       </Button>
 
       <Typography variant="body2" color="text.secondary" sx={{ mt: 3 }}>
-        <strong>Note:</strong> Make sure the <code>dyp-licensed-user-section.js</code> file is 
+        <strong>Note:</strong> Make sure the <code>phcg-section.js</code> file is 
         uploaded to your server at the location specified in the embed code.
       </Typography>
     </Box>
   );
 };
 
-export default DYPLicensedUserGenerator;
+export default PHCGGenerator;

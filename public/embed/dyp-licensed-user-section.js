@@ -15,7 +15,9 @@
  *   data-body-font="sans-serif"
  *   data-button-text="Contact BMC"
  *   data-button-radius="4"
- *   data-organization-name="BMC">
+ *   data-organization-name="BMC"
+ *   data-button-url="#"
+ *   data-logo-url="https://bmc-neon.vercel.app/dyp_logo.png">
  * </script>
  */
 
@@ -38,7 +40,7 @@
     buttonUrl: currentScript.getAttribute("data-button-url") || "#",
     logoUrl:
       currentScript.getAttribute("data-logo-url") ||
-      "https://bmc-neon.vercel.app/dyp_logo.png", // ✅ Add this line
+      "https://bmc-neon.vercel.app/dyp_logo.png",
   };
 
   // Create container element
@@ -106,6 +108,19 @@
       .dyp-licensed-button:hover {
         opacity: 0.9;
       }
+      
+      @media (max-width: 768px) {
+        .dyp-content-row {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        
+        .dyp-logo-img {
+          margin-left: 0;
+          margin-top: 1.5rem;
+          margin-bottom: 1.5rem;
+        }
+      }
     `;
 
   // Create HTML content
@@ -122,9 +137,7 @@
           any level of facilitation and support partners may need when developing a
           Partnership Charter.
         </p>
-    <img src="${config.logoUrl}" alt="DYP Logo" class="dyp-logo-img">
-
-
+        <img src="${config.logoUrl}" alt="DYP Logo" class="dyp-logo-img">
       </div>
       <a href="${config.buttonUrl}" class="dyp-licensed-button">${config.buttonText}</a>
     `;

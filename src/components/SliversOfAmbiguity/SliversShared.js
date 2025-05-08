@@ -1,3 +1,5 @@
+// src/components/SliversOfAmbiguity/SliversShared.js
+
 /**
  * Shared logic for Slivers of Ambiguity section
  * Used to generate the embed code, styles, and HTML
@@ -9,7 +11,7 @@ export const sliversData = [
   "Underperforming partners",
   "Misperceptions and misunderstandings",
   "Employees start feeling the stress between partners",
-  "Partners conclude it’s just not fun anymore!",
+  "Partners conclude it's just not fun anymore!",
 ];
 
 /**
@@ -51,7 +53,6 @@ export const generateSliversStyles = (config) => {
 
     .slivers-card {
       background-color: white;
-
       border-radius: 8px;
       border-bottom: 4px solid ${config.accentColor};
       text-align: center;
@@ -104,12 +105,12 @@ export const generateSliversEmbedCode = (config) => {
         const shadow = container.attachShadow({ mode: 'open' });
   
         const style = document.createElement('style');
-      style.textContent = \`${styles.replace(/`/g, "\\`")}\`;
+        style.textContent = \`${styles.replace(/`/g, "\\`")}\`;
 
   
         const content = document.createElement('div');
         content.className = 'slivers-container';
-       content.innerHTML = \`${html.replace(/`/g, "\\`")}\`;
+        content.innerHTML = \`${html.replace(/`/g, "\\`")}\`;
   
         shadow.appendChild(style);
         shadow.appendChild(content);

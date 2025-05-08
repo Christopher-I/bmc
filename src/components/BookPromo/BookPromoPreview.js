@@ -19,6 +19,8 @@ const BookPromoPreview = ({ config }) => {
         borderRadius: config.borderRadius,
         padding: { xs: "2rem 1rem", md: "4rem" },
         color: config.textColor,
+        marginTop: config.marginTop || 0, // Use margin from config or default to 0
+        marginBottom: config.marginBottom || 0, // Use margin from config or default to 0
       }}
     >
       <Grid container spacing={4} alignItems="flex-start">

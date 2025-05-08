@@ -12,12 +12,16 @@
   // Get configuration from data attributes
 
   // In book-promo.js, update the config object:
+  // Updated config object in the embed script
+
   const config = {
     backgroundColor: currentScript.getAttribute("data-background") || "#CE950F",
     textColor: currentScript.getAttribute("data-text-color") || "#ffffff",
     headingFont: currentScript.getAttribute("data-heading-font") || "serif",
     bodyFont: currentScript.getAttribute("data-body-font") || "sans-serif",
     borderRadius: currentScript.getAttribute("data-border-radius") || "16",
+    marginTop: currentScript.getAttribute("data-margin-top") || "20", // Added margin top
+    marginBottom: currentScript.getAttribute("data-margin-bottom") || "20", // Added margin bottom
     bookImageSrc:
       currentScript.getAttribute("data-book-image") ||
       "https://bmc-neon.vercel.app/book_partnership_charter.png",
@@ -51,25 +55,27 @@
   // Add styles
   const style = document.createElement("style");
   style.textContent = `
-        .book-promo-container {
-          background-color: ${config.backgroundColor};
-          color: ${config.textColor};
-          font-family: ${config.bodyFont};
-          padding: 3rem 2rem;
-          border-radius: ${config.borderRadius}px;
-          max-width: 100%;
-          box-sizing: border-box;
-        }
+      .book-promo-container {
+      background-color: ${config.backgroundColor};
+      color: ${config.textColor};
+      font-family: ${config.bodyFont};
+      padding: 3rem 2rem;
+      border-radius: ${config.borderRadius}px;
+      margin-top: ${config.marginTop}px; /* Added margin top */
+      margin-bottom: ${config.marginBottom}px; /* Added margin bottom */
+      max-width: 100%;
+      box-sizing: border-box;
+    }
     
-        .book-promo-wrapper {
-          max-width: 1200px;
-          width: 100%;
-          margin: 0 auto;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          gap: 2rem;
-        }
+       .book-promo-wrapper {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+    }
     
         .book-promo-content {
           flex: 1;
