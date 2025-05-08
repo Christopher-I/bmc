@@ -1,0 +1,88 @@
+/* DYP Tool Block Styles */
+:host {
+    display: block;
+    box-sizing: border-box;
+    --background-color: #ecf0f1;
+    --text-color: #2c3e50;
+    --heading-font: serif;
+    --body-font: sans-serif;
+    --image-radius: 8px;
+  }
+  
+  .dyp-tool-container {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--body-font);
+    padding: 4rem 2rem;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .dyp-tool-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .dyp-tool-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .dyp-tool-heading {
+    font-family: var(--heading-font);
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+  
+  .dyp-tool-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .dyp-tool-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .dyp-tool-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: var(--image-radius);
+    background-color: #eeeeee;
+  }
+  
+  @media (max-width: 900px) {
+    .dyp-tool-wrapper {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  
+    .dyp-tool-content {
+      order: 1;
+    }
+  
+    .dyp-tool-image-container {
+      order: 2;
+    }
+  
+    .dyp-tool-heading {
+      font-size: 2rem;
+      text-align: center;
+    }
+  
+    .dyp-tool-image {
+      max-width: 100%;
+    }
+  }

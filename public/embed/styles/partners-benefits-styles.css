@@ -1,0 +1,147 @@
+/* Partners Benefits Block Styles */
+:host {
+    display: block;
+    box-sizing: border-box;
+    --background-color: #f5f7fa;
+    --text-color: #333333;
+    --heading-color: #1e4164;
+    --accent-color: #4a69dd;
+    --button-color: #4a69dd;
+    --heading-font: serif;
+    --body-font: sans-serif;
+    --button-radius: 4px;
+    --image-radius: 8px;
+  }
+  
+  .pb-container {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--body-font);
+    padding: 8rem 2rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pb-content-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 6rem;
+    margin: 0 auto;
+  }
+  
+  .pb-image-container {
+    flex: 0 0 38%;
+    max-width: 38%;
+  }
+  
+  .pb-image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--image-radius);
+    background-color: #eeeeee;
+  }
+  
+  .pb-content {
+    flex: 0 0 50%;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .pb-heading {
+    font-family: var(--heading-font);
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin: 0;
+    color: var(--heading-color);
+  }
+  
+  .pb-benefit-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .pb-benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .pb-check-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-top: 0.2rem;
+  }
+  
+  .pb-benefit-text {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+  
+  .pb-button {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    background-color: var(--button-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--button-radius);
+    font-family: var(--body-font);
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 1.5rem;
+    align-self: flex-start;
+  }
+  
+  .pb-button:hover {
+    opacity: 0.9;
+  }
+  
+  @media (max-width: 900px) {
+    .pb-content-wrapper {
+      flex-direction: column;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    .pb-image-container {
+      max-width: 80%;
+      order: 1;
+    }
+    
+    .pb-content {
+      max-width: 90%;
+      order: 2;
+    }
+    
+    .pb-heading {
+      font-size: 2rem;
+      text-align: center;
+    }
+    
+    .pb-button {
+      align-self: center;
+    }
+  }
