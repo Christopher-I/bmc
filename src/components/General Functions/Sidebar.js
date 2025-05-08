@@ -10,6 +10,7 @@ import {
 
 const blocks = [
   { key: "introduction", label: "Introduction & Guide" },
+  { key: "fullPagePreview", label: "Full Page Preview" },
   { key: "PHCG", label: "About PHCG" },
   { key: "charter", label: "What is a PC?" },
   { key: "charterTypes", label: "Who Should Develop a Charter" },
@@ -23,7 +24,6 @@ const blocks = [
   { key: "testimonials", label: "Client Testimonials" },
   { key: "sliversOfAmbiguity", label: "Slivers of Ambiguity" },
   { key: "dypLicensedUser", label: "DYP Licensed User" },
-  { key: "fullPagePreview", label: "Full Page Preview" },
 ];
 
 const Sidebar = ({ active, onSelect }) => {
