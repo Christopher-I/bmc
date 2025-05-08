@@ -1,23 +1,28 @@
-// src/components/General Functions/PHCGShared.js
+/**
+ * Shared utilities and functions for the Post-haste Consulting Group components
+ */
 
 /**
  * Generates embed code for the Post-haste Consulting Group section
  * using the external loader approach
+ * 
+ * @param {Object} config - Configuration object with styling parameters
+ * @returns {string} - External script reference as a string
  */
 export const generatePHCGEmbedCode = (config) => {
   const {
-    backgroundColor = "#2c3e50",
+    backgroundColor = "#1C436A",
     textColor = "#ffffff",
     headingFont = "serif",
     bodyFont = "sans-serif",
-    buttonColor = "#e67e22",
-    buttonText = "More About PHCG",
+    buttonColor = "#CE950F",
+    buttonText = "More About Post-haste Consulting Group (PHCG)",
     buttonRadius = 4,
     buttonUrl = "https://PHCG-associates.com"
   } = config || {};
 
   return `<script 
-  src="https://bmc-neon.vercel.app/embed/loaders/phcg-loader.js"
+  src="https://bmc-neon.vercel.app/embed/loaders/phcg-section-loader.js"
   data-background="${backgroundColor}"
   data-text-color="${textColor}"
   data-heading-font="${headingFont}"
@@ -27,4 +32,18 @@ export const generatePHCGEmbedCode = (config) => {
   data-button-radius="${buttonRadius}"
   data-button-url="${buttonUrl}">
 </script>`;
+};
+
+/**
+ * Default configuration for the PHCG Section
+ */
+export const defaultPHCGConfig = {
+  backgroundColor: "#1C436A",
+  textColor: "#ffffff",
+  headingFont: "serif",
+  bodyFont: "sans-serif",
+  buttonColor: "#CE950F",
+  buttonText: "More About Post-haste Consulting Group (PHCG)",
+  buttonRadius: 4,
+  buttonUrl: "https://PHCG-associates.com"
 };
