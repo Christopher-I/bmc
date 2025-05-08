@@ -38,7 +38,7 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
       <Typography variant="h6" gutterBottom>
         About PHCG Section Configuration
       </Typography>
-      
+{/*       
       <Box sx={{ mb: 4 }}>
         <Typography variant="subtitle1" gutterBottom>
           Content Settings
@@ -66,9 +66,9 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
             helperText="Where the button will link to"
           />
         </Box>
-      </Box>
+      </Box> */}
       
-      <Box sx={{ mb: 4 }}>
+      {/* <Box sx={{ mb: 4 }}>
         <Typography variant="subtitle1" gutterBottom>
           Style Settings
         </Typography>
@@ -84,9 +84,9 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
             type="color"
             InputLabelProps={{ shrink: true }}
           />
-        </Box>
+        </Box> */}
         
-        <Box sx={{ mb: 2 }}>
+        {/* <Box sx={{ mb: 2 }}>
           <TextField
             fullWidth
             label="Text Color"
@@ -110,9 +110,9 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
             type="color"
             InputLabelProps={{ shrink: true }}
           />
-        </Box>
+        </Box> */}
         
-        <Box sx={{ mb: 2 }}>
+        {/* <Box sx={{ mb: 2 }}>
           <TextField
             fullWidth
             label="Heading Font"
@@ -144,9 +144,9 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
             <option value="sans-serif">Sans Serif</option>
             <option value="monospace">Monospace</option>
           </TextField>
-        </Box>
+        </Box> */}
         
-        <Box sx={{ mb: 2 }}>
+        {/* <Box sx={{ mb: 2 }}>
           <TextField
             fullWidth
             label="Button Radius"
@@ -162,9 +162,9 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
 
       <Typography variant="h6" gutterBottom>
         Embed Code
-      </Typography>
+      </Typography> */}
       
-      <Paper
+      {/* <Paper
         variant="outlined"
         sx={{
           p: 2,
@@ -178,7 +178,7 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
         >
           {generatePHCGEmbedCode(config)}
         </pre>
-      </Paper>
+      </Paper> */}
 
       <Button
         variant="contained"
@@ -189,10 +189,10 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
         Copy Embed Code
       </Button>
 
-      <Typography variant="body2" color="text.secondary" sx={{ mt: 3 }}>
+      {/* <Typography variant="body2" color="text.secondary" sx={{ mt: 3 }}>
         <strong>Note:</strong> Make sure the <code>phcg-section.js</code> file is 
         uploaded to your server at the location specified in the embed code.
-      </Typography>
+      </Typography> */}
     </Box>
   );
 };

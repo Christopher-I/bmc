@@ -1,5 +1,5 @@
 // src/components/FullPagePreview/FullPagePreview.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Typography,
@@ -13,6 +13,9 @@ import {
   Divider,
   IconButton,
   Tooltip,
+  CircularProgress,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -20,6 +23,8 @@ import CodeIcon from "@mui/icons-material/Code";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import CompressIcon from "@mui/icons-material/Compress";
+import BugReportIcon from "@mui/icons-material/BugReport";
 
 // Import all preview components
 import PreviewPanel from "../General Functions/PreviewPanel";
@@ -36,7 +41,7 @@ import ThreeStepsPreview from "../ThreeSteps/ThreeStepsPreview";
 import BookPromoPreview from "../BookPromo/BookPromoPreview";
 import TestimonialsPreview from "../Testimonials/TestimonialsPreview";
 
-// Import shared functions for generating embed code - Fixed imports
+// Import shared functions for generating embed code
 import { generateTestimonialsEmbedCode } from "../Testimonials/TestimonialsShared";
 import { generateCharterEmbedScript } from "../CharterSection/CharterSectionShared";
 import { generateEmbedCode as generateCharterTypesEmbedCode } from "../CharterTypes/CharterTypesShared";
@@ -48,8 +53,8 @@ import { generateEmbedCode as generateDYPAdvantagesEmbedCode } from "../DYPAdvan
 import { generateAssistanceLevelsEmbedCode } from "../AssistanceLevels/AssistanceLevelsShared";
 import { generateBookPromoEmbedCode } from "../BookPromo/BookPromoShared";
 import { generateSliversEmbedCode } from "../SliversOfAmbiguity/SliversShared";
-import { generateDYPLicensedUserEmbedCode } from "../DYPLicensedUser/DYPLicensedUserShared";
-import { generatePHCGEmbedCode } from "../General Functions/PHCGShared";
+import { generateDYPLicensedUserEmbedCode } from '../DYPLicensedUser/DYPLicensedUserShared';
+import { generatePHCGEmbedCode } from '../General Functions/PHCGShared';
 
 /**
  * Component that shows a full page preview of all blocks
@@ -79,7 +84,6 @@ const FullPagePreview = ({
       config: PHCGConfig,
       enabled: true,
       getEmbedCode: () => {
-        // Use absolute URLs in the embed code
         const absoluteConfig = {
           ...PHCGConfig,
           buttonUrl: PHCGConfig.buttonUrl || "https://PHCG-associates.com",
@@ -107,7 +111,6 @@ const FullPagePreview = ({
         return generateCharterEmbedScript(absoluteConfig);
       },
     },
-
     {
       id: "charterTypes",
       name: "Who Should Develop a Charter?",
@@ -131,24 +134,6 @@ const FullPagePreview = ({
       config: dypToolConfig,
       enabled: true,
       getEmbedCode: () => generateDYPToolEmbedCode(dypToolConfig),
-    },
-    {
-      id: "licensed",
-      name: "DYP Licensed User",
-      component: DYPLicensedUserPreview,
-      config: dypLicensedUserConfig,
-      enabled: true,
-      getEmbedCode: () => {
-        // Use absolute URLs in the embed code
-        const absoluteConfig = {
-          ...dypLicensedUserConfig,
-          logoUrl: dypLicensedUserConfig.logoUrl?.startsWith("http")
-            ? dypLicensedUserConfig.logoUrl
-            : "https://bmc-neon.vercel.app/dyp_logo.png",
-          buttonUrl: dypLicensedUserConfig.buttonUrl || "#",
-        };
-        return generateDYPLicensedUserEmbedCode(absoluteConfig);
-      },
     },
     {
       id: "benefits",
@@ -214,12 +199,34 @@ const FullPagePreview = ({
       component: DYPLicensedUserPreview,
       config: dypLicensedUserConfig,
       enabled: true,
-      getEmbedCode: () => "",
+      getEmbedCode: () => {
+        // Use absolute URLs in the embed code
+        const absoluteConfig = {
+          ...dypLicensedUserConfig,
+          logoUrl: dypLicensedUserConfig.logoUrl?.startsWith("http")
+            ? dypLicensedUserConfig.logoUrl
+            : "https://bmc-neon.vercel.app/dyp_logo.png",
+          buttonUrl: dypLicensedUserConfig.buttonUrl || "#",
+        };
+        return generateDYPLicensedUserEmbedCode(absoluteConfig);
+      },
     },
   ]);
 
   const [activeTab, setActiveTab] = useState(0);
   const [showBlockControls, setShowBlockControls] = useState(false);
+  const [minifying, setMinifying] = useState(false);
+  const [notification, setNotification] = useState({ open: false, message: "", severity: "success" });
+
+  // Function to show notifications
+  const showNotification = (message, severity = "success") => {
+    setNotification({ open: true, message, severity });
+  };
+
+  // Function to close notifications
+  const closeNotification = () => {
+    setNotification({ ...notification, open: false });
+  };
 
   // Handle tab change
   const handleTabChange = (event, newValue) => {
@@ -257,10 +264,36 @@ const FullPagePreview = ({
     setBlocks(newBlocks);
   };
 
+  // Function to inspect a generated embed code to ensure it's valid
+  const inspectEmbedCode = (code, blockName) => {
+    console.log(`Inspecting embed code for ${blockName}:`, code);
+    
+    if (!code) {
+      console.error(`Empty embed code for ${blockName}`);
+      return false;
+    }
+    
+    if (!code.includes('<script')) {
+      console.error(`Missing script tag in embed code for ${blockName}`);
+      return false;
+    }
+    
+    // For debugging purposes - this will show what's being generated
+    return true;
+  };
+
   // Get the combined embed code for all enabled blocks
   const getCombinedEmbedCode = () => {
-    return blocks
-      .filter((block) => block.enabled)
+    const enabledBlocks = blocks.filter((block) => block.enabled);
+    
+    // First inspect each block's embed code for debugging
+    enabledBlocks.forEach(block => {
+      const code = block.getEmbedCode();
+      inspectEmbedCode(code, block.name);
+    });
+    
+    // Then return the combined code
+    return enabledBlocks
       .map((block) => block.getEmbedCode())
       .join("\n\n");
   };
@@ -269,7 +302,103 @@ const FullPagePreview = ({
   const copyEmbedCode = () => {
     const code = getCombinedEmbedCode();
     navigator.clipboard.writeText(code);
-    // You could add a toast notification here
+    showNotification("Embed code copied to clipboard!");
+  };
+
+  // Function to minify a script tag while preserving all attributes
+  const minifyScript = (scriptCode) => {
+    try {
+      if (!scriptCode) {
+        console.error("Empty script code provided to minifier");
+        return scriptCode;
+      }
+      
+      // Simple whitespace reduction for the entire script tag
+      return scriptCode
+        .replace(/\s+/g, ' ')           // Replace multiple spaces with a single space
+        .replace(/>\s+</g, '><')        // Remove spaces between tags
+        .replace(/\s+>/g, '>')          // Remove spaces before closing brackets
+        .replace(/\s*=\s*/g, '=')       // Remove spaces around equals signs
+        .trim();                         // Remove leading/trailing whitespace
+    } catch (error) {
+      console.error('Minification error:', error);
+      // Return original if there's an error
+      return scriptCode;
+    }
+  };
+  
+  // Function to copy minified code for a single block
+  const copyMinifiedBlockCode = (block) => {
+    const code = block.getEmbedCode();
+    
+    // Validate the code first
+    if (!inspectEmbedCode(code, block.name)) {
+      showNotification(`Invalid embed code for ${block.name}. See console for details.`, "error");
+      return;
+    }
+    
+    const minified = minifyScript(code);
+    navigator.clipboard.writeText(minified);
+    showNotification(`Minified code for ${block.name} copied to clipboard!`);
+  };
+  
+  // Function to copy minified code for all enabled blocks
+  const copyAllMinifiedCode = () => {
+    setMinifying(true);
+    try {
+      const enabledBlocks = blocks.filter(block => block.enabled);
+      
+      // Check each block for valid embed code
+      let allValid = true;
+      enabledBlocks.forEach(block => {
+        const code = block.getEmbedCode();
+        if (!inspectEmbedCode(code, block.name)) {
+          showNotification(`Invalid embed code for ${block.name}. See console for details.`, "error");
+          allValid = false;
+        }
+      });
+      
+      if (!allValid) {
+        setMinifying(false);
+        return;
+      }
+      
+      // Minify each block's embed code
+      const minifiedCodes = enabledBlocks.map(block => 
+        minifyScript(block.getEmbedCode())
+      );
+      
+      // Join and copy to clipboard
+      navigator.clipboard.writeText(minifiedCodes.join('\n\n'));
+      showNotification("Minified code for all enabled blocks copied to clipboard!");
+    } catch (error) {
+      console.error('Error minifying blocks:', error);
+      showNotification("Error minifying code. Please try again.", "error");
+    } finally {
+      setMinifying(false);
+    }
+  };
+
+  // Debug function to check all embed code generators
+  const debugEmbedGenerators = () => {
+    console.group("Debugging Embed Code Generators");
+    
+    blocks.forEach(block => {
+      try {
+        console.log(`Testing ${block.name} embed code generator...`);
+        const code = block.getEmbedCode();
+        console.log(`Result for ${block.name}:`, code);
+        
+        if (!code || !code.includes('<script')) {
+          console.error(`Invalid embed code for ${block.name}`);
+        }
+      } catch (error) {
+        console.error(`Error generating embed code for ${block.name}:`, error);
+      }
+    });
+    
+    console.groupEnd();
+    showNotification("Embed code generators debugged. Check console for details.", "info");
   };
 
   // Render the preview tab
@@ -328,11 +457,10 @@ const FullPagePreview = ({
             webpage.
           </Typography>
 
-          <Box sx={{ mb: 3 }}>
+          <Box sx={{ mb: 3, display: 'flex', flexWrap: 'wrap', gap: 2 }}>
             <Button
               variant="contained"
               onClick={() => setShowBlockControls(!showBlockControls)}
-              sx={{ mr: 2 }}
             >
               {showBlockControls ? "Hide Block Labels" : "Show Block Labels"}
             </Button>
@@ -343,6 +471,30 @@ const FullPagePreview = ({
               startIcon={<ContentCopyIcon />}
             >
               Copy All Enabled Blocks Code
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={copyAllMinifiedCode}
+              startIcon={<CompressIcon />}
+              disabled={minifying}
+            >
+              {minifying ? (
+                <>
+                  <CircularProgress size={24} color="inherit" sx={{ mr: 1 }} />
+                  Minifying...
+                </>
+              ) : (
+                'Copy Minified Code'
+              )}
+            </Button>
+            <Button
+              variant="outlined"
+              color="info"
+              onClick={debugEmbedGenerators}
+              startIcon={<BugReportIcon />}
+            >
+              Debug Embed Generators
             </Button>
           </Box>
 
@@ -391,10 +543,23 @@ const FullPagePreview = ({
                       <IconButton
                         onClick={() => {
                           navigator.clipboard.writeText(block.getEmbedCode());
+                          showNotification(`Embed code for ${block.name} copied to clipboard!`);
                         }}
                         disabled={!block.enabled}
                       >
                         <CodeIcon />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Copy minified embed code">
+                      <IconButton
+                        onClick={() => copyMinifiedBlockCode(block)}
+                        disabled={!block.enabled || minifying}
+                      >
+                        {minifying ? (
+                          <CircularProgress size={24} />
+                        ) : (
+                          <CompressIcon />
+                        )}
                       </IconButton>
                     </Tooltip>
                     <Tooltip title="Move up">
@@ -468,14 +633,17 @@ const FullPagePreview = ({
           </Typography>
           <Typography variant="body1" paragraph>
             The Manage Blocks tab lets you:
-            <ul>
-              <li>Enable or disable blocks using the checkboxes</li>
-              <li>Change the order of blocks using the up and down arrows</li>
-              <li>Preview individual blocks by clicking the eye icon</li>
-              <li>Copy the embed code for individual blocks</li>
-              <li>Copy the combined embed code for all enabled blocks</li>
-            </ul>
           </Typography>
+          <ul>
+            <li>Enable or disable blocks using the checkboxes</li>
+            <li>Change the order of blocks using the up and down arrows</li>
+            <li>Preview individual blocks by clicking the eye icon</li>
+            <li>Copy the embed code for individual blocks</li>
+            <li>Copy minified embed code for individual blocks</li>
+            <li>Copy the combined embed code for all enabled blocks</li>
+            <li>Copy minified combined code for all enabled blocks</li>
+            <li>Debug embed code generators if you encounter issues</li>
+          </ul>
 
           <Typography
             variant="subtitle1"
@@ -489,6 +657,34 @@ const FullPagePreview = ({
             blocks to appear. Each block uses Shadow DOM to ensure styles don't
             conflict with your existing website.
           </Typography>
+          
+          <Typography
+            variant="subtitle1"
+            sx={{ mt: 3, mb: 1, fontWeight: "bold" }}
+          >
+            Using Minified Code
+          </Typography>
+          <Typography variant="body1" paragraph>
+            If you encounter character limits in your website platform (like Webflow's 50,000 character limit), 
+            use the "Copy Minified Code" option. This creates a more compact version of the code
+            that uses less characters while preserving all functionality.
+          </Typography>
+          
+          <Typography
+            variant="subtitle1"
+            sx={{ mt: 3, mb: 1, fontWeight: "bold" }}
+          >
+            Troubleshooting
+          </Typography>
+          <Typography variant="body1" paragraph>
+            If you encounter issues with the embed code:
+          </Typography>
+          <ul>
+            <li>Click the "Debug Embed Generators" button to check all generators</li>
+            <li>Verify that all required script files are uploaded to your server</li>
+            <li>Check that URLs in your configuration are correct</li>
+            <li>Try embedding one block at a time to identify problematic components</li>
+          </ul>
         </Paper>
       </Box>
     );
@@ -518,6 +714,17 @@ const FullPagePreview = ({
           {activeTab === 2 && renderHelp()}
         </Box>
       </Paper>
+      
+      <Snackbar 
+        open={notification.open} 
+        autoHideDuration={4000} 
+        onClose={closeNotification}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={closeNotification} severity={notification.severity} variant="filled">
+          {notification.message}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

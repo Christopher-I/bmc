@@ -1,0 +1,67 @@
+/* PHCG Block Styles */
+:host {
+    display: block;
+    box-sizing: border-box;
+    --background-color: #1C436A;
+    --text-color: #ffffff;
+    --button-color: #CE950F;
+    --heading-font: serif;
+    --body-font: sans-serif;
+    --button-radius: 4px;
+  }
+  
+  .phcg-container {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 2rem;
+    font-family: var(--body-font);
+    max-width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+  }
+  
+  .phcg-subtitle {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .phcg-heading {
+    font-family: var(--heading-font);
+    font-size: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .phcg-paragraph {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .phcg-button {
+    background-color: var(--button-color);
+    color: white;
+    font-family: var(--body-font);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: var(--button-radius);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .phcg-button:hover {
+    opacity: 0.9;
+  }
+  
+  @media (max-width: 768px) {
+    .phcg-container {
+      padding: 1.5rem;
+    }
+    
+    .phcg-heading {
+      font-size: 1.75rem;
+    }
+  }
