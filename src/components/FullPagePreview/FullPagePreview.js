@@ -458,12 +458,13 @@ const FullPagePreview = ({
           </Typography>
 
           <Box sx={{ mb: 3, display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-            <Button
+            {/* Commented out "Show Block Labels" button */}
+            {/* <Button
               variant="contained"
               onClick={() => setShowBlockControls(!showBlockControls)}
             >
               {showBlockControls ? "Hide Block Labels" : "Show Block Labels"}
-            </Button>
+            </Button> */}
             <Button
               variant="contained"
               color="secondary"
@@ -472,7 +473,8 @@ const FullPagePreview = ({
             >
               Copy All Enabled Blocks Code
             </Button>
-            <Button
+            {/* Commented out "Copy Minified Code" button */}
+            {/* <Button
               variant="contained"
               color="secondary"
               onClick={copyAllMinifiedCode}
@@ -487,15 +489,16 @@ const FullPagePreview = ({
               ) : (
                 'Copy Minified Code'
               )}
-            </Button>
-            <Button
+            </Button> */}
+            {/* Commented out "Debug Embed Generators" button */}
+            {/* <Button
               variant="outlined"
               color="info"
               onClick={debugEmbedGenerators}
               startIcon={<BugReportIcon />}
             >
               Debug Embed Generators
-            </Button>
+            </Button> */}
           </Box>
 
           <Divider sx={{ my: 2 }} />
@@ -550,7 +553,8 @@ const FullPagePreview = ({
                         <CodeIcon />
                       </IconButton>
                     </Tooltip>
-                    <Tooltip title="Copy minified embed code">
+                    {/* Commented out "Copy minified embed code" button */}
+                    {/* <Tooltip title="Copy minified embed code">
                       <IconButton
                         onClick={() => copyMinifiedBlockCode(block)}
                         disabled={!block.enabled || minifying}
@@ -561,7 +565,7 @@ const FullPagePreview = ({
                           <CompressIcon />
                         )}
                       </IconButton>
-                    </Tooltip>
+                    </Tooltip> */}
                     <Tooltip title="Move up">
                       <span>
                         <IconButton
@@ -621,8 +625,7 @@ const FullPagePreview = ({
           </Typography>
           <Typography variant="body1" paragraph>
             The Preview tab shows all your enabled blocks stacked together as
-            they would appear on a live website. You can toggle the "Show Block
-            Labels" button to identify each section.
+            they would appear on a live website.
           </Typography>
 
           <Typography
@@ -639,10 +642,7 @@ const FullPagePreview = ({
             <li>Change the order of blocks using the up and down arrows</li>
             <li>Preview individual blocks by clicking the eye icon</li>
             <li>Copy the embed code for individual blocks</li>
-            <li>Copy minified embed code for individual blocks</li>
             <li>Copy the combined embed code for all enabled blocks</li>
-            <li>Copy minified combined code for all enabled blocks</li>
-            <li>Debug embed code generators if you encounter issues</li>
           </ul>
 
           <Typography
@@ -662,25 +662,12 @@ const FullPagePreview = ({
             variant="subtitle1"
             sx={{ mt: 3, mb: 1, fontWeight: "bold" }}
           >
-            Using Minified Code
-          </Typography>
-          <Typography variant="body1" paragraph>
-            If you encounter character limits in your website platform (like Webflow's 50,000 character limit), 
-            use the "Copy Minified Code" option. This creates a more compact version of the code
-            that uses less characters while preserving all functionality.
-          </Typography>
-          
-          <Typography
-            variant="subtitle1"
-            sx={{ mt: 3, mb: 1, fontWeight: "bold" }}
-          >
             Troubleshooting
           </Typography>
           <Typography variant="body1" paragraph>
             If you encounter issues with the embed code:
           </Typography>
           <ul>
-            <li>Click the "Debug Embed Generators" button to check all generators</li>
             <li>Verify that all required script files are uploaded to your server</li>
             <li>Check that URLs in your configuration are correct</li>
             <li>Try embedding one block at a time to identify problematic components</li>
