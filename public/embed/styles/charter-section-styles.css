@@ -1,0 +1,120 @@
+/* Charter Section Block Styles */
+:host {
+    display: block;
+    box-sizing: border-box;
+    --background-color: #1e3553;
+    --text-color: #ffffff;
+    --heading-color: #ffffff;
+    --accent-color: #d5ad36;
+    --heading-font: serif;
+    --body-font: sans-serif;
+  }
+  
+  .charter-container {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--body-font);
+    padding: 2rem 3rem 5rem;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .charter-content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .charter-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .charter-label {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .charter-heading {
+    font-family: var(--heading-font);
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin: 0;
+    color: var(--heading-color);
+  }
+  
+  .charter-flex-container {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+  
+  .charter-text-container {
+    flex: 0 0 58.333%;
+    max-width: 58.333%;
+  }
+  
+  .charter-image-container {
+    flex: 0 0 41.667%;
+    max-width: 41.667%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .charter-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  .charter-logo-container {
+    margin-top: 0.5rem;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .charter-licensed {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .charter-logo {
+    width: 80px;
+    height: auto;
+    display: inline-block;
+  }
+  
+  .charter-paragraph {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .charter-paragraph:last-child {
+    margin-bottom: 0;
+  }
+  
+  @media (max-width: 900px) {
+    .charter-container {
+      padding: 2rem 1.5rem 3rem;
+    }
+    
+    .charter-flex-container {
+      flex-direction: column;
+    }
+    
+    .charter-text-container, 
+    .charter-image-container {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    
+    .charter-heading {
+      font-size: 2rem;
+    }
+    
+    .charter-image-container {
+      margin-top: 2rem;
+    }
+  }
