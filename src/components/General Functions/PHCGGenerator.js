@@ -17,7 +17,12 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { generatePHCGEmbedCode, defaultPHCGConfig } from "./PHCGShared";
+import { 
+  generatePHCGEmbedCode, 
+  generatePHCGEmbedCodeWithCSS,
+  defaultPHCGConfig 
+} from "./PHCGShared";
+import { useState } from "react";
 
 /**
  * PHCGGenerator component for generating the Post-haste Consulting Group section embed code
@@ -28,6 +33,8 @@ import { generatePHCGEmbedCode, defaultPHCGConfig } from "./PHCGShared";
  * @returns {React.Component} - The PHCGGenerator component
  */
 const PHCGGenerator = ({ config, onConfigChange }) => {
+  const [embedType, setEmbedType] = useState("inline"); // Options: "inline", "css"
+  
   // Destructure config with defaults
   const {
     backgroundColor = defaultPHCGConfig.backgroundColor,
@@ -40,17 +47,28 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
     buttonUrl = defaultPHCGConfig.buttonUrl
   } = config || {};
 
-  // Generate the embed code
-  const embedCode = generatePHCGEmbedCode({
-    backgroundColor,
-    textColor,
-    headingFont,
-    bodyFont,
-    buttonColor,
-    buttonText,
-    buttonRadius,
-    buttonUrl
-  });
+  // Generate the embed code based on selected type
+  const embedCode = embedType === "inline" 
+    ? generatePHCGEmbedCode({
+        backgroundColor,
+        textColor,
+        headingFont,
+        bodyFont,
+        buttonColor,
+        buttonText,
+        buttonRadius,
+        buttonUrl
+      })
+    : generatePHCGEmbedCodeWithCSS({
+        backgroundColor,
+        textColor,
+        headingFont,
+        bodyFont,
+        buttonColor,
+        buttonText,
+        buttonRadius,
+        buttonUrl
+      });
 
   // Handle color change
   const handleColorChange = (field, value) => {
@@ -91,10 +109,29 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
   const copyEmbedCode = () => {
     navigator.clipboard.writeText(embedCode).then(
       () => {
-        alert("Embed code copied to clipboard!");
+        // Create a temporary element to display the success message
+        const message = document.createElement('div');
+        message.textContent = `${embedType === "inline" ? "Inline" : "CSS"} embed code copied to clipboard!`;
+        message.style.position = 'fixed';
+        message.style.bottom = '20px';
+        message.style.left = '50%';
+        message.style.transform = 'translateX(-50%)';
+        message.style.backgroundColor = '#4caf50';
+        message.style.color = 'white';
+        message.style.padding = '10px 20px';
+        message.style.borderRadius = '4px';
+        message.style.zIndex = '9999';
+        
+        document.body.appendChild(message);
+        
+        // Remove the message after 3 seconds
+        setTimeout(() => {
+          document.body.removeChild(message);
+        }, 3000);
       },
       (err) => {
         console.error("Could not copy text: ", err);
+        alert("Failed to copy embed code to clipboard. Please try again.");
       }
     );
   };
@@ -295,28 +332,53 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
       </Accordion>
 
       {/* Embed Code Output */}
-      <Box sx={{ mt: 4, p: 2, bgcolor: "#f5f5f5", borderRadius: 1 }}>
-        <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
-          <Typography variant="subtitle1" fontWeight="bold">
-            Embed Code
-          </Typography>
-          <Button
-            startIcon={<ContentCopyIcon />}
-            size="small"
-            onClick={copyEmbedCode}
+      <Box sx={{ mt: 4 }}>
+        <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
+          Embed Code Type
+        </Typography>
+        <Box sx={{ display: "flex", gap: 2, mb: 3 }}>
+          <Button 
+            variant={embedType === "inline" ? "contained" : "outlined"} 
+            onClick={() => setEmbedType("inline")}
           >
-            Copy
+            Inline Styles
+          </Button>
+          <Button 
+            variant={embedType === "css" ? "contained" : "outlined"} 
+            onClick={() => setEmbedType("css")}
+          >
+            CSS Classes
           </Button>
         </Box>
-        <TextField
-          fullWidth
-          multiline
-          rows={6}
-          value={embedCode}
-          InputProps={{
-            readOnly: true,
-          }}
-        />
+        
+        <Box sx={{ p: 2, bgcolor: "#f5f5f5", borderRadius: 1 }}>
+          <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
+            <Typography variant="subtitle1" fontWeight="bold">
+              {embedType === "inline" ? "Inline Styles Embed Code" : "CSS Classes Embed Code"}
+            </Typography>
+            <Button
+              startIcon={<ContentCopyIcon />}
+              size="small"
+              onClick={copyEmbedCode}
+            >
+              Copy
+            </Button>
+          </Box>
+          <TextField
+            fullWidth
+            multiline
+            rows={10}
+            value={embedCode}
+            InputProps={{
+              readOnly: true,
+            }}
+          />
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+            {embedType === "inline" 
+              ? "This embed code uses inline styles directly in the HTML elements." 
+              : "This embed code uses CSS classes for styling, providing better separation of content and style."}
+          </Typography>
+        </Box>
       </Box>
 
       {/* Action Buttons */}
