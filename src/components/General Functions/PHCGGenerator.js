@@ -17,16 +17,16 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { 
-  generatePHCGEmbedCode, 
+import {
+  generatePHCGEmbedCode,
   generatePHCGEmbedCodeWithCSS,
-  defaultPHCGConfig 
+  defaultPHCGConfig,
 } from "./PHCGShared";
 import { useState } from "react";
 
 /**
  * PHCGGenerator component for generating the Post-haste Consulting Group section embed code
- * 
+ *
  * @param {Object} props - Component props
  * @param {Object} props.config - Configuration object with styling parameters
  * @param {Function} props.onConfigChange - Function to handle configuration changes
@@ -34,7 +34,7 @@ import { useState } from "react";
  */
 const PHCGGenerator = ({ config, onConfigChange }) => {
   const [embedType, setEmbedType] = useState("inline"); // Options: "inline", "css"
-  
+
   // Destructure config with defaults
   const {
     backgroundColor = defaultPHCGConfig.backgroundColor,
@@ -44,31 +44,32 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
     buttonColor = defaultPHCGConfig.buttonColor,
     buttonText = defaultPHCGConfig.buttonText,
     buttonRadius = defaultPHCGConfig.buttonRadius,
-    buttonUrl = defaultPHCGConfig.buttonUrl
+    buttonUrl = defaultPHCGConfig.buttonUrl,
   } = config || {};
 
   // Generate the embed code based on selected type
-  const embedCode = embedType === "inline" 
-    ? generatePHCGEmbedCode({
-        backgroundColor,
-        textColor,
-        headingFont,
-        bodyFont,
-        buttonColor,
-        buttonText,
-        buttonRadius,
-        buttonUrl
-      })
-    : generatePHCGEmbedCodeWithCSS({
-        backgroundColor,
-        textColor,
-        headingFont,
-        bodyFont,
-        buttonColor,
-        buttonText,
-        buttonRadius,
-        buttonUrl
-      });
+  const embedCode =
+    embedType === "inline"
+      ? generatePHCGEmbedCode({
+          backgroundColor,
+          textColor,
+          headingFont,
+          bodyFont,
+          buttonColor,
+          buttonText,
+          buttonRadius,
+          buttonUrl,
+        })
+      : generatePHCGEmbedCodeWithCSS({
+          backgroundColor,
+          textColor,
+          headingFont,
+          bodyFont,
+          buttonColor,
+          buttonText,
+          buttonRadius,
+          buttonUrl,
+        });
 
   // Handle color change
   const handleColorChange = (field, value) => {
@@ -110,20 +111,22 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
     navigator.clipboard.writeText(embedCode).then(
       () => {
         // Create a temporary element to display the success message
-        const message = document.createElement('div');
-        message.textContent = `${embedType === "inline" ? "Inline" : "CSS"} embed code copied to clipboard!`;
-        message.style.position = 'fixed';
-        message.style.bottom = '20px';
-        message.style.left = '50%';
-        message.style.transform = 'translateX(-50%)';
-        message.style.backgroundColor = '#4caf50';
-        message.style.color = 'white';
-        message.style.padding = '10px 20px';
-        message.style.borderRadius = '4px';
-        message.style.zIndex = '9999';
-        
+        const message = document.createElement("div");
+        message.textContent = `${
+          embedType === "inline" ? "Inline" : "CSS"
+        } embed code copied to clipboard!`;
+        message.style.position = "fixed";
+        message.style.bottom = "20px";
+        message.style.left = "50%";
+        message.style.transform = "translateX(-50%)";
+        message.style.backgroundColor = "#4caf50";
+        message.style.color = "white";
+        message.style.padding = "10px 20px";
+        message.style.borderRadius = "4px";
+        message.style.zIndex = "9999";
+
         document.body.appendChild(message);
-        
+
         // Remove the message after 3 seconds
         setTimeout(() => {
           document.body.removeChild(message);
@@ -139,7 +142,7 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
   // Reset to defaults
   const resetToDefaults = () => {
     onConfigChange({
-      ...defaultPHCGConfig
+      ...defaultPHCGConfig,
     });
   };
 
@@ -152,7 +155,7 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
       <Divider sx={{ my: 2 }} />
 
       {/* Colors Section */}
-      <Accordion defaultExpanded>
+      {/* <Accordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="subtitle1" fontWeight="bold">
             Colors
@@ -234,10 +237,10 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
             </Grid>
           </Grid>
         </AccordionDetails>
-      </Accordion>
+      </Accordion> */}
 
       {/* Typography Section */}
-      <Accordion defaultExpanded>
+      {/* <Accordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="subtitle1" fontWeight="bold">
             Typography
@@ -285,10 +288,10 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
             </Grid>
           </Grid>
         </AccordionDetails>
-      </Accordion>
+      </Accordion> */}
 
       {/* Button Settings */}
-      <Accordion defaultExpanded>
+      {/* <Accordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="subtitle1" fontWeight="bold">
             Button Settings
@@ -329,10 +332,10 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
             </Grid>
           </Grid>
         </AccordionDetails>
-      </Accordion>
+      </Accordion> */}
 
       {/* Embed Code Output */}
-      <Box sx={{ mt: 4 }}>
+      {/* <Box sx={{ mt: 4 }}>
         <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
           Embed Code Type
         </Typography>
@@ -379,7 +382,7 @@ const PHCGGenerator = ({ config, onConfigChange }) => {
               : "This embed code uses CSS classes for styling, providing better separation of content and style."}
           </Typography>
         </Box>
-      </Box>
+      </Box> */}
 
       {/* Action Buttons */}
       <Box sx={{ mt: 3, display: "flex", justifyContent: "flex-end", gap: 2 }}>
