@@ -41,17 +41,7 @@ const Sidebar = ({ active, onSelect }) => {
         flexDirection: "column",
       }}
     >
-      <Box sx={{ p: 2 }}>
-        <Typography
-          variant="h6"
-          gutterBottom
-          sx={{ fontWeight: "bold", color: "primary.main" }}
-        >
-          Blocks
-        </Typography>
-
-        <Divider sx={{ mb: 2 }} />
-      </Box>
+ 
 
       <Box
         sx={{

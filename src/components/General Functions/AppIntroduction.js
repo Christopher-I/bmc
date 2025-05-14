@@ -33,12 +33,14 @@ import WebAssetIcon from "@mui/icons-material/WebAsset";
 import HtmlIcon from "@mui/icons-material/Html";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import EmailIcon from "@mui/icons-material/Email";
+import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
+import LightbulbIcon from "@mui/icons-material/Lightbulb";
 
 const AppIntroduction = () => {
   const steps = [
-    "Select a block type",
-    "Customize appearance",
-    "Copy the embed code",
+    "Select the Blocks You’d Like to Use",
+    "Customize the style",
+    "Copy your selection",
     "Paste into your website",
   ];
 
@@ -78,17 +80,24 @@ const AppIntroduction = () => {
           gutterBottom
           sx={{ color: "#1e4164", fontWeight: "medium" }}
         >
-          Welcome to Post-haste Consulting Group(PHCG) Block Embedding Tool
+          Welcome to TPCI’s Webpage-Building Tool
         </Typography>
         <Typography
           variant="body1"
           paragraph
           sx={{ fontSize: "1.1rem", maxWidth: "900px" }}
         >
-          This tool helps you create beautiful, customized Post-haste Consulting
-          Group(PHCG) blocks for your website without any coding knowledge.
-          Simply choose a block type, customize it to match your brand, and get
-          ready-to-use embed code to paste into your website.
+          With this tool, you’ll be able to easily create a beautiful,
+          customized PC page for your website. We’ve made it as simple as
+          possible—no coding degree required! Just read the instructions,
+          explore the options, and you’ll be ready to go.
+          <br />
+          <br />
+          Begin by reviewing the full page. If you don’t want all the blocks,
+          consider which blocks you’d like. You'll be able to select the ones
+          you want. Once you pick what you want, you can customize the blocks to
+          match your website’s styling (fonts, colors, etc.). Then it’s simply a
+          matter of copying and pasting the blocks, or page, into your website.
         </Typography>
 
         {/* TPCI Logo Note Alert */}
@@ -108,10 +117,10 @@ const AppIntroduction = () => {
             Important Note About Customization
           </AlertTitle>
           <Typography variant="body2">
-            While you can change your company name throughout the blocks, please
-            note that the TPCI logo should not be modified or removed. This logo
-            is an essential part of the branding and must remain intact in all
-            implementations.
+            Wherever you see 'Post-Haste Consulting Group' and their logo,
+            replace it with your firm’s name and logo. Some blocks indicate that
+            you’re licensing PCS materials and the DYP™ tool from TPCI. These
+            sections cannot be modified or removed, as stated in the agreement.
           </Typography>
         </Alert>
 
@@ -133,12 +142,10 @@ const AppIntroduction = () => {
                     color="text.secondary"
                     sx={{ flexGrow: 1 }}
                   >
-                    The Post-haste Consulting Group(PHCG) Block Embedding Tool
-                    allows you to create professional website blocks related to
-                    Business Model Canvas, Partnership Charters, and business
-                    processes. You can customize colors, fonts, and content to
-                    match your brand, then embed these blocks directly into your
-                    website.
+                    TPCI’s Web-Building Tool allows you to create a website page
+                    you can integrate into your website, that helps your
+                    existing and potential clients understand this amazing
+                    offering.
                   </Typography>
                 </CardContent>
               </Card>
@@ -151,7 +158,7 @@ const AppIntroduction = () => {
                     component="h3"
                     sx={{ mb: 2, display: "flex", alignItems: "center" }}
                   >
-                    <CheckCircleIcon sx={{ mr: 1, color: "#4caf50" }} />
+                    <LightbulbIcon sx={{ mr: 1, color: "#fbc02d" }} />
                     Why use this tool?
                   </Typography>
                   <List dense sx={{ p: 0, flexGrow: 1 }}>
@@ -209,8 +216,8 @@ const AppIntroduction = () => {
         </Typography>
 
         <Typography variant="body1" paragraph sx={{ fontSize: "1.05rem" }}>
-          Watch this quick tutorial to learn how to use the Post-haste
-          Consulting Group(PHCG) Block Embedding Tool.
+          Watch this quick tutorial to learn how to use the TPCI’s
+          Webpage-building Tool.
         </Typography>
 
         {/* Embedded Loom Video */}
@@ -334,57 +341,42 @@ const AppIntroduction = () => {
                   >
                     1
                   </Box>
-                  Select a block Type
+                  Select the Blocks You’d Like to Use
                 </Typography>
                 <Typography variant="body2" paragraph>
-                  Click on any tab above to choose which type of block you want
-                  to create:
+                  Preview the Full Page, then select the blocks you’d like for
+                  your webpage.
                 </Typography>
                 <List dense sx={{ flexGrow: 1 }}>
                   <ListItem>
                     <ListItemIcon>
                       <CheckCircleIcon fontSize="small" color="primary" />
                     </ListItemIcon>
-                    <ListItemText
-                      primary="About Post-haste Consulting Group(PHCG) Block"
-                      secondary="A general introduction block about Business Model Canvas"
-                    />
+                    <ListItemText primary="About Post-haste Consulting Group(PHCG) Block" />
                   </ListItem>
                   <ListItem>
                     <ListItemIcon>
                       <CheckCircleIcon fontSize="small" color="primary" />
                     </ListItemIcon>
-                    <ListItemText
-                      primary="PC Process block"
-                      secondary="Shows the Partnership Charter process with interactive accordions"
-                    />
+                    <ListItemText primary="PC Process block" />
                   </ListItem>
                   <ListItem>
                     <ListItemIcon>
                       <CheckCircleIcon fontSize="small" color="primary" />
                     </ListItemIcon>
-                    <ListItemText
-                      primary="Partners Benefits block"
-                      secondary="Highlights the benefits of partnership with visual elements"
-                    />
+                    <ListItemText primary="Partners Benefits block" />
                   </ListItem>
                   <ListItem>
                     <ListItemIcon>
                       <CheckCircleIcon fontSize="small" color="primary" />
                     </ListItemIcon>
-                    <ListItemText
-                      primary="What is a PC?”"
-                      secondary="Details about charter development and implementation"
-                    />
+                    <ListItemText primary="What is a PC?”" />
                   </ListItem>
                   <ListItem>
                     <ListItemIcon>
                       <CheckCircleIcon fontSize="small" color="primary" />
                     </ListItemIcon>
-                    <ListItemText
-                      primary="Who Should Develop a Charter"
-                      secondary="Information about charter types and target audiences"
-                    />
+                    <ListItemText primary="Who Should Develop a Charter" />
                   </ListItem>
                 </List>
               </CardContent>
@@ -425,12 +417,11 @@ const AppIntroduction = () => {
                   >
                     2
                   </Box>
-                  Customize Your block
+                  Customize to match your website’s style
                 </Typography>
                 <Typography variant="body2" paragraph>
-                  Once you've selected a block type, you'll see a preview at the
-                  top of the page. Below the preview, you'll find customization
-                  options:
+                  The customizations below give you the ability to match the
+                  content in the blocks to your website’s style.
                 </Typography>
                 <List dense sx={{ flexGrow: 1 }}>
                   <ListItem>
@@ -442,9 +433,10 @@ const AppIntroduction = () => {
                     </ListItemIcon>
                     <ListItemText
                       primary="Colors"
-                      secondary="Change background, text, button, and accent colors to match your brand"
+                      secondary="Change background, text, button, and accent colors"
                     />
                   </ListItem>
+
                   <ListItem>
                     <ListItemIcon>
                       <FormatColorTextIcon
@@ -457,6 +449,7 @@ const AppIntroduction = () => {
                       secondary="Select different fonts for headings and body text"
                     />
                   </ListItem>
+
                   <ListItem>
                     <ListItemIcon>
                       <FormatShapesIcon
@@ -469,6 +462,20 @@ const AppIntroduction = () => {
                       secondary="Customize button text, colors, and corner roundness"
                     />
                   </ListItem>
+
+                  <ListItem>
+                    <ListItemIcon>
+                      <InsertPhotoIcon
+                        fontSize="small"
+                        sx={{ color: "#7e57c2" }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary="Logo"
+                      secondary="Upload or change your site's logo and placement"
+                    />
+                  </ListItem>
+
                   <ListItem>
                     <ListItemIcon>
                       <SettingsIcon
@@ -520,29 +527,21 @@ const AppIntroduction = () => {
                   >
                     3
                   </Box>
-                  Get Your Embed Code
+                  Copy Your "Embed Code"
                 </Typography>
-                <Typography variant="body2" paragraph>
-                  After customizing your block:
-                </Typography>
+
                 <List dense>
                   <ListItem>
                     <ListItemIcon>
                       <CodeIcon sx={{ color: "#26a69a" }} />
                     </ListItemIcon>
-                    <ListItemText
-                      primary="Find the 'Embed Code' block at the bottom of the page"
-                      secondary="All settings and customizations are included automatically"
-                    />
+                    <ListItemText primary="Find “Embedded Code” at the bottom of the page. It contains everything needed for the blocks to work correctly on your website." />
                   </ListItem>
                   <ListItem>
                     <ListItemIcon>
                       <ContentCopyIcon sx={{ color: "#26a69a" }} />
                     </ListItemIcon>
-                    <ListItemText
-                      primary="Click the 'Copy' button to copy the code to your clipboard"
-                      secondary="One-click copy makes it easy to transfer to your site"
-                    />
+                    <ListItemText primary='Click the "Copy" button to copy the code to your clipboard' />
                   </ListItem>
                 </List>
                 <Box
@@ -553,7 +552,7 @@ const AppIntroduction = () => {
                     mt: 2,
                   }}
                 >
-                  <Typography
+                  {/* <Typography
                     variant="body2"
                     sx={{
                       fontStyle: "italic",
@@ -564,7 +563,7 @@ const AppIntroduction = () => {
                     <InfoIcon sx={{ mr: 1, fontSize: 16, color: "#26a69a" }} />
                     The embed code contains everything needed for the block to
                     work correctly on your website.
-                  </Typography>
+                  </Typography> */}
                 </Box>
               </CardContent>
             </Card>
@@ -606,9 +605,7 @@ const AppIntroduction = () => {
                   </Box>
                   Add to Your Website
                 </Typography>
-                <Typography variant="body2" paragraph>
-                  To add the block to your website:
-                </Typography>
+
                 <List dense sx={{ flexGrow: 1 }}>
                   <ListItem>
                     <ListItemIcon>
@@ -616,7 +613,7 @@ const AppIntroduction = () => {
                     </ListItemIcon>
                     <ListItemText
                       primary="WordPress"
-                      secondary="Add a 'Custom HTML' block and paste the code"
+                      secondary="Add a 'Custom HTML' block and paste the code in it"
                     />
                   </ListItem>
                   <ListItem>
@@ -628,7 +625,7 @@ const AppIntroduction = () => {
                     </ListItemIcon>
                     <ListItemText
                       primary="Webflow"
-                      secondary="Add an 'Embed' element and paste the code"
+                      secondary='Add an "Embed element" and paste the code there'
                     />
                   </ListItem>
                   <ListItem>
@@ -640,7 +637,7 @@ const AppIntroduction = () => {
                     </ListItemIcon>
                     <ListItemText
                       primary="Other Website Builders"
-                      secondary="Look for 'HTML', 'Custom Code', or 'Embed' options"
+                      secondary="Look for 'HTML', 'Custom Code', or 'Embed' options and paste the code in one of those"
                     />
                   </ListItem>
                   <ListItem>
@@ -684,7 +681,7 @@ const AppIntroduction = () => {
               component="span"
               sx={{ color: "#1976d2", fontWeight: "medium" }}
             >
-              support@example.com
+              Support@PartnershipCharter.com
             </Box>
             .
           </Typography>
@@ -699,11 +696,11 @@ const AppIntroduction = () => {
               px: 3,
             }}
             onClick={() => {
-              navigator.clipboard.writeText("support@example.com");
+              navigator.clipboard.writeText("Support@PartnershipCharter.com");
               // In a real implementation, you would show a snackbar or toast notification here
             }}
           >
-            Copy Email
+            Send Email
           </Button>
         </Box>
       </Paper>

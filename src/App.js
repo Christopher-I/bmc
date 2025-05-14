@@ -652,7 +652,7 @@ function App() {
                 variant="h6"
                 sx={{ fontWeight: "bold", color: "primary.main" }}
               >
-                Website Builder
+               Your Firm’s Partnership Charter Webpage Builder
               </Typography>
             </Container>
           </Box>

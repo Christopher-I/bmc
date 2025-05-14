@@ -609,7 +609,7 @@ const FullPagePreview = ({
             variant="subtitle1"
             sx={{ mt: 3, mb: 1, fontWeight: "bold" }}
           >
-            How to use this tool
+            How to use the PC Webpage Builder
           </Typography>
           <Typography variant="body1" paragraph>
             The Full Page Preview allows you to see how all your website blocks
