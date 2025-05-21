@@ -40,6 +40,11 @@ import DYPLicensedUserPreview from "./components/DYPLicensedUser/DYPLicensedUser
 import DYPLicensedUserGenerator from "./components/DYPLicensedUser/DYPLicensedUserGenerator";
 import FullPagePreview from "./components/FullPagePreview/FullPagePreview";
 
+// Import Hero section components
+import HeroSection from "./components/Hero/Hero";
+import HeroSectionGenerator from "./components/Hero/HeroSectionGenerator";
+import { defaultHeroConfig } from "./components/Hero/HeroSectionShared";
+
 // Define shared styling constants for the entire application
 const STYLE_CONSTANTS = {
   // Brand colors
@@ -109,6 +114,7 @@ const theme = createTheme({
 
 const sectionTitles = {
   introduction: "Introduction & Guide",
+  hero: "Hero Banner Section", // Added hero section title
   PHCG: "About Post-haste Consulting Group (PHCG)",
   charter: "What is a PC?",
   charterTypes: "Who Should Develop a Charter?",
@@ -136,6 +142,17 @@ function App() {
   }, [activeSection]);
 
   // Introduction - No config needed
+
+  // Hero Section
+  const [heroConfig, setHeroConfig] = useState({
+    backgroundImageUrl: "/hero_bg.png",
+    overlayColor: "rgba(28, 67, 106, 0.7)",
+    textColor: STYLE_CONSTANTS.white,
+    headingFont: STYLE_CONSTANTS.headingFont,
+    taglineText: "...never operate a partnership without one",
+    logoUrl: "/phcg_logo.png",
+    height: 80
+  });
 
   // About PHCG
   const [PHCGConfig, setPHCGConfig] = useState({
@@ -305,6 +322,29 @@ function App() {
       // Introduction & Guide
       case "introduction":
         return <AppIntroduction />;
+
+      // Hero Section
+      case "hero":
+        return (
+          <>
+            <Paper elevation={3} sx={{ mb: 4 }}>
+              <Box p={3}>
+                <Typography variant="h6" gutterBottom align="center">
+                  Preview
+                </Typography>
+                <HeroSection config={heroConfig} />
+              </Box>
+            </Paper>
+            <Paper elevation={3}>
+              <Box p={3}>
+                <HeroSectionGenerator
+                  config={heroConfig}
+                  onConfigChange={setHeroConfig}
+                />
+              </Box>
+            </Paper>
+          </>
+        );
 
       // About PHCG
       case "PHCG":
@@ -609,6 +649,7 @@ function App() {
       case "fullPagePreview":
         return (
           <FullPagePreview
+            heroConfig={heroConfig}
             PHCGConfig={PHCGConfig}
             pcProcessConfig={pcProcessConfig}
             partnersBenefitsConfig={partnersBenefitsConfig}
@@ -652,7 +693,7 @@ function App() {
                 variant="h6"
                 sx={{ fontWeight: "bold", color: "primary.main" }}
               >
-               Your Firm’s Partnership Charter Webpage Builder
+               Your Firm's Partnership Charter Webpage Builder
               </Typography>
             </Container>
           </Box>

@@ -40,6 +40,7 @@ import AssistanceLevelsPreview from "../AssistanceLevels/AssistanceLevelsPreview
 import ThreeStepsPreview from "../ThreeSteps/ThreeStepsPreview";
 import BookPromoPreview from "../BookPromo/BookPromoPreview";
 import TestimonialsPreview from "../Testimonials/TestimonialsPreview";
+import HeroSection from "../Hero/Hero"; // Import the Hero section component
 
 // Import shared functions for generating embed code
 import { generateTestimonialsEmbedCode } from "../Testimonials/TestimonialsShared";
@@ -55,12 +56,14 @@ import { generateBookPromoEmbedCode } from "../BookPromo/BookPromoShared";
 import { generateSliversEmbedCode } from "../SliversOfAmbiguity/SliversShared";
 import { generateDYPLicensedUserEmbedCode } from '../DYPLicensedUser/DYPLicensedUserShared';
 import { generatePHCGEmbedCode } from '../General Functions/PHCGShared';
+import { generateHeroEmbedCode } from '../Hero/HeroSectionShared'; // Import the Hero section embed code generator
 
 /**
  * Component that shows a full page preview of all blocks
  * with options to select which ones to include
  */
 const FullPagePreview = ({
+  heroConfig, // Add hero config
   PHCGConfig,
   pcProcessConfig,
   partnersBenefitsConfig,
@@ -77,6 +80,16 @@ const FullPagePreview = ({
 }) => {
   // Define all available blocks with their configurations
   const [blocks, setBlocks] = useState([
+    {
+      id: "hero",
+      name: "Hero Banner",
+      component: HeroSection,
+      config: heroConfig,
+      enabled: true,
+      getEmbedCode: () => {
+        return generateHeroEmbedCode(heroConfig, 'inline');
+      },
+    },
     {
       id: "header",
       name: "About PHCG",
@@ -273,6 +286,11 @@ const FullPagePreview = ({
       return false;
     }
     
+    // Special case for the Hero section which uses inline HTML instead of a script tag
+    if (blockName === "Hero Banner") {
+      return code.includes('<div') || code.includes('<style');
+    }
+    
     if (!code.includes('<script')) {
       console.error(`Missing script tag in embed code for ${blockName}`);
       return false;
@@ -389,7 +407,7 @@ const FullPagePreview = ({
         const code = block.getEmbedCode();
         console.log(`Result for ${block.name}:`, code);
         
-        if (!code || !code.includes('<script')) {
+        if (!code || (!code.includes('<script') && !code.includes('<div') && !code.includes('<style'))) {
           console.error(`Invalid embed code for ${block.name}`);
         }
       } catch (error) {

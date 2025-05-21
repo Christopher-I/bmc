@@ -11,15 +11,16 @@ import {
 const blocks = [
   { key: "introduction", label: "Introduction & Guide" },
   { key: "fullPagePreview", label: "Full Page Preview" },
+  { key: "hero", label: "Hero Banner Section" }, // Added Hero section
   { key: "PHCG", label: "About PHCG" },
   { key: "charter", label: "What is a PC?" },
   { key: "charterTypes", label: "Who Should Develop a Charter" },
-  { key: "threeSteps", label: "Three Steps to Partnership" }, // Add new block
+  { key: "threeSteps", label: "Three Steps to Partnership" },
   { key: "dypTool", label: "The DYP Tool" },
   { key: "partners", label: "Partners Benefits" },
   { key: "pcProcess", label: "PC Process" },
   { key: "dypAdvantages", label: "DYP Advantages" },
-  { key: "assistanceLevels", label: "Partners Get Assistance" }, // Add new block
+  { key: "assistanceLevels", label: "Partners Get Assistance" },
   { key: "bookPromo", label: "Partnership Charter Book" },
   { key: "testimonials", label: "Client Testimonials" },
   { key: "sliversOfAmbiguity", label: "Slivers of Ambiguity" },
@@ -42,7 +43,6 @@ const Sidebar = ({ active, onSelect }) => {
       }}
     >
  
-
       <Box
         sx={{
           overflowY: "auto", // Enable vertical scrolling
