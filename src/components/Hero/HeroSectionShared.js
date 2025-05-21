@@ -12,7 +12,7 @@ export const defaultHeroConfig = {
   headingFont: "serif",
   taglineText: "...never operate a partnership without one",
   logoUrl: "/phcg_logo.png",
-  height: 80 // In vh units
+  height: 80, // In vh units
 };
 
 /**
@@ -21,11 +21,11 @@ export const defaultHeroConfig = {
  * @param {string} type - Embed code type ('inline', 'css', or 'loader')
  * @returns {string} - HTML or script tag
  */
-export const generateHeroEmbedCode = (config, type = 'inline') => {
-  if (type === 'loader') {
+export const generateHeroEmbedCode = (config, type = "inline") => {
+  if (type === "loader") {
     return generateHeroLoaderEmbedCode(config);
   }
-  return type === 'inline'
+  return type === "inline"
     ? generateInlineStylesCode(config)
     : generateCssClassesCode(config);
 };
@@ -51,18 +51,24 @@ const generateHeroLoaderEmbedCode = (config) => {
     headingFont,
     taglineText,
     logoUrl,
-    height
+    height,
   } = config;
 
   return `<script 
   src="https://bmc-neon.vercel.app/embed/loaders/hero-loader.js"
-  data-background-image-url="${getSafeUrl(backgroundImageUrl, 'https://bmc-neon.vercel.app/hero_bg.png')}"
+  data-background-image="${getSafeUrl(
+    backgroundImageUrl,
+    "https://bmc-neon.vercel.app/hero_bg.png"
+  )}"
   data-overlay-color="${overlayColor}"
   data-text-color="${textColor}"
   data-heading-font="${headingFont}"
   data-tagline-text="${taglineText}"
-  data-logo-url="${getSafeUrl(logoUrl, 'https://bmc-neon.vercel.app/phcg_logo.png')}"
-  data-hero-height="${height || 80}vh">
+  data-logo-url="${getSafeUrl(
+    logoUrl,
+    "https://bmc-neon.vercel.app/phcg_logo.png"
+  )}"
+  data-height="${height || 80}">
 </script>`;
 };
 
@@ -77,7 +83,7 @@ const generateInlineStylesCode = (config) => {
     headingFont,
     taglineText,
     logoUrl,
-    height
+    height,
   } = config;
 
   return `<div
@@ -210,7 +216,7 @@ const generateCssClassesCode = (config) => {
     headingFont,
     taglineText,
     logoUrl,
-    height
+    height,
   } = config;
 
   return `<!-- Hero Section Styles -->

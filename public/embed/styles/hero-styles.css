@@ -1,16 +1,18 @@
 :host {
+  display: block;
+  --background-image: url('https://bmc-neon.vercel.app/hero_bg.png');
   --overlay-color: rgba(28, 67, 106, 0.7);
   --text-color: #ffffff;
   --heading-font: serif;
-  --hero-height: 80vh;
+  --height: 80vh;
 }
 
 .hero-container {
   position: relative;
   width: 100%;
-  height: var(--hero-height);
+  height: var(--height);
   min-height: 600px;
-  background-image: url('{{background-image-url}}');
+  background-image: var(--background-image);
   background-size: cover;
   background-position: center;
   color: var(--text-color);

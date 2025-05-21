@@ -54,9 +54,9 @@ import { generateEmbedCode as generateDYPAdvantagesEmbedCode } from "../DYPAdvan
 import { generateAssistanceLevelsEmbedCode } from "../AssistanceLevels/AssistanceLevelsShared";
 import { generateBookPromoEmbedCode } from "../BookPromo/BookPromoShared";
 import { generateSliversEmbedCode } from "../SliversOfAmbiguity/SliversShared";
-import { generateDYPLicensedUserEmbedCode } from '../DYPLicensedUser/DYPLicensedUserShared';
-import { generatePHCGEmbedCode } from '../General Functions/PHCGShared';
-import { generateHeroEmbedCode } from '../Hero/HeroSectionShared'; // Import the Hero section embed code generator
+import { generateDYPLicensedUserEmbedCode } from "../DYPLicensedUser/DYPLicensedUserShared";
+import { generatePHCGEmbedCode } from "../General Functions/PHCGShared";
+import { generateHeroEmbedCode } from "../Hero/HeroSectionShared"; // Import the Hero section embed code generator
 
 /**
  * Component that shows a full page preview of all blocks
@@ -87,7 +87,7 @@ const FullPagePreview = ({
       config: heroConfig,
       enabled: true,
       getEmbedCode: () => {
-        return generateHeroEmbedCode(heroConfig, 'inline');
+        return generateHeroEmbedCode(heroConfig, "loader");
       },
     },
     {
@@ -229,7 +229,11 @@ const FullPagePreview = ({
   const [activeTab, setActiveTab] = useState(0);
   const [showBlockControls, setShowBlockControls] = useState(false);
   const [minifying, setMinifying] = useState(false);
-  const [notification, setNotification] = useState({ open: false, message: "", severity: "success" });
+  const [notification, setNotification] = useState({
+    open: false,
+    message: "",
+    severity: "success",
+  });
 
   // Function to show notifications
   const showNotification = (message, severity = "success") => {
@@ -280,22 +284,22 @@ const FullPagePreview = ({
   // Function to inspect a generated embed code to ensure it's valid
   const inspectEmbedCode = (code, blockName) => {
     console.log(`Inspecting embed code for ${blockName}:`, code);
-    
+
     if (!code) {
       console.error(`Empty embed code for ${blockName}`);
       return false;
     }
-    
+
     // Special case for the Hero section which uses inline HTML instead of a script tag
     if (blockName === "Hero Banner") {
-      return code.includes('<div') || code.includes('<style');
+      return code.includes("<div") || code.includes("<style");
     }
-    
-    if (!code.includes('<script')) {
+
+    if (!code.includes("<script")) {
       console.error(`Missing script tag in embed code for ${blockName}`);
       return false;
     }
-    
+
     // For debugging purposes - this will show what's being generated
     return true;
   };
@@ -303,17 +307,15 @@ const FullPagePreview = ({
   // Get the combined embed code for all enabled blocks
   const getCombinedEmbedCode = () => {
     const enabledBlocks = blocks.filter((block) => block.enabled);
-    
+
     // First inspect each block's embed code for debugging
-    enabledBlocks.forEach(block => {
+    enabledBlocks.forEach((block) => {
       const code = block.getEmbedCode();
       inspectEmbedCode(code, block.name);
     });
-    
+
     // Then return the combined code
-    return enabledBlocks
-      .map((block) => block.getEmbedCode())
-      .join("\n\n");
+    return enabledBlocks.map((block) => block.getEmbedCode()).join("\n\n");
   };
 
   // Copy the combined embed code to clipboard
@@ -330,67 +332,75 @@ const FullPagePreview = ({
         console.error("Empty script code provided to minifier");
         return scriptCode;
       }
-      
+
       // Simple whitespace reduction for the entire script tag
       return scriptCode
-        .replace(/\s+/g, ' ')           // Replace multiple spaces with a single space
-        .replace(/>\s+</g, '><')        // Remove spaces between tags
-        .replace(/\s+>/g, '>')          // Remove spaces before closing brackets
-        .replace(/\s*=\s*/g, '=')       // Remove spaces around equals signs
-        .trim();                         // Remove leading/trailing whitespace
+        .replace(/\s+/g, " ") // Replace multiple spaces with a single space
+        .replace(/>\s+</g, "><") // Remove spaces between tags
+        .replace(/\s+>/g, ">") // Remove spaces before closing brackets
+        .replace(/\s*=\s*/g, "=") // Remove spaces around equals signs
+        .trim(); // Remove leading/trailing whitespace
     } catch (error) {
-      console.error('Minification error:', error);
+      console.error("Minification error:", error);
       // Return original if there's an error
       return scriptCode;
     }
   };
-  
+
   // Function to copy minified code for a single block
   const copyMinifiedBlockCode = (block) => {
     const code = block.getEmbedCode();
-    
+
     // Validate the code first
     if (!inspectEmbedCode(code, block.name)) {
-      showNotification(`Invalid embed code for ${block.name}. See console for details.`, "error");
+      showNotification(
+        `Invalid embed code for ${block.name}. See console for details.`,
+        "error"
+      );
       return;
     }
-    
+
     const minified = minifyScript(code);
     navigator.clipboard.writeText(minified);
     showNotification(`Minified code for ${block.name} copied to clipboard!`);
   };
-  
+
   // Function to copy minified code for all enabled blocks
   const copyAllMinifiedCode = () => {
     setMinifying(true);
     try {
-      const enabledBlocks = blocks.filter(block => block.enabled);
-      
+      const enabledBlocks = blocks.filter((block) => block.enabled);
+
       // Check each block for valid embed code
       let allValid = true;
-      enabledBlocks.forEach(block => {
+      enabledBlocks.forEach((block) => {
         const code = block.getEmbedCode();
         if (!inspectEmbedCode(code, block.name)) {
-          showNotification(`Invalid embed code for ${block.name}. See console for details.`, "error");
+          showNotification(
+            `Invalid embed code for ${block.name}. See console for details.`,
+            "error"
+          );
           allValid = false;
         }
       });
-      
+
       if (!allValid) {
         setMinifying(false);
         return;
       }
-      
+
       // Minify each block's embed code
-      const minifiedCodes = enabledBlocks.map(block => 
+      const minifiedCodes = enabledBlocks.map((block) =>
         minifyScript(block.getEmbedCode())
       );
-      
+
       // Join and copy to clipboard
-      navigator.clipboard.writeText(minifiedCodes.join('\n\n'));
-      showNotification("Minified code for all enabled blocks copied to clipboard!");
+      navigator.clipboard.writeText(minifiedCodes.join("\n\n"));
+      showNotification(
+        "Minified code for all enabled blocks copied to clipboard!"
+      );
     } catch (error) {
-      console.error('Error minifying blocks:', error);
+      console.error("Error minifying blocks:", error);
       showNotification("Error minifying code. Please try again.", "error");
     } finally {
       setMinifying(false);
@@ -400,23 +410,31 @@ const FullPagePreview = ({
   // Debug function to check all embed code generators
   const debugEmbedGenerators = () => {
     console.group("Debugging Embed Code Generators");
-    
-    blocks.forEach(block => {
+
+    blocks.forEach((block) => {
       try {
         console.log(`Testing ${block.name} embed code generator...`);
         const code = block.getEmbedCode();
         console.log(`Result for ${block.name}:`, code);
-        
-        if (!code || (!code.includes('<script') && !code.includes('<div') && !code.includes('<style'))) {
+
+        if (
+          !code ||
+          (!code.includes("<script") &&
+            !code.includes("<div") &&
+            !code.includes("<style"))
+        ) {
           console.error(`Invalid embed code for ${block.name}`);
         }
       } catch (error) {
         console.error(`Error generating embed code for ${block.name}:`, error);
       }
     });
-    
+
     console.groupEnd();
-    showNotification("Embed code generators debugged. Check console for details.", "info");
+    showNotification(
+      "Embed code generators debugged. Check console for details.",
+      "info"
+    );
   };
 
   // Render the preview tab
@@ -475,7 +493,7 @@ const FullPagePreview = ({
             webpage.
           </Typography>
 
-          <Box sx={{ mb: 3, display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+          <Box sx={{ mb: 3, display: "flex", flexWrap: "wrap", gap: 2 }}>
             {/* Commented out "Show Block Labels" button */}
             {/* <Button
               variant="contained"
@@ -564,7 +582,9 @@ const FullPagePreview = ({
                       <IconButton
                         onClick={() => {
                           navigator.clipboard.writeText(block.getEmbedCode());
-                          showNotification(`Embed code for ${block.name} copied to clipboard!`);
+                          showNotification(
+                            `Embed code for ${block.name} copied to clipboard!`
+                          );
                         }}
                         disabled={!block.enabled}
                       >
@@ -675,7 +695,7 @@ const FullPagePreview = ({
             blocks to appear. Each block uses Shadow DOM to ensure styles don't
             conflict with your existing website.
           </Typography>
-          
+
           <Typography
             variant="subtitle1"
             sx={{ mt: 3, mb: 1, fontWeight: "bold" }}
@@ -686,9 +706,14 @@ const FullPagePreview = ({
             If you encounter issues with the embed code:
           </Typography>
           <ul>
-            <li>Verify that all required script files are uploaded to your server</li>
+            <li>
+              Verify that all required script files are uploaded to your server
+            </li>
             <li>Check that URLs in your configuration are correct</li>
-            <li>Try embedding one block at a time to identify problematic components</li>
+            <li>
+              Try embedding one block at a time to identify problematic
+              components
+            </li>
           </ul>
         </Paper>
       </Box>
@@ -719,14 +744,18 @@ const FullPagePreview = ({
           {activeTab === 2 && renderHelp()}
         </Box>
       </Paper>
-      
-      <Snackbar 
-        open={notification.open} 
-        autoHideDuration={4000} 
+
+      <Snackbar
+        open={notification.open}
+        autoHideDuration={4000}
         onClose={closeNotification}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
-        <Alert onClose={closeNotification} severity={notification.severity} variant="filled">
+        <Alert
+          onClose={closeNotification}
+          severity={notification.severity}
+          variant="filled"
+        >
           {notification.message}
         </Alert>
       </Snackbar>
