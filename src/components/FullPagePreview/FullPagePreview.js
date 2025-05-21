@@ -138,7 +138,21 @@ const FullPagePreview = ({
       component: ThreeStepsPreview,
       config: threeStepsConfig,
       enabled: true,
-      getEmbedCode: () => generateThreeStepsEmbedCode(threeStepsConfig),
+      getEmbedCode: () => {
+        const formattedConfig = Object.entries(threeStepsConfig).reduce((acc, [key, value]) => {
+          // Convert camelCase keys to kebab-case for data attributes
+          const kebabKey = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+          return {...acc, [kebabKey]: value};
+        }, {});
+        
+        // Create script tag with data attributes
+        return `<script 
+          src="https://bmc-neon.vercel.app/embed/three-steps.js"
+          ${Object.entries(formattedConfig)
+            .map(([key, value]) => `data-${key}="${value}"`)
+            .join('\n          ')}
+        ></script>`;
+      },
     },
     {
       id: "tool",
@@ -204,7 +218,21 @@ const FullPagePreview = ({
       component: SliversOfAmbiguityPreview,
       config: sliversOfAmbiguityConfig,
       enabled: true,
-      getEmbedCode: () => generateSliversEmbedCode(sliversOfAmbiguityConfig),
+      getEmbedCode: () => {
+        const formattedConfig = Object.entries(sliversOfAmbiguityConfig).reduce((acc, [key, value]) => {
+          // Convert camelCase keys to kebab-case for data attributes
+          const kebabKey = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+          return {...acc, [kebabKey]: value};
+        }, {});
+        
+        // Create script tag with data attributes
+        return `<script 
+          src="https://bmc-neon.vercel.app/embed/slivers-section.js"
+          ${Object.entries(formattedConfig)
+            .map(([key, value]) => `data-${key}="${value}"`)
+            .join('\n          ')}
+        ></script>`;
+      },
     },
     {
       id: "licensed",
@@ -221,7 +249,20 @@ const FullPagePreview = ({
             : "https://bmc-neon.vercel.app/dyp_logo.png",
           buttonUrl: dypLicensedUserConfig.buttonUrl || "#",
         };
-        return generateDYPLicensedUserEmbedCode(absoluteConfig);
+        
+        const formattedConfig = Object.entries(absoluteConfig).reduce((acc, [key, value]) => {
+          // Convert camelCase keys to kebab-case for data attributes
+          const kebabKey = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+          return {...acc, [kebabKey]: value};
+        }, {});
+        
+        // Create script tag with data attributes
+        return `<script 
+          src="https://bmc-neon.vercel.app/embed/dyp-licensed-user-section.js"
+          ${Object.entries(formattedConfig)
+            .map(([key, value]) => `data-${key}="${value}"`)
+            .join('\n          ')}
+        ></script>`;
       },
     },
   ]);
@@ -298,6 +339,14 @@ const FullPagePreview = ({
     if (!code.includes("<script")) {
       console.error(`Missing script tag in embed code for ${blockName}`);
       return false;
+    }
+
+    // For optimized embed scripts that load from external files
+    if (["Three Steps to Partnership", "Slivers of Ambiguity", "DYP Licensed User"].includes(blockName)) {
+      if (!code.includes("embed/")) {
+        console.error(`Missing embed path in code for ${blockName}`);
+        return false;
+      }
     }
 
     // For debugging purposes - this will show what's being generated

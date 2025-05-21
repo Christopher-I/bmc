@@ -1,0 +1,118 @@
+:host {
+  display: block;
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --heading-color: #333333;
+  --card-background-color: #E5E7EA;
+  --step-badge-color: #ABB9C7;
+  --step-badge-text-color: #ffffff;
+  --heading-font: serif;
+  --body-font: sans-serif;
+  --card-shadow: none;
+}
+
+.three-steps-container {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--body-font);
+  padding: 4rem 2rem;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.three-steps-wrapper {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.three-steps-heading {
+  font-family: var(--heading-font);
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 5rem;
+  color: var(--heading-color);
+  text-align: center;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.2;
+}
+
+.three-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 0 auto;
+}
+
+.step-card {
+  background-color: var(--card-background-color);
+  border-radius: 12px;
+  padding: 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--card-shadow);
+  position: relative;
+}
+
+.step-badge {
+  background-color: var(--step-badge-color);
+  color: var(--step-badge-text-color);
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+  width: 60px;
+}
+
+.step-title {
+  font-family: var(--heading-font);
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--heading-color);
+  border-bottom: 2px solid #CE950F;
+  padding-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+.step-content {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex: 1;
+  margin-top: 1rem;
+  color: #4A4A4A;
+  padding-bottom: 3rem; /* Space for icon */
+}
+
+.step-icon-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.step-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+  vertical-align: bottom;
+}
+
+@media (max-width: 900px) {
+  .three-steps-heading {
+    font-size: 2rem;
+  }
+  
+  .three-steps-grid {
+    grid-template-columns: 1fr;
+  }
+}
