@@ -114,7 +114,7 @@ const theme = createTheme({
 
 const sectionTitles = {
   introduction: "Introduction & Guide",
-  hero: "Hero Banner Section", // Added hero section title
+  hero: "Hero Section", // Added hero section title
   PHCG: "About Post-haste Consulting Group (PHCG)",
   charter: "What is a PC?",
   charterTypes: "Who Should Develop a Charter?",

@@ -82,7 +82,7 @@ const FullPagePreview = ({
   const [blocks, setBlocks] = useState([
     {
       id: "hero",
-      name: "Hero Banner",
+      name: "Hero",
       component: HeroSection,
       config: heroConfig,
       enabled: true,
@@ -291,7 +291,7 @@ const FullPagePreview = ({
     }
 
     // Special case for the Hero section which uses inline HTML instead of a script tag
-    if (blockName === "Hero Banner") {
+    if (blockName === "Hero") {
       return code.includes("<div") || code.includes("<style");
     }
 

@@ -11,7 +11,7 @@ import {
 const blocks = [
   { key: "introduction", label: "Introduction & Guide" },
   { key: "fullPagePreview", label: "Full Page Preview" },
-  { key: "hero", label: "Hero Banner Section" }, // Added Hero section
+  { key: "hero", label: "Hero Section" }, // Added Hero section
   { key: "PHCG", label: "About PHCG" },
   { key: "charter", label: "What is a PC?" },
   { key: "charterTypes", label: "Who Should Develop a Charter" },
