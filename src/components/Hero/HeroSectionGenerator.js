@@ -13,7 +13,6 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Slider,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -21,15 +20,15 @@ import { generateHeroEmbedCode, defaultHeroConfig } from "./HeroSectionShared";
 
 /**
  * HeroSectionGenerator component for generating the Hero section embed code
- * 
+ *
  * @param {Object} props - Component props
  * @param {Object} props.config - Configuration object with styling parameters
  * @param {Function} props.onConfigChange - Function to handle configuration changes
  * @returns {React.Component} - The HeroSectionGenerator component
  */
 const HeroSectionGenerator = ({ config, onConfigChange }) => {
-  const [embedType, setEmbedType] = useState("inline"); // Options: "inline", "css"
-  
+  const [embedType, setEmbedType] = useState("inline"); // "inline", "css", or "loader"
+
   // Destructure config with defaults
   const {
     backgroundImageUrl = defaultHeroConfig.backgroundImageUrl,
@@ -38,10 +37,10 @@ const HeroSectionGenerator = ({ config, onConfigChange }) => {
     headingFont = defaultHeroConfig.headingFont,
     taglineText = defaultHeroConfig.taglineText,
     logoUrl = defaultHeroConfig.logoUrl,
-    height = defaultHeroConfig.height
+    height = defaultHeroConfig.height,
   } = config || {};
 
-  // Generate the embed code based on selected type
+  // Generate embed code based on type
   const embedCode = generateHeroEmbedCode(
     {
       backgroundImageUrl,
@@ -50,79 +49,44 @@ const HeroSectionGenerator = ({ config, onConfigChange }) => {
       headingFont,
       taglineText,
       logoUrl,
-      height
-    }, 
+      height,
+    },
     embedType
   );
 
-  // Handle color change
-  const handleColorChange = (field, value) => {
-    onConfigChange({
-      ...config,
-      [field]: value,
-    });
-  };
-
-  // Handle text change
-  const handleTextChange = (field, value) => {
-    onConfigChange({
-      ...config,
-      [field]: value,
-    });
-  };
-
-  // Handle slider change
-  const handleSliderChange = (field, value) => {
-    onConfigChange({
-      ...config,
-      [field]: value,
-    });
-  };
-
-  // Handle font change
-  const handleFontChange = (field, value) => {
-    onConfigChange({
-      ...config,
-      [field]: value,
-    });
-  };
-
-  // Copy embed code to clipboard
+  // Copy to clipboard
   const copyEmbedCode = () => {
     navigator.clipboard.writeText(embedCode).then(
       () => {
-        // Create a temporary element to display the success message
-        const message = document.createElement('div');
-        message.textContent = `${embedType === "inline" ? "Inline" : "CSS"} embed code copied to clipboard!`;
-        message.style.position = 'fixed';
-        message.style.bottom = '20px';
-        message.style.left = '50%';
-        message.style.transform = 'translateX(-50%)';
-        message.style.backgroundColor = '#4caf50';
-        message.style.color = 'white';
-        message.style.padding = '10px 20px';
-        message.style.borderRadius = '4px';
-        message.style.zIndex = '9999';
-        
+        const message = document.createElement("div");
+        message.textContent = `${embedType} embed code copied to clipboard!`;
+        message.style.position = "fixed";
+        message.style.bottom = "20px";
+        message.style.left = "50%";
+        message.style.transform = "translateX(-50%)";
+        message.style.backgroundColor = "#4caf50";
+        message.style.color = "white";
+        message.style.padding = "10px 20px";
+        message.style.borderRadius = "4px";
+        message.style.zIndex = "9999";
         document.body.appendChild(message);
-        
-        // Remove the message after 3 seconds
         setTimeout(() => {
           document.body.removeChild(message);
         }, 3000);
       },
       (err) => {
         console.error("Could not copy text: ", err);
-        alert("Failed to copy embed code to clipboard. Please try again.");
+        alert("Failed to copy embed code. Please try again.");
       }
     );
   };
 
-  // Reset to defaults
+  const handleChange = (field, value) => {
+    onConfigChange({ ...config, [field]: value });
+  };
+
   const resetToDefaults = () => {
-    onConfigChange({
-      ...defaultHeroConfig
-    });
+    onConfigChange({ ...defaultHeroConfig });
   };
 
   return (
@@ -147,32 +111,18 @@ const HeroSectionGenerator = ({ config, onConfigChange }) => {
                 fullWidth
                 label="Background Image URL"
                 value={backgroundImageUrl}
-                onChange={(e) => handleTextChange("backgroundImageUrl", e.target.value)}
+                onChange={(e) => handleChange("backgroundImageUrl", e.target.value)}
                 placeholder="/hero_bg.png"
-                helperText="Path to the background image (relative or absolute URL)"
               />
             </Grid>
             <Grid item xs={12} md={6}>
-              <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                <Box
-                  sx={{
-                    width: 40,
-                    height: 40,
-                    backgroundColor: overlayColor,
-                    borderRadius: 1,
-                    mr: 2,
-                
-                  }}
-                />
-                <TextField
-                  fullWidth
-                  label="Overlay Color"
-                  value={overlayColor}
-                  onChange={(e) => handleColorChange("overlayColor", e.target.value)}
-                  placeholder="rgba(28, 67, 106, 0.7)"
-                  helperText="RGBA color for the overlay (include opacity)"
-                />
-              </Box>
+              <TextField
+                fullWidth
+                label="Overlay Color"
+                value={overlayColor}
+                onChange={(e) => handleChange("overlayColor", e.target.value)}
+                placeholder="rgba(28, 67, 106, 0.7)"
+              />
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
@@ -180,9 +130,10 @@ const HeroSectionGenerator = ({ config, onConfigChange }) => {
                 type="number"
                 label="Hero Height (vh)"
                 value={height}
-                onChange={(e) => handleSliderChange("height", parseInt(e.target.value, 10))}
+                onChange={(e) =>
+                  handleChange("height", parseInt(e.target.value, 10))
+                }
                 InputProps={{ inputProps: { min: 40, max: 100 } }}
-                helperText="Height of the hero section in viewport height units (40-100)"
               />
             </Grid>
           </Grid>
@@ -199,26 +150,13 @@ const HeroSectionGenerator = ({ config, onConfigChange }) => {
         <AccordionDetails>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
-              <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                <Box
-                  sx={{
-                    width: 40,
-                    height: 40,
-                    backgroundColor: textColor,
-                    borderRadius: 1,
-                    mr: 2,
-                    border: "1px solid #ccc",
-                  }}
-                />
-                <TextField
-                  fullWidth
-                  label="Text Color"
-                  value={textColor}
-                  onChange={(e) => handleColorChange("textColor", e.target.value)}
-                  placeholder="#ffffff"
-                  helperText="HEX color for the text"
-                />
-              </Box>
+              <TextField
+                fullWidth
+                label="Text Color"
+                value={textColor}
+                onChange={(e) => handleChange("textColor", e.target.value)}
+                placeholder="#ffffff"
+              />
             </Grid>
             <Grid item xs={12} md={6}>
               <FormControl fullWidth>
@@ -226,7 +164,7 @@ const HeroSectionGenerator = ({ config, onConfigChange }) => {
                 <Select
                   value={headingFont}
                   label="Heading Font"
-                  onChange={(e) => handleFontChange("headingFont", e.target.value)}
+                  onChange={(e) => handleChange("headingFont", e.target.value)}
                 >
                   <MenuItem value="serif">Serif</MenuItem>
                   <MenuItem value="sans-serif">Sans-serif</MenuItem>
@@ -236,7 +174,6 @@ const HeroSectionGenerator = ({ config, onConfigChange }) => {
                   <MenuItem value="'Georgia', serif">Georgia</MenuItem>
                   <MenuItem value="'Helvetica', sans-serif">Helvetica</MenuItem>
                 </Select>
-           
               </FormControl>
             </Grid>
             <Grid item xs={12}>
@@ -244,9 +181,8 @@ const HeroSectionGenerator = ({ config, onConfigChange }) => {
                 fullWidth
                 label="Tagline Text"
                 value={taglineText}
-                onChange={(e) => handleTextChange("taglineText", e.target.value)}
+                onChange={(e) => handleChange("taglineText", e.target.value)}
                 placeholder="...never operate a partnership without one"
-                helperText="Text below 'A Partnership Charter™'"
               />
             </Grid>
           </Grid>
@@ -267,39 +203,44 @@ const HeroSectionGenerator = ({ config, onConfigChange }) => {
                 fullWidth
                 label="Logo URL"
                 value={logoUrl}
-                onChange={(e) => handleTextChange("logoUrl", e.target.value)}
+                onChange={(e) => handleChange("logoUrl", e.target.value)}
                 placeholder="/phcg_logo.svg"
-                helperText="Path to the logo image (relative or absolute URL)"
               />
             </Grid>
           </Grid>
         </AccordionDetails>
       </Accordion>
 
-      {/* Embed Code Output */}
+      {/* Embed Code Type */}
       <Box sx={{ mt: 4 }}>
         <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
           Embed Code Type
         </Typography>
         <Box sx={{ display: "flex", gap: 2, mb: 3 }}>
-          <Button 
-            variant={embedType === "inline" ? "contained" : "outlined"} 
+          <Button
+            variant={embedType === "inline" ? "contained" : "outlined"}
             onClick={() => setEmbedType("inline")}
           >
-            Inline Styles
+            Inline
           </Button>
-          <Button 
-            variant={embedType === "css" ? "contained" : "outlined"} 
+          <Button
+            variant={embedType === "css" ? "contained" : "outlined"}
             onClick={() => setEmbedType("css")}
           >
-            CSS Classes
+            CSS
+          </Button>
+          <Button
+            variant={embedType === "loader" ? "contained" : "outlined"}
+            onClick={() => setEmbedType("loader")}
+          >
+            Loader
           </Button>
         </Box>
-        
+
         <Box sx={{ p: 2, bgcolor: "#f5f5f5", borderRadius: 1 }}>
           <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
             <Typography variant="subtitle1" fontWeight="bold">
-              {embedType === "inline" ? "Inline Styles Embed Code" : "CSS Classes Embed Code"}
+              Generated {embedType} Embed Code
             </Typography>
             <Button
               startIcon={<ContentCopyIcon />}
@@ -312,21 +253,21 @@ const HeroSectionGenerator = ({ config, onConfigChange }) => {
           <TextField
             fullWidth
             multiline
-            rows={10}
+            rows={embedType === "loader" ? 8 : 14}
             value={embedCode}
-            InputProps={{
-              readOnly: true,
-            }}
+            InputProps={{ readOnly: true }}
           />
           <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-            {embedType === "inline" 
-              ? "This embed code uses inline styles directly in the HTML elements." 
-              : "This embed code uses CSS classes for styling, providing better separation of content and style."}
+            {embedType === "inline"
+              ? "Uses inline styles for easy copy-paste into HTML."
+              : embedType === "css"
+              ? "Separates content and styling with class names."
+              : "Embeds remotely hosted HTML/CSS via script tag."}
           </Typography>
         </Box>
       </Box>
 
-      {/* Action Buttons */}
+      {/* Actions */}
       <Box sx={{ mt: 3, display: "flex", justifyContent: "flex-end", gap: 2 }}>
         <Button variant="outlined" onClick={resetToDefaults}>
           Reset to Defaults

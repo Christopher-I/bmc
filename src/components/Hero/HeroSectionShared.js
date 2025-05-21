@@ -17,27 +17,53 @@ export const defaultHeroConfig = {
 
 /**
  * Generates embed code for the Hero Section
- * 
  * @param {Object} config - Configuration object with styling parameters
- * @param {string} type - Embed code type ('inline' or 'css')
- * @returns {string} - HTML with either inline styles or CSS classes
+ * @param {string} type - Embed code type ('inline', 'css', or 'loader')
+ * @returns {string} - HTML or script tag
  */
 export const generateHeroEmbedCode = (config, type = 'inline') => {
-  const {
-    backgroundImageUrl = defaultHeroConfig.backgroundImageUrl,
-    overlayColor = defaultHeroConfig.overlayColor,
-    textColor = defaultHeroConfig.textColor,
-    headingFont = defaultHeroConfig.headingFont,
-    taglineText = defaultHeroConfig.taglineText,
-    logoUrl = defaultHeroConfig.logoUrl,
-    height = defaultHeroConfig.height
-  } = config || {};
-
-  if (type === 'inline') {
-    return generateInlineStylesCode(config);
-  } else {
-    return generateCssClassesCode(config);
+  if (type === 'loader') {
+    return generateHeroLoaderEmbedCode(config);
   }
+  return type === 'inline'
+    ? generateInlineStylesCode(config)
+    : generateCssClassesCode(config);
+};
+
+/**
+ * Helper to ensure safe external URLs
+ */
+const getSafeUrl = (url, fallback) => {
+  if (!url || url === "" || url.startsWith("/")) {
+    return fallback;
+  }
+  return url;
+};
+
+/**
+ * Generate external loader-based embed code
+ */
+const generateHeroLoaderEmbedCode = (config) => {
+  const {
+    backgroundImageUrl,
+    overlayColor,
+    textColor,
+    headingFont,
+    taglineText,
+    logoUrl,
+    height
+  } = config;
+
+  return `<script 
+  src="https://bmc-neon.vercel.app/embed/loaders/hero-loader.js"
+  data-background-image-url="${getSafeUrl(backgroundImageUrl, 'https://bmc-neon.vercel.app/hero_bg.png')}"
+  data-overlay-color="${overlayColor}"
+  data-text-color="${textColor}"
+  data-heading-font="${headingFont}"
+  data-tagline-text="${taglineText}"
+  data-logo-url="${getSafeUrl(logoUrl, 'https://bmc-neon.vercel.app/phcg_logo.png')}"
+  data-hero-height="${height || 80}vh">
+</script>`;
 };
 
 /**
