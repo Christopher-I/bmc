@@ -149,17 +149,17 @@ const BookPromoPreview = ({ config }) => {
             mt: 4,
           }}
         >
-          For discounts on 25 or more books,{" "}
+          For discounts on 25 or more books, contact{" "}
           <Typography
             component="a"
             href={config.contactLink}
             sx={{
-              color: config.textColor,
+              color: "black",
               textDecoration: "underline",
               fontWeight: "normal",
             }}
           >
-            contact us
+             The Partnership Charter Institute
           </Typography>
         </Typography>
       </Box>
