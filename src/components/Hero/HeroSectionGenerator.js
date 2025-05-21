@@ -98,7 +98,7 @@ const HeroSectionGenerator = ({ config, onConfigChange }) => {
       <Divider sx={{ my: 2 }} />
 
       {/* Background and Overlay */}
-      <Accordion defaultExpanded>
+      {/* <Accordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="subtitle1" fontWeight="bold">
             Background and Overlay
@@ -138,10 +138,10 @@ const HeroSectionGenerator = ({ config, onConfigChange }) => {
             </Grid>
           </Grid>
         </AccordionDetails>
-      </Accordion>
+      </Accordion> */}
 
       {/* Typography */}
-      <Accordion defaultExpanded>
+      {/* <Accordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="subtitle1" fontWeight="bold">
             Typography
@@ -187,10 +187,10 @@ const HeroSectionGenerator = ({ config, onConfigChange }) => {
             </Grid>
           </Grid>
         </AccordionDetails>
-      </Accordion>
+      </Accordion> */}
 
       {/* Logo */}
-      <Accordion defaultExpanded>
+      {/* <Accordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="subtitle1" fontWeight="bold">
             Logo
@@ -209,10 +209,10 @@ const HeroSectionGenerator = ({ config, onConfigChange }) => {
             </Grid>
           </Grid>
         </AccordionDetails>
-      </Accordion>
+      </Accordion> */}
 
       {/* Embed Code Type */}
-      <Box sx={{ mt: 4 }}>
+      {/* <Box sx={{ mt: 4 }}>
         <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
           Embed Code Type
         </Typography>
@@ -265,13 +265,13 @@ const HeroSectionGenerator = ({ config, onConfigChange }) => {
               : "Embeds remotely hosted HTML/CSS via script tag."}
           </Typography>
         </Box>
-      </Box>
+      </Box> */}
 
       {/* Actions */}
       <Box sx={{ mt: 3, display: "flex", justifyContent: "flex-end", gap: 2 }}>
-        <Button variant="outlined" onClick={resetToDefaults}>
+        {/* <Button variant="outlined" onClick={resetToDefaults}>
           Reset to Defaults
-        </Button>
+        </Button> */}
         <Button
           variant="contained"
           color="primary"
